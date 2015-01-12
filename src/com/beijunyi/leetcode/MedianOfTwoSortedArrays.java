@@ -1,7 +1,5 @@
 package com.beijunyi.leetcode;
 
-import java.util.Arrays;
-
 public class MedianOfTwoSortedArrays {
 
   public static class Solution {

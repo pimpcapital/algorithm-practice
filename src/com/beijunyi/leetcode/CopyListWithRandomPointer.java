@@ -5,7 +5,7 @@ package com.beijunyi.leetcode;
  *
  * Return a deep copy of the list.
  */
-public class A {
+public class CopyListWithRandomPointer {
 
   public static class RandomListNode {
     private RandomListNode next;

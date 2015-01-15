@@ -24,7 +24,91 @@ import java.util.*;
  */
 public class WordLadderTwo {
 
-  public static class Solution {
+  public static class Solution2 {
+    public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+
+      Queue<String> nodeQueue = new LinkedList<>();
+      nodeQueue.add(start);
+      nodeQueue.add(null);
+      int depth = 1;
+
+      Map<String, Set<String>> parents = new HashMap<>();
+      Map<String, Integer> depths = new HashMap<>();
+      Set<String> nextToEnds = new HashSet<>();
+
+      while(!nodeQueue.isEmpty()) {
+        String node = nodeQueue.remove();
+        if(node == null) {
+          if(nodeQueue.isEmpty())
+            break;
+          if(!nextToEnds.isEmpty())
+            break;
+          depth++;
+          nodeQueue.add(null);
+          continue;
+        }
+        for(int i = 0; i < node.length(); i++) {
+          StringBuilder builder = new StringBuilder(node);
+          for(char j = 'a'; j <= 'z'; j++) {
+            builder.setCharAt(i, j);
+            String mutation = builder.toString();
+            if(mutation.equals(node))
+              continue;
+
+            if(mutation.equals(end)) {
+              nextToEnds.add(node);
+              continue;
+            }
+
+            if(!dict.contains(mutation))
+              continue;
+
+            if(depths.get(mutation) != null) {
+              if(depths.get(mutation) < depth)
+                continue;
+            } else
+              depths.put(mutation, depth);
+
+            Set<String> mutationParents = parents.get(mutation);
+            if(mutationParents == null) {
+              mutationParents = new HashSet<>();
+              parents.put(mutation, mutationParents);
+            }
+            mutationParents.add(node);
+
+            nodeQueue.add(mutation);
+          }
+        }
+      }
+
+      parents.put(end, nextToEnds);
+
+      return traceBack(end, start, parents);
+    }
+
+    private List<List<String>> traceBack(String start, String end, Map<String, Set<String>> links) {
+      List<List<String>> results = new ArrayList<>();
+      if(start.equals(end)) {
+        List<String> result = new ArrayList<>();
+        result.add(end);
+        results.add(result);
+      } else {
+        Set<String> parents = links.get(start);
+        for(String parent : parents) {
+          List<List<String>> subTraces = traceBack(parent, end, links);
+          for(List<String> subTrace : subTraces) {
+            List<String> result = new ArrayList<>();
+            result.addAll(subTrace);
+            result.add(start);
+            results.add(result);
+          }
+        }
+      }
+      return results;
+    }
+  }
+
+  public static class Solution1 {
     Map<String, List<String>> map;
     List<List<String>> results;
 
@@ -59,30 +143,30 @@ public class WordLadderTwo {
           StringBuilder builder = new StringBuilder(word);
           for(char ch = 'a'; ch <= 'z'; ch++) {
             builder.setCharAt(i, ch);
-            String new_word = builder.toString();
-            if(ladder.containsKey(new_word)) {
+            String newWord = builder.toString();
+            if(ladder.containsKey(newWord)) {
 
-              if(step > ladder.get(new_word))//Check if it is the shortest path to one word.
+              if(step > ladder.get(newWord)) //Check if it is the shortest path to one word.
                 continue;
-              else if(step < ladder.get(new_word)) {
-                queue.add(new_word);
-                ladder.put(new_word, step);
+              else if(step < ladder.get(newWord)) {
+                queue.add(newWord);
+                ladder.put(newWord, step);
               }
               // It is a KEY line. If one word already appeared in one ladder,
               // Do not insert the same word inside the queue twice. Otherwise it gets TLE.
 
-              if(map.containsKey(new_word)) //Build adjacent Graph
-                map.get(new_word).add(word);
+              if(map.containsKey(newWord)) //Build adjacent Graph
+                map.get(newWord).add(word);
               else {
-                List<String> list = new LinkedList<String>();
+                List<String> list = new LinkedList<>();
                 list.add(word);
-                map.put(new_word, list);
+                map.put(newWord, list);
                 //It is possible to write three lines in one:
                 //map.put(new_word,new LinkedList<String>(Arrays.asList(new String[]{word})));
                 //Which one is better?
               }
 
-              if(new_word.equals(end))
+              if(newWord.equals(end))
                 min = step;
 
             }//End if dict contains new_word
@@ -91,7 +175,7 @@ public class WordLadderTwo {
       }//End While
 
       //BackTracking
-      LinkedList<String> result = new LinkedList<String>();
+      LinkedList<String> result = new LinkedList<>();
       backTrace(end, start, result);
 
       return results;
@@ -113,7 +197,8 @@ public class WordLadderTwo {
   }
 
   public static void main(String args[]) {
-    System.out.println(new Solution().findLadders("hit", "cog", new HashSet<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"))));
+    System.out.println(new Solution1().findLadders("hit", "cog", new HashSet<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"))));
+    System.out.println(new Solution2().findLadders("hit", "cog", new HashSet<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"))));
   }
 
 }

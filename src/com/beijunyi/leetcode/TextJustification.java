@@ -29,62 +29,62 @@ import java.util.*;
  */
 public class TextJustification {
 
-//  public static class Solution {
-//    public List<String> fullJustify(String[] words, int L) {
-//      List<String> result = new ArrayList<>();
-//      int lineLetters = 0;
-//      int lineSpaces = 0;
-//      List<String> currentLine = new ArrayList<>();
-//      for(String word : words) {
-//        int predictedLength = lineLetters + lineSpaces + word.length();
-//        if(lineLetters != 0)
-//          predictedLength++;
-//        if(predictedLength > L) {
-//          result.add(generateLine(lineLetters, currentLine, L, false));
-//          currentLine.clear();
-//          lineLetters = 0;
-//          lineSpaces = 0;
-//        }
-//        currentLine.add(word);
-//        boolean firstWord = lineLetters == 0;
-//        lineLetters += word.length();
-//        if(!firstWord)
-//          lineSpaces++;
-//      }
-//      result.add(generateLine(lineLetters, currentLine, L, true));
-//      return result;
-//    }
-//
-//    private String generateLine(int lineLetters, List<String> line, int max, boolean lastLine) {
-//      int gaps = line.size() - 1;
-//      int spaces = max - lineLetters;
-//      StringBuilder sb = new StringBuilder();
-//      if(gaps == 0 || lastLine) {
-//        for(String w : line) {
-//          if(sb.length() != 0)
-//            sb.append(" ");
-//          sb.append(w);
-//        }
-//        for(int rs = 0; rs < spaces - line.size() + 1; rs++)
-//          sb.append(" ");
-//      } else {
-//        int gapIndex = 0;
-//        int fatGap = spaces % gaps;
-//        int gapSpaces = spaces / gaps;
-//        for(String w : line) {
-//          sb.append(w);
-//          if(gapIndex < gaps) {
-//            for(int gs = 0; gs < gapSpaces; gs++)
-//              sb.append(" ");
-//            if(gapIndex < fatGap)
-//              sb.append(" ");
-//            gapIndex++;
-//          }
-//        }
-//      }
-//      return sb.toString();
-//    }
-//  }
+  public static class Solution2 {
+    public List<String> fullJustify(String[] words, int L) {
+      List<String> result = new ArrayList<>();
+      int lineLetters = 0;
+      int lineSpaces = 0;
+      List<String> currentLine = new ArrayList<>();
+      for(String word : words) {
+        int predictedLength = lineLetters + lineSpaces + word.length();
+        if(lineLetters != 0)
+          predictedLength++;
+        if(predictedLength > L) {
+          result.add(generateLine(lineLetters, currentLine, L, false));
+          currentLine.clear();
+          lineLetters = 0;
+          lineSpaces = 0;
+        }
+        currentLine.add(word);
+        boolean firstWord = lineLetters == 0;
+        lineLetters += word.length();
+        if(!firstWord)
+          lineSpaces++;
+      }
+      result.add(generateLine(lineLetters, currentLine, L, true));
+      return result;
+    }
+
+    private String generateLine(int lineLetters, List<String> line, int max, boolean lastLine) {
+      int gaps = line.size() - 1;
+      int spaces = max - lineLetters;
+      StringBuilder sb = new StringBuilder();
+      if(gaps == 0 || lastLine) {
+        for(String w : line) {
+          if(sb.length() != 0)
+            sb.append(" ");
+          sb.append(w);
+        }
+        for(int rs = 0; rs < spaces - line.size() + 1; rs++)
+          sb.append(" ");
+      } else {
+        int gapIndex = 0;
+        int fatGap = spaces % gaps;
+        int gapSpaces = spaces / gaps;
+        for(String w : line) {
+          sb.append(w);
+          if(gapIndex < gaps) {
+            for(int gs = 0; gs < gapSpaces; gs++)
+              sb.append(" ");
+            if(gapIndex < fatGap)
+              sb.append(" ");
+            gapIndex++;
+          }
+        }
+      }
+      return sb.toString();
+    }
+  }
 
   /**
    * For each line, I first figure out which words can fit in.
@@ -92,7 +92,7 @@ public class TextJustification {
    * Then spaces are added between the words.
    * The trick here is to use mod operation to manage the spaces that can't be evenly distrubuted: the first (L-l) % (k-1) gaps acquire an additional space.
    */
-  public static class Solution {
+  public static class Solution1{
     public List<String> fullJustify(String[] words, int L) {
       List<String> list = new LinkedList<>();
 
@@ -123,7 +123,8 @@ public class TextJustification {
   }
 
   public static void main(String args[]) {
-    System.out.println(new Solution().fullJustify(new String[]{"What","must","be","shall","be."}, 12));
+    System.out.println(new Solution1().fullJustify(new String[]{"What","must","be","shall","be."}, 12));
+    System.out.println(new Solution2().fullJustify(new String[]{"What","must","be","shall","be."}, 12));
   }
 
 }

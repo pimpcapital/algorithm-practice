@@ -2,14 +2,14 @@ package com.beijunyi.leetcode;
 
 /**
  * Divide two integers without using multiplication, division and mod operator.
- * <p/>
+ *
  * If it is overflow, return MAX_INT.
  */
 public class DivideTwoIntegers {
 
   /**
    * Long division in binary:
-   * <p/>
+   *
    * The outer loop reduces n by at least half each iteration. So It has O(log N) iterations.
    * The inner loop has at most log N iterations. So the overall complexity is O((log N)^2)
    */

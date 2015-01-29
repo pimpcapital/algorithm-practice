@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.ds.TreeNode;
+
 /**
  *
  * Given a binary tree, flatten it to a linked list in-place.
@@ -30,16 +32,6 @@ package com.beijunyi.leetcode;
  * If you notice carefully in the flattened tree, each node's right child points to the next node of a pre-order traversal.
  */
 public class FlattenBinaryTreeToLinkedList {
-
-  private static class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-      val = x;
-    }
-  }
 
   public static class Solution {
     public void flatten(TreeNode root) {

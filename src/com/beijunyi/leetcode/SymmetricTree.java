@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.ds.TreeNode;
+
 /**
  * Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
  *
@@ -18,16 +20,6 @@ package com.beijunyi.leetcode;
  *      3    3
  */
 public class SymmetricTree {
-
-  private static class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-      val = x;
-    }
-  }
 
   public static class Solution {
     public boolean isSymmetric(TreeNode root) {

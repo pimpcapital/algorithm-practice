@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.ds.TreeNode;
+
 /**
  * Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
  *
@@ -15,13 +17,6 @@ package com.beijunyi.leetcode;
  * return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
  */
 public class PathSum {
-
-  private static class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode(int x) { val = x; }
-  }
 
   public static class Solution {
     public boolean hasPathSum(TreeNode root, int sum) {

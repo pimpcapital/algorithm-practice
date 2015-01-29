@@ -3,6 +3,8 @@ package com.beijunyi.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.beijunyi.leetcode.ds.TreeNode;
+
 /**
  * Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
  *
@@ -22,13 +24,6 @@ import java.util.List;
  * ]
  */
 public class PathSumTwo {
-
-  private static class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-  }
 
   public static class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {

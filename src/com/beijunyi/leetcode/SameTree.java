@@ -1,18 +1,13 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.ds.TreeNode;
+
 /**
  * Given two binary trees, write a function to check if they are equal or not.
  *
  * Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
  */
 public class SameTree {
-
-  private static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-  }
 
   public static class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {

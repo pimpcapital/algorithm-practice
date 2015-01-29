@@ -1,7 +1,6 @@
 package com.beijunyi.leetcode;
 
 import com.beijunyi.leetcode.ds.TreeLinkNode;
-import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
  * Given a binary tree

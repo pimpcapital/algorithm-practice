@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * A message containing letters from A-Z is being encoded to numbers using the following mapping:
  *
@@ -14,7 +16,7 @@ package com.beijunyi.leetcode;
  *
  * The number of ways decoding "12" is 2.
  */
-public class DecodeWays {
+public class DecodeWays implements Medium {
 
   public static class Solution {
     public int numDecodings(String s) {

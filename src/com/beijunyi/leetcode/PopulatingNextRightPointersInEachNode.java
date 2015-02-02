@@ -1,5 +1,6 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
 import com.beijunyi.leetcode.ds.TreeLinkNode;
 
 /**
@@ -25,7 +26,7 @@ import com.beijunyi.leetcode.ds.TreeLinkNode;
  *   / \  / \
  *  4->5->6->7 -> NULL
  */
-public class PopulatingNextRightPointersInEachNode {
+public class PopulatingNextRightPointersInEachNode implements Medium {
 
   public static class Solution {
     public void connect(TreeLinkNode root) {

@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given an input string, reverse the string word by word.
  *
@@ -18,7 +20,7 @@ package com.beijunyi.leetcode;
  * How about multiple spaces between two words?
  *   Reduce them to a single space in the reversed string.
  */
-public class ReverseWordsInAString {
+public class ReverseWordsInAString implements Medium {
 
   public static class Solution {
     public String reverseWords(String s) {

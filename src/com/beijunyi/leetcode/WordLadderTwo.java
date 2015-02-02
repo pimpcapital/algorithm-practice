@@ -22,7 +22,7 @@ import java.util.*;
  *   All words have the same length.
  *   All words contain only lowercase alphabetic characters.
  */
-public class WordLadderTwo {
+public class WordLadderTwo implements Hard {
 
   public static class Solution2 {
     public List<List<String>> findLadders(String start, String end, Set<String> dict) {

@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given an array of non-negative integers, you are initially positioned at the first index of the array.
  *
@@ -12,7 +14,7 @@ package com.beijunyi.leetcode;
  *
  * A = [3,2,1,0,4], return false.
  */
-public class JumpGame {
+public class JumpGame implements Medium {
 
   public static class Solution {
     public boolean canJump(int[] A) {

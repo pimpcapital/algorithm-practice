@@ -1,12 +1,14 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given an array of integers, every element appears three times except for one. Find that single one.
  *
  * Note:
  * Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
  */
-public class SingleNumberTwo {
+public class SingleNumberTwo implements Medium {
 
   /**
    * Consider every bit in a number, if this bit appear 3 times then set it to zero.

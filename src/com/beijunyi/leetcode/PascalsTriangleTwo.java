@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Given an index k, return the kth row of the Pascal's triangle.
  *
@@ -11,7 +13,7 @@ import java.util.*;
  * Note:
  * Could you optimize your algorithm to use only O(k) extra space?
  */
-public class PascalsTriangleTwo {
+public class PascalsTriangleTwo implements Easy {
 
   public static class Solution2 {
     public List<Integer> getRow(int rowIndex) {

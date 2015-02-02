@@ -1,5 +1,6 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
 import com.beijunyi.leetcode.ds.TreeLinkNode;
 
 /**
@@ -24,7 +25,7 @@ import com.beijunyi.leetcode.ds.TreeLinkNode;
  *   / \    \
  *  4-> 5 -> 7 -> NULL
  */
-public class PopulatingNextRightPointersInEachNodeTwo {
+public class PopulatingNextRightPointersInEachNodeTwo implements Hard {
 
   public static class Solution1 {
 

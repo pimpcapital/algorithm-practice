@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given a set of distinct integers, S, return all possible subsets.
  *
@@ -22,7 +24,7 @@ import java.util.*;
  *     []
  *   ]
  */
-public class Subsets {
+public class Subsets implements Medium {
 
   public static class Solution1 {
     public List<List<Integer>> subsets(int[] S) {

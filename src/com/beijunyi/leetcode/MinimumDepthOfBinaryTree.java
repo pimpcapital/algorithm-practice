@@ -1,5 +1,6 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -7,7 +8,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  *
  * The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
  */
-public class MinimumDepthOfBinaryTree {
+public class MinimumDepthOfBinaryTree implements Easy {
 
   public static class Solution {
     public int minDepth(TreeNode root) {

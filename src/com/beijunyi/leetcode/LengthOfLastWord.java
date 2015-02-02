@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
  *
@@ -11,7 +13,7 @@ package com.beijunyi.leetcode;
  * Given s = "Hello World",
  * return 5.
  */
-public class LengthOfLastWord {
+public class LengthOfLastWord implements Easy {
 
   public static class Solution1 {
     public int lengthOfLastWord(String s) {

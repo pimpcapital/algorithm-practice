@@ -1,5 +1,6 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -7,7 +8,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  *
  * The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
  */
-public class MaximumDepthOfBinaryTree {
+public class MaximumDepthOfBinaryTree implements Easy {
   public static class Solution {
     public int maxDepth(TreeNode root) {
       if(root == null)

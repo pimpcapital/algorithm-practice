@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
  *
@@ -9,7 +11,7 @@ package com.beijunyi.leetcode;
  * Given 1->4->3->2->5->2 and x = 3,
  * return 1->2->2->4->3->5.
  */
-public class PartitionList {
+public class PartitionList implements Medium {
 
   private static class ListNode {
     int val;

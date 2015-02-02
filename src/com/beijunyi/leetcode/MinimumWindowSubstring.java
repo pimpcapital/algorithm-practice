@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
  * <p/>
@@ -15,7 +17,7 @@ import java.util.*;
  * <p/>
  * If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
  */
-public class MinimumWindowSubstring {
+public class MinimumWindowSubstring implements Hard {
 
   public static class Solution {
 

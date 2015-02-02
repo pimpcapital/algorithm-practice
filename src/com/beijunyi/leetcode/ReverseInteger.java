@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Reverse digits of an integer.
  *
@@ -15,7 +17,7 @@ package com.beijunyi.leetcode;
  *
  * For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
  */
-public class ReverseInteger {
+public class ReverseInteger implements Easy {
   public static class Solution {
     public int reverse(int x) {
       boolean neg = x < 0;

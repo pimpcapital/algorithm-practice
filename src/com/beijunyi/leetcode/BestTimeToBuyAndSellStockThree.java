@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Say you have an array for which the ith element is the price of a given stock on day i.
  *
@@ -8,7 +10,7 @@ package com.beijunyi.leetcode;
  * Note:
  * You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
  */
-public class BestTimeToBuyAndSellStockThree {
+public class BestTimeToBuyAndSellStockThree implements Hard {
 
   /**
    * Time complexity is O(kn), space complexity can be O(n) because this DP only uses the result from last step.

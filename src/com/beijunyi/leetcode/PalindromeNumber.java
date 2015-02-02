@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Determine whether an integer is a palindrome. Do this without extra space.
  *
@@ -10,7 +12,7 @@ package com.beijunyi.leetcode;
  * You could also try reversing an integer. However, if you have solved the problem "Reverse Integer", you know that the reversed integer might overflow. How would you handle such case?
  * There is a more generic way of solving this problem.
  */
-public class PalindromeNumber {
+public class PalindromeNumber implements Easy {
 
   public static class Solution1 {
     public boolean isPalindrome(int x) {

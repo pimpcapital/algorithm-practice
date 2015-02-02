@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given a collection of intervals, merge all overlapping intervals.
  *
@@ -9,7 +11,7 @@ import java.util.*;
  * Given [1,3],[2,6],[8,10],[15,18],
  * return [1,6],[8,10],[15,18].
  */
-public class MergeIntervals {
+public class MergeIntervals implements Hard {
 
   private static class Interval {
     int start;

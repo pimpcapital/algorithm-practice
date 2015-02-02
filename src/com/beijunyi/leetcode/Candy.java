@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * There are N children standing in a line. Each child is assigned a rating value.
  *
@@ -10,7 +12,7 @@ package com.beijunyi.leetcode;
  *
  * What is the minimum candies you must give?
  */
-public class Candy {
+public class Candy implements Hard {
 
   public static class Solution {
     public int candy(int[] ratings) {

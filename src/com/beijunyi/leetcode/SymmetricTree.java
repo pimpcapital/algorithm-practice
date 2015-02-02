@@ -1,5 +1,6 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -19,7 +20,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  *     \   \
  *      3    3
  */
-public class SymmetricTree {
+public class SymmetricTree implements Easy {
 
   public static class Solution {
     public boolean isSymmetric(TreeNode root) {

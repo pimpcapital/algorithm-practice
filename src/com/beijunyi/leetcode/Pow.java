@@ -1,9 +1,11 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Implement pow(x, n).
  */
-public class Pow {
+public class Pow implements Medium {
 
     public static class Solution2 {
         public double pow(double x, int n) {

@@ -1,10 +1,12 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given a string S, find the longest palindromic substring in S.
  * You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
  */
-public class LongestPalindromicSubstring {
+public class LongestPalindromicSubstring implements Medium {
 
   public static class Solution2 {
     public String longestPalindrome(String s) {

@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given an unsorted integer array, find the first missing positive integer.
  *
@@ -9,7 +11,7 @@ package com.beijunyi.leetcode;
  *
  * Your algorithm should run in O(n) time and uses constant space.
  */
-public class FirstMissingPositive {
+public class FirstMissingPositive implements Hard {
 
   public static class Solution {
     public int firstMissingPositive(int[] A) {

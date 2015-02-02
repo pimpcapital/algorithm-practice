@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Validate if a given string is numeric.
  *
@@ -11,7 +13,7 @@ package com.beijunyi.leetcode;
  *  "2e10"   =>  true
  * Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
  */
-public class ValidNumber {
+public class ValidNumber implements Hard {
 
   public static class Solution {
     public boolean isNumber(String s) {

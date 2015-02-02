@@ -3,6 +3,8 @@ package com.beijunyi.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
  *
@@ -16,7 +18,7 @@ import java.util.List;
  *
  * This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
  */
-public class InsertInterval {
+public class InsertInterval implements Hard {
 
   private static class Interval {
      int start;

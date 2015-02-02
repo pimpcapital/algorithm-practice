@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
  *
@@ -11,7 +13,7 @@ package com.beijunyi.leetcode;
  * When s3 = "aadbbcbcac", return true.
  * When s3 = "aadbbbaccc", return false.
  */
-public class InterleavingString {
+public class InterleavingString implements Hard {
 
   /**
    * Here is some explanation:

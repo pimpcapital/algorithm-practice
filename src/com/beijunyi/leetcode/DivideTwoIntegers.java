@@ -1,11 +1,13 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Divide two integers without using multiplication, division and mod operator.
  *
  * If it is overflow, return MAX_INT.
  */
-public class DivideTwoIntegers {
+public class DivideTwoIntegers implements Medium {
 
   /**
    * Long division in binary:

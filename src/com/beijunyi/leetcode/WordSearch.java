@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given a 2D board and a word, find if the word exists in the grid.
  *
@@ -17,7 +19,7 @@ package com.beijunyi.leetcode;
  * word = "SEE", -> returns true,
  * word = "ABCB", -> returns false.
  */
-public class WordSearch {
+public class WordSearch implements Medium {
 
   public static class Solution {
     public boolean exist(char[][] board, String word) {

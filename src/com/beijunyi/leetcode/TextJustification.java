@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.
  *
@@ -27,7 +29,7 @@ import java.util.*;
  * A line other than the last line might contain only one word. What should you do in this case?
  * In this case, that line should be left-justified.
  */
-public class TextJustification {
+public class TextJustification implements Hard {
 
   public static class Solution2 {
     public List<String> fullJustify(String[] words, int L) {

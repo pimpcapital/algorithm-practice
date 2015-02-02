@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * You are given two linked lists representing two non-negative numbers.
  * The digits are stored in reverse order and each of their nodes contain a single digit.
@@ -8,7 +10,7 @@ package com.beijunyi.leetcode;
  * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
  * Output: 7 -> 0 -> 8
  */
-public class AddTwoNumbers {
+public class AddTwoNumbers implements Medium {
 
   private static class ListNode {
     int val;

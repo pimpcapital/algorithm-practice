@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given an array of integers, find two numbers such that they add up to a specific target number.
  *
@@ -12,7 +14,7 @@ import java.util.*;
  * Input: numbers={2, 7, 11, 15}, target=9
  * Output: index1=1, index2=2
  */
-public class TwoSum {
+public class TwoSum implements Medium {
 
   public static class Solution {
 

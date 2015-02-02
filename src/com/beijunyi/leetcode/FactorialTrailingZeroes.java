@@ -1,11 +1,13 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Given an integer n, return the number of trailing zeroes in n!.
  *
  * Note: Your solution should be in logarithmic time complexity.
  */
-public class FactorialTrailingZeroes {
+public class FactorialTrailingZeroes implements Easy {
 
   public static class Solution {
     public int trailingZeroes(int n) {

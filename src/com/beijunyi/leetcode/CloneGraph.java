@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.beijunyi.leetcode.difficulty.Medium;
 import com.beijunyi.leetcode.ds.UndirectedGraphNode;
 
 /**
@@ -10,7 +11,7 @@ import com.beijunyi.leetcode.ds.UndirectedGraphNode;
  *
 
  */
-public class CloneGraph {
+public class CloneGraph implements Medium {
 
   public static class Solution {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {

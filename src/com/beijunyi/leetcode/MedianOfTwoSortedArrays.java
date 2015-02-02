@@ -1,11 +1,13 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * There are two sorted arrays A and B of size m and n respectively.
  * Find the median of the two sorted arrays.
  * The overall run time complexity should be O(log (m+n)).
  */
-public class MedianOfTwoSortedArrays {
+public class MedianOfTwoSortedArrays implements Hard {
 
   /**
    * This is my iterative solution using binary search.

@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given a string S and a string T, count the number of distinct subsequences of T in S.
  *
@@ -10,7 +12,7 @@ package com.beijunyi.leetcode;
  *
  * Return 3.
  */
-public class DistinctSubsequences {
+public class DistinctSubsequences implements Hard {
 
   public static class Solution {
     public int numDistinct(String S, String T) {

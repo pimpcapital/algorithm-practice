@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
  *
@@ -16,7 +18,7 @@ package com.beijunyi.leetcode;
  *
  * For k = 3, you should return: 3->2->1->4->5
  */
-public class ReverseNodesInKGroup {
+public class ReverseNodesInKGroup implements Hard {
 
   public static class ListNode {
     int val;

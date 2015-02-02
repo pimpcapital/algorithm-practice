@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
  *
@@ -12,7 +14,7 @@ package com.beijunyi.leetcode;
  *
  * For the purpose of this problem, we define empty string as valid palindrome.
  */
-public class ValidPalindrome {
+public class ValidPalindrome implements Easy {
 
   public static class Solution {
     public boolean isPalindrome(String s) {

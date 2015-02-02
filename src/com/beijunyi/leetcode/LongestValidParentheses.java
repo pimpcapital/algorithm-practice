@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.Stack;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
  *
@@ -9,7 +11,7 @@ import java.util.Stack;
  *
  * Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.
  */
-public class LongestValidParentheses {
+public class LongestValidParentheses implements Hard {
 
   public static class Solution1 {
     public int longestValidParentheses(String s) {

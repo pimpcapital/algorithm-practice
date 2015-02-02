@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
  *
@@ -10,7 +12,7 @@ package com.beijunyi.leetcode;
  * Note:
  * The solution is guaranteed to be unique.
  */
-public class GasStation {
+public class GasStation implements Medium {
 
   /**
    * The idea is if the sum of the gas is greater than the sum of cost, there must be a solution.

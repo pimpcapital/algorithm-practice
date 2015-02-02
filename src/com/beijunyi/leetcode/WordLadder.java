@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
  *
@@ -21,7 +23,7 @@ import java.util.*;
  *   All words have the same length.
  *   All words contain only lowercase alphabetic characters.
  */
-public class WordLadder {
+public class WordLadder implements Medium {
 
   public static class Solution {
     public int ladderLength(String start, String end, Set<String> dict) {

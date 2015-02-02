@@ -3,6 +3,8 @@ package com.beijunyi.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given a collection of numbers, return all possible permutations.
  *
@@ -10,7 +12,7 @@ import java.util.List;
  * [1,2,3] have the following permutations:
  * [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
  */
-public class Permutations {
+public class Permutations implements Medium {
 
   public static class Solution {
     public List<List<Integer>> permute(int[] num) {

@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in place.
  *
@@ -11,7 +13,7 @@ import java.util.Arrays;
  * A simple improvement uses O(m + n) space, but still not the best solution.
  * Could you devise a constant space solution?
  */
-public class SetMatrixZeroes {
+public class SetMatrixZeroes implements Medium {
 
   public static class Solution1 {
     public void setZeroes(int[][] matrix) {

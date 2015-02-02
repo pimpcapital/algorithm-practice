@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.
  *
@@ -13,7 +15,7 @@ import java.util.*;
  * Given numerator = 2, denominator = 1, return "2".
  * Given numerator = 2, denominator = 3, return "0.(6)".
  */
-public class FractionToRecurringDecimal {
+public class FractionToRecurringDecimal implements Medium {
 
   public static class Solution {
     public String fractionToDecimal(int numerator, int denominator) {

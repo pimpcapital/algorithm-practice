@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
  *
@@ -10,7 +12,7 @@ import java.util.*;
  * top() -- Get the top element.
  * getMin() -- Retrieve the minimum element in the stack.
  */
-public class MinStack {
+public class MinStack implements Easy {
 
   long min;
   Stack<Long> stack;

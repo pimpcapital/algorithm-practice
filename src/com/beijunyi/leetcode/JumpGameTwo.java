@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given an array of non-negative integers, you are initially positioned at the first index of the array.
  *
@@ -12,7 +14,7 @@ package com.beijunyi.leetcode;
  *
  * The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
  */
-public class JumpGameTwo {
+public class JumpGameTwo implements Hard {
 
   /**
    * We use "furthest" to keep track of the maximum distance that has been reached

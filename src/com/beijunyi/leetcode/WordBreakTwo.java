@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
  *
@@ -13,7 +15,7 @@ import java.util.*;
  *
  * A solution is ["cats and dog", "cat sand dog"].
  */
-public class WordBreakTwo {
+public class WordBreakTwo implements Hard {
 
   public static class Solution {
     public List<String> wordBreak(String s, Set<String> dict) {

@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Implement wildcard pattern matching with support for '?' and '*'.
  *
@@ -20,7 +22,7 @@ package com.beijunyi.leetcode;
  * isMatch("ab", "?*") → true
  * isMatch("aab", "c*a*b") → false
  */
-public class WildcardMatching {
+public class WildcardMatching implements Hard {
 
   public static class Solution {
     public boolean isMatch(String s, String p) {

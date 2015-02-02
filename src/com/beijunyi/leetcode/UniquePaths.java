@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
  *
@@ -7,7 +9,7 @@ package com.beijunyi.leetcode;
  *
  * How many possible unique paths are there?
  */
-public class UniquePaths {
+public class UniquePaths implements Medium {
 
   /**
    * First of all you should understand that we need to do n + m - 2 movements : m - 1 down, n - 1 right, because we start from cell (1, 1).

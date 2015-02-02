@@ -1,5 +1,6 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -16,7 +17,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  *  7    2      1
  * return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
  */
-public class PathSum {
+public class PathSum implements Easy {
 
   public static class Solution {
     public boolean hasPathSum(TreeNode root, int sum) {

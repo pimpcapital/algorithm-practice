@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Easy;
+
 /**
  * Compare two version numbers version1 and version1.
  * If version1 > version2 return 1, if version1 < version2 return -1, otherwise return 0.
@@ -12,7 +14,7 @@ package com.beijunyi.leetcode;
  *
  * 0.1 < 1.1 < 1.2 < 13.37
  */
-public class CompareVersionNumbers {
+public class CompareVersionNumbers implements Easy {
 
   public static class Solution {
     public int compareVersion(String version1, String version2) {

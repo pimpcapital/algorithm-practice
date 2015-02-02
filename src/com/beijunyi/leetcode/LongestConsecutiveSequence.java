@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
  *
@@ -11,7 +13,7 @@ import java.util.*;
  *
  * Your algorithm should run in O(n) complexity.
  */
-public class LongestConsecutiveSequence {
+public class LongestConsecutiveSequence implements Hard {
 
   public static class Solution {
     public int longestConsecutive(int[] num) {

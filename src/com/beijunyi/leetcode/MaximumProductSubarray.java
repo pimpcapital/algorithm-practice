@@ -1,12 +1,14 @@
 package com.beijunyi.leetcode;
 
+import com.beijunyi.leetcode.difficulty.Medium;
+
 /**
  * Find the contiguous subarray within an array (containing at least one number) which has the largest product.
  *
  * For example, given the array [2,3,-2,4],
  * the contiguous subarray [2,3] has the largest product = 6.
  */
-public class MaximumProductSubarray {
+public class MaximumProductSubarray implements Medium {
 
   /**
    * Loop through the array, each time remember the max and min value for the previous product.

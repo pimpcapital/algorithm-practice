@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.beijunyi.leetcode.difficulty.Medium;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -23,7 +24,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  *   [  5,  8,  4,  5]
  * ]
  */
-public class PathSumTwo {
+public class PathSumTwo implements Medium {
 
   public static class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {

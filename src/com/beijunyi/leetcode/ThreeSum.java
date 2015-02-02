@@ -20,7 +20,7 @@ public class ThreeSum implements Medium {
 
   public static class Solution {
     public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
-      ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+      ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
       if (num.length < 3)
         return result;
@@ -40,7 +40,7 @@ public class ThreeSum implements Medium {
           while (start < end) {
             //case 1
             if (num[start] + num[end] == negate) {
-              ArrayList<Integer> temp = new ArrayList<Integer>();
+              ArrayList<Integer> temp = new ArrayList<>();
               temp.add(num[i]);
               temp.add(num[start]);
               temp.add(num[end]);

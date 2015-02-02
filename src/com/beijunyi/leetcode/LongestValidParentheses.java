@@ -15,7 +15,7 @@ public class LongestValidParentheses implements Hard {
 
   public static class Solution1 {
     public int longestValidParentheses(String s) {
-      Stack<Integer> stack = new Stack<Integer>();
+      Stack<Integer> stack = new Stack<>();
       int max=0;
       int left = -1;
       for(int j=0;j<s.length();j++){

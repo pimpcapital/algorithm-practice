@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.difficulty.Hard;
+
 /**
  * Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
  *

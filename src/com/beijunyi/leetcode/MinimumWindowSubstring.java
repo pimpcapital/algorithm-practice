@@ -26,7 +26,7 @@ public class MinimumWindowSubstring implements Hard {
       int minstart = 0;
       int minend = S.length() - 1;
 
-      HashMap<Character, Integer> require = new HashMap<Character, Integer>();
+      HashMap<Character, Integer> require = new HashMap<>();
       for(int i = 0; i < T.length(); i++) {
         char c = T.charAt(i);
         require.put(c, require.containsKey(c) ? require.get(c) + 1 : 1);

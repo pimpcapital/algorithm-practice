@@ -52,8 +52,6 @@ public class LengthOfLastWord implements Easy {
   public static void main(String args[]) {
     System.out.println(new Solution1().lengthOfLastWord("Hello World "));
     System.out.println(new Solution2().lengthOfLastWord("Hello World "));
-    int a = 1;
-    System.out.println(a += 2);
   }
 
 }

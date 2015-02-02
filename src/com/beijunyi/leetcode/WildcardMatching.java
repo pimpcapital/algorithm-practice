@@ -25,26 +25,41 @@ import com.beijunyi.leetcode.difficulty.Hard;
 public class WildcardMatching implements Hard {
 
   public static class Solution {
-    public boolean isMatch(String s, String p) {
-      return isMatch(s, 0, p, 0);
-    }
-
-    public boolean isMatch(String s, int so, String p, int po) {
-      for(; so < s.length() && po < p.length(); so++, po++) {
-        char sc = s.charAt(so);
-        char pc = p.charAt(po);
-        if(sc == pc || pc == '?')
-          continue;
-        if(pc == '*') {
-          for(int st = so; st < s.length(); st++)
-            if(isMatch(s, st, p, po + 1))
-              return true;
-          return false;
+    public boolean isMatch(String str, String pattern) {
+      int s = 0, p = 0, match = 0, starIdx = -1;
+      while (s < str.length()){
+        // advancing both pointers
+        if (p < pattern.length()  && (pattern.charAt(p) == '?' || str.charAt(s) == pattern.charAt(p))){
+          s++;
+          p++;
         }
-        return false;
+        // * found, only advancing pattern pointer
+        else if (p < pattern.length() && pattern.charAt(p) == '*'){
+          starIdx = p;
+          match = s;
+          p++;
+        }
+        // last pattern pointer was *, advancing string pointer
+        else if (starIdx != -1){
+          p = starIdx + 1;
+          match++;
+          s = match;
+        }
+        //current pattern pointer is not star, last patter pointer was not *
+        //characters do not match
+        else return false;
       }
-      return true;
+
+      //check for remaining characters in pattern
+      while (p < pattern.length() && pattern.charAt(p) == '*')
+        p++;
+
+      return p == pattern.length();
     }
+  }
+
+  public static void main(String args[]) {
+    System.out.println(new Solution().isMatch("ab", "*?"));
   }
 
 }

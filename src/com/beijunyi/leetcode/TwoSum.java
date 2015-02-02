@@ -19,7 +19,7 @@ public class TwoSum implements Medium {
   public static class Solution {
 
     public int[] twoSum(int[] numbers, int target) {
-      Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+      Map<Integer, Integer> map = new HashMap<>();
       for(int i = 0; i < numbers.length; i++) {
         Integer index1 = map.get(target - numbers[i]);
         if(index1 != null) {

@@ -15,7 +15,7 @@ public class Pow implements Medium {
                 return x;
             if(n == -1)
                 return 1 / x;
-            double sub = pow(x, n/2);
+            double sub = pow(x, n / 2);
             double result = sub * sub;
             int r = n % 2;
             if(r != 0) {

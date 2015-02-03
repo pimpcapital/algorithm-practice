@@ -14,9 +14,8 @@ public class SingleNumber implements Medium {
 
     public int singleNumber(int[] A) {
       int result = 0;
-      for(int a : A) {
+      for(int a : A)
         result ^= a;
-      }
       return result;
     }
   }

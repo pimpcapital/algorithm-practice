@@ -50,7 +50,7 @@ public class SingleNumberTwo implements Medium {
    *   NB = ~A~BC + ~AB~C = ~A(B^C)
    *   NB is first, NA is second, so we should use last first when we calc next second
    */
-  public static class Solution {
+  public static class Solution1 {
     public int singleNumber(int[] A) {
       int ones = 0, twos = 0;
       for(int a : A) {
@@ -61,8 +61,21 @@ public class SingleNumberTwo implements Medium {
     }
   }
 
+  public static class Solution2 {
+    public int singleNumber(int[] A) {
+      int ones = 0, twos = 0;
+      for(int a : A) {
+        int temp = ones;
+        ones = (~a & ones) | (a & ~ones & ~twos);
+        twos = (~a & twos) | (a & ~twos & temp);
+      }
+      return ones;
+    }
+  }
+
   public static void main(String args[]) {
-    System.out.println(new Solution().singleNumber(new int[]{3, 2, 1, 2, 2, 3, 3}));
+    System.out.println(new Solution1().singleNumber(new int[]{3, 2, 1, 2, 2, 3, 3}));
+    System.out.println(new Solution2().singleNumber(new int[]{3, 2, 1, 2, 2, 3, 3}));
   }
 
 

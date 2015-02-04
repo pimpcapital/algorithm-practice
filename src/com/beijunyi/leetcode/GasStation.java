@@ -37,7 +37,7 @@ public class GasStation implements Medium {
       }
       if (totalcost > totalgas)
         return -1;
-      station +=1;
+      station += 1;
       if (station == gas.length)
         station = 0;
       return station;

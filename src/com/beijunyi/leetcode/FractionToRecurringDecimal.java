@@ -57,7 +57,7 @@ public class FractionToRecurringDecimal implements Medium {
   }
 
   public static void main(String args[]) {
-    System.out.println(new Solution().fractionToDecimal(1, 6));
+    System.out.println(new Solution().fractionToDecimal(-1, -2147483648));
   }
 
 

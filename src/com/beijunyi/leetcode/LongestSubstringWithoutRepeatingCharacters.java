@@ -1,6 +1,8 @@
 package com.beijunyi.leetcode;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.beijunyi.leetcode.difficulty.Medium;
 
@@ -38,11 +40,11 @@ public class LongestSubstringWithoutRepeatingCharacters implements Medium {
       // for ASCII char sequence, use this as a hashmap
       int[] charIndex = new int[256];
       Arrays.fill(charIndex, -1);
-      int longest = 0, m = 0;
-      for (int i = 0; i < s.length(); i++) {
-        m = Math.max(charIndex[s.charAt(i)] + 1, m);    // automatically takes care of -1 case
+      int longest = 0, start = 0;
+      for(int i = 0; i < s.length(); i++) {
+        start = Math.max(charIndex[s.charAt(i)] + 1, start);    // automatically takes care of -1 case
         charIndex[s.charAt(i)] = i;
-        longest = Math.max(longest, i - m + 1);
+        longest = Math.max(longest, i - start + 1);
       }
       return longest;
     }

@@ -48,11 +48,10 @@ public class LongestPalindromicSubstring implements Medium {
     }
 
     public String longestPalindrome(String s) {
-      int n = s.length();
       int longestLen = 0;
       int longestIndex = 0;
 
-      for(int currentIndex = 0; currentIndex < n; currentIndex++) {
+      for(int currentIndex = 0; currentIndex < s.length(); currentIndex++) {
         if(isPalindrome(s, currentIndex - longestLen, currentIndex)) {
           longestLen += 1;
           longestIndex = currentIndex;

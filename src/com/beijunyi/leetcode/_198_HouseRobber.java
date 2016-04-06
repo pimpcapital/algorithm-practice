@@ -21,15 +21,16 @@ public class _198_HouseRobber {
     }
 
     private static int rob(int[] nums, int offset, int[] cache) {
-      if(nums.length == offset) return 0;
+      if(offset >= nums.length) return 0;
+      if(cache[offset] != -1) return cache[offset];
 
       int robCurrent = nums[offset];
 
       int next = offset + 1;
-      int robFromNext = next >= nums.length ? 0 : (cache[next] == -1 ? rob(nums, next, cache) : cache[next]);
+      int robFromNext = rob(nums, next, cache);
 
       int after = next + 1;
-      int robFromAfter = after >= nums.length ? 0 : (cache[after] == -1 ? rob(nums, after, cache) : cache[after]);
+      int robFromAfter = rob(nums, after, cache);
 
       int result = Math.max(robCurrent + robFromAfter, robFromNext);
       cache[offset] = result;

@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
-import com.beijunyi.leetcode.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
  * Given a non-negative number represented as an array of digits, plus one to the number.

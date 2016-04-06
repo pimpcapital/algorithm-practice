@@ -1,6 +1,6 @@
 package com.beijunyi.leetcode;
 
-import com.beijunyi.leetcode.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
  * Given an integer n, return the number of trailing zeroes in n!.

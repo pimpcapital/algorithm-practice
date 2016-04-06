@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 import com.beijunyi.leetcode.ds.Point;
 
 public class _149_MaxPointsOnALine implements Hard {

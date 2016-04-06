@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Stack;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
  * Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.

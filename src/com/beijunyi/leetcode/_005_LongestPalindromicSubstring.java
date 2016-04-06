@@ -1,6 +1,6 @@
 package com.beijunyi.leetcode;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given a string S, find the longest palindromic substring in S.

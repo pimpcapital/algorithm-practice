@@ -1,6 +1,6 @@
 package com.beijunyi.leetcode;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * A peak element is an element that is greater than its neighbors.

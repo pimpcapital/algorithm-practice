@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
  * Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.

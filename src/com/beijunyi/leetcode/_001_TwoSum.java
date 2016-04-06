@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given an array of integers, find two numbers such that they add up to a specific target number.

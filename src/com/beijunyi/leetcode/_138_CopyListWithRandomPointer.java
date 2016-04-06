@@ -1,6 +1,6 @@
 package com.beijunyi.leetcode;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
  * A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.

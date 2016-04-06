@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.HashMap;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.

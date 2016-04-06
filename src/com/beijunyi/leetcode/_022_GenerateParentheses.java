@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 public class _022_GenerateParentheses implements Medium {
 

@@ -1,6 +1,6 @@
 package com.beijunyi.leetcode;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * A message containing letters from A-Z is being encoded to numbers using the following mapping:

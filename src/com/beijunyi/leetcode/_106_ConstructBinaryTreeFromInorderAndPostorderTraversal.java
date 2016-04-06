@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Stack;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 public class _106_ConstructBinaryTreeFromInorderAndPostorderTraversal implements Medium {

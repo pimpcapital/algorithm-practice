@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.HashMap;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
  * Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).

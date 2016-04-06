@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Easy;
+
 /**
  * You are a professional robber planning to rob houses along a street. Each house has a certain amount of money
  * stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system
@@ -10,7 +12,7 @@ import java.util.Arrays;
  * Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of
  * money you can rob tonight without alerting the police.
  */
-public class _198_HouseRobber {
+public class _198_HouseRobber implements Easy {
 
   public static class Solution {
 

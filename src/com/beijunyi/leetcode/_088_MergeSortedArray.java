@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
-import com.beijunyi.leetcode.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
  * Given two sorted integer arrays A and B, merge B into A as one sorted array.

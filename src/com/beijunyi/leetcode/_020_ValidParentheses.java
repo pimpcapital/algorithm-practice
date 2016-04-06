@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Stack;
 
-import com.beijunyi.leetcode.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
  * Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.

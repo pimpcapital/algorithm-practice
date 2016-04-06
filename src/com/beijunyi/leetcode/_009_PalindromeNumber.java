@@ -1,6 +1,6 @@
 package com.beijunyi.leetcode;
 
-import com.beijunyi.leetcode.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
  * Determine whether an integer is a palindrome. Do this without extra space.

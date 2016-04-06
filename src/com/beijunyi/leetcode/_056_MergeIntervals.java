@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
  * Given a collection of intervals, merge all overlapping intervals.

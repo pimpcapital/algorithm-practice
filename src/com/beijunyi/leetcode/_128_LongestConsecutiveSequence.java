@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
  * Given an unsorted array of integers, find the length of the longest consecutive elements sequence.

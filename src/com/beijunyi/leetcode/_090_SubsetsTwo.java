@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given a collection of integers that might contain duplicates, S, return all possible subsets.

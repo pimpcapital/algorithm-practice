@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.

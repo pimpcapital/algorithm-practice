@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:

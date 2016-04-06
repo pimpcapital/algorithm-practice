@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given a set of distinct integers, S, return all possible subsets.

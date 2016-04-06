@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given a sorted array of integers, find the starting and ending position of a given target value.

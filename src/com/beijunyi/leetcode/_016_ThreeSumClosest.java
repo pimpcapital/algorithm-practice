@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
  * Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target.

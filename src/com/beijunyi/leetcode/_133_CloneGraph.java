@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.UndirectedGraphNode;
 
 /**

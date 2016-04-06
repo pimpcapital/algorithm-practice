@@ -2,7 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Stack;
 
-import com.beijunyi.leetcode.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
  * Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.

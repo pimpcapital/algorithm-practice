@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.beijunyi.leetcode.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
  * Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).

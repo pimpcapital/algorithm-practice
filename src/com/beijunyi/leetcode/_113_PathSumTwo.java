@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.beijunyi.leetcode.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**

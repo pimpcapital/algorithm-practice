@@ -155,7 +155,7 @@ public class _224_Basic_Calculator implements Hard {
    * Time: O(n), Space: O(n) where:
    *   n is the number of characters in the input
    */
-  public static class Solution2 implements Recursive {
+  public static class Solution2 implements Solution, Recursive {
 
     public int calculate(String s) {
       if(s.length() == 0) return 0;

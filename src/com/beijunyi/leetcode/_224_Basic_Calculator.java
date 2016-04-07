@@ -25,8 +25,9 @@ public class _224_Basic_Calculator implements Hard {
   }
 
   /**
-   * Time: O(n), Space: O(n) where:
+   * Time: O(n), Space: O(p) where:
    *   n is the number of characters in the input
+   *   p is the number of parenthesis pairs in the input
    */
   public static class Solution1 implements Solution {
 
@@ -154,7 +155,7 @@ public class _224_Basic_Calculator implements Hard {
   /**
    * Time: O(n), Space: O(p) where:
    *   n is the number of characters in the input
-   *   p is the number of parenthesis pairs
+   *   p is the number of parenthesis pairs in the input
    */
   public static class Solution2 implements Recursive {
 

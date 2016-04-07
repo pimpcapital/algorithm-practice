@@ -146,9 +146,57 @@ public class _224_Basic_Calculator implements Hard {
 
   }
 
+  public static class Solution2 {
+
+    public int calculate(String s) {
+      if (s.length() == 0) return 0;
+      s = "(" + s + ")";
+      int[] index = {0}; // a single element array to hold the index
+      return eval(s, index);
+    }
+
+    private int eval(String s, int[] index) {
+      int val = 0;
+      int i = index[0];
+      int oper = 1; //1:+ -1:-
+      int num = 0;
+      while(i < s.length()) {
+        char c = s.charAt(i);
+        switch(c) {
+          case '+':
+            val = val + oper * num;
+            num = 0;
+            oper = 1;
+            break;
+          case '-':
+            val = val + oper * num;
+            num = 0;
+            oper = -1;
+            break;
+          case '(':
+            index[0] = i + 1;
+            val = val + oper * eval(s, index);
+            i = index[0];
+            break;
+          case ')':
+            index[0] = i;
+            return val + oper * num;
+          case ' ':
+            break;
+          default :
+            num = num * 10 + (c - '0');
+        }
+        i++;
+      }
+      return val;
+    }
+
+  }
+
   public static void main(String[] args) {
     String s = "(1+(4+5+2)-3)+(6+8)";
     System.out.println(new Solution1().calculate(s));
+    System.out.println(new Solution2().calculate(s));
   }
 
 }

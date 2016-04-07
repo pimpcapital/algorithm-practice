@@ -4,11 +4,12 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.solution.Recursive;
 
 /**
  * Implement a basic calculator to evaluate a simple expression string.
- * The expression string may contain open "(" and closing parentheses ")", the plus "+" or minus sign "-", non-negative integers
- * and empty spaces " ".
+ * The expression string may contain open "(" and closing parentheses ")", the plus "+" or minus sign "-", non-negative
+ * integers and empty spaces " ".
  *
  * You may assume that the given expression is always valid.
  *
@@ -23,6 +24,10 @@ public class _224_Basic_Calculator implements Hard {
     int calculate(String s);
   }
 
+  /**
+   * Time: O(n), Space: O(n) where:
+   *   n is the number of characters in the input
+   */
   public static class Solution1 implements Solution {
 
     @Override
@@ -146,10 +151,15 @@ public class _224_Basic_Calculator implements Hard {
 
   }
 
-  public static class Solution2 {
+  /**
+   * Time: O(n), Space: O(p) where:
+   *   n is the number of characters in the input
+   *   p is the number of parenthesis pairs
+   */
+  public static class Solution2 implements Recursive {
 
     public int calculate(String s) {
-      if (s.length() == 0) return 0;
+      if(s.length() == 0) return 0;
       s = "(" + s + ")";
       int[] index = {0}; // a single element array to hold the index
       return eval(s, index);

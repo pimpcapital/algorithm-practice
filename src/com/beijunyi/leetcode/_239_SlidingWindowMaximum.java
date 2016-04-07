@@ -1,5 +1,9 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
+
 import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
@@ -29,6 +33,48 @@ public class _239_SlidingWindowMaximum implements Hard {
 
   public interface Solution {
     public int[] maxSlidingWindow(int[] nums, int k);
+  }
+
+  /**
+   * Time: O(n), Space: O(k) where:
+   *   n is the number of numbers
+   *   k is the size of the window
+   */
+  public static class Solution1 implements Solution {
+
+    @Override
+    public int[] maxSlidingWindow(int[] nums, int k) {
+      if(k == 0) return new int[0];
+      int[] ret = new int[nums.length - k + 1];
+      Deque<Integer> window = new LinkedList<>();
+      for(int right = 0; right < nums.length; right++) {
+        int left = right - k + 1;
+        if(!window.isEmpty() && window.peekFirst() < left)
+          window.pollFirst(); // remove the out-of-window element
+        int num = nums[right];
+        while(!window.isEmpty() && nums[window.peekLast()] < num) // remove the elements smaller than the new element
+          window.pollLast();
+        window.offerLast(right);
+        if(left >= 0)
+          ret[left] = nums[window.peekFirst()];
+      }
+      return ret;
+    }
+
+  }
+
+  public static void main(String[] args) {
+    Solution s1 = new Solution1();
+
+    int[] nums1 = new int[] {1,3,-1,-3,5,3,6,7};
+    int k1 = 3;
+    int[] r1 = s1.maxSlidingWindow(nums1, k1);
+    System.out.println(Arrays.toString(r1));
+
+    int[] nums2 = new int[] {1,3,1,2,0,5};
+    int k2 = 3;
+    int[] r2 = s1.maxSlidingWindow(nums2, k2);
+    System.out.println(Arrays.toString(r2));
   }
 
 }

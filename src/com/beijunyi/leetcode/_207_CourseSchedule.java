@@ -136,7 +136,7 @@ public class _207_CourseSchedule implements Medium {
       Map<Integer, Set<Integer>> ret = new HashMap<>();
 
       for(int c = 0; c < numCourses; c++)
-        ret.put(c, new HashSet<>());
+        ret.put(c, new HashSet<Integer>());
 
       for(int[] prereq : prerequisites) {
         int from = prereq[0];

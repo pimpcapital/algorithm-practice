@@ -1,4 +1,4 @@
 package com.beijunyi.leetcode.category.solution;
 
-public interface BreathFirstSearch {
+public interface BucketSort {
 }

@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
-import com.beijunyi.leetcode.category.solution.BreathFirstSearch;
+import com.beijunyi.leetcode.category.solution.BreadthFirstSearch;
 import com.beijunyi.leetcode.category.solution.DepthFirstSearch;
 
 /**
@@ -42,7 +42,7 @@ public class _207_CourseSchedule implements Medium {
    *
    * When the BFS queue becomes empty, all nodes in a cycle will have inward degree > 0.
    */
-  public static class Solution1 implements Solution, BreathFirstSearch {
+  public static class Solution1 implements Solution, BreadthFirstSearch {
 
     @Override
     public boolean canFinish(int numCourses, int[][] prerequisites) {
@@ -84,7 +84,7 @@ public class _207_CourseSchedule implements Medium {
    *
    * When the BFS finishes, all the "non-free" courses are the ones that got stuck in a loop.
    */
-  public static class Solution2 implements Solution, BreathFirstSearch {
+  public static class Solution2 implements Solution, BreadthFirstSearch {
 
     @Override
     public boolean canFinish(int numCourses, int[][] prerequisites) {

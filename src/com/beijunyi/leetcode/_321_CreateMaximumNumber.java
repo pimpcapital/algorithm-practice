@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Hard;
+
 /**
  * Given two arrays of length m and n with digits 0-9 representing two numbers. Create the maximum number of length
  * k <= m + n from digits of the two. The relative order of the digits from the same array must be preserved. Return an
@@ -25,7 +27,7 @@ import java.util.Arrays;
  *   k = 3
  *   return [9, 8, 9]
  **/
-public class _321_CreateMaximumNumber {
+public class _321_CreateMaximumNumber implements Hard {
 
   public interface Solution {
     int[] maxNumber(int[] nums1, int[] nums2, int k);

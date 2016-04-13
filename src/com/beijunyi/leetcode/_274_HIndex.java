@@ -2,6 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.BucketSort;
 
 /**
@@ -19,7 +20,7 @@ import com.beijunyi.leetcode.category.solution.BucketSort;
  *
  * Note: If there are several possible values for h, the maximum one is taken as the h-index.
  */
-public class _274_HIndex {
+public class _274_HIndex implements Medium {
 
   public interface Solution {
     int hIndex(int[] citations);

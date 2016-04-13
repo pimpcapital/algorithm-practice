@@ -2,6 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.BinarySearch;
 import com.beijunyi.leetcode.category.solution.Recursive;
 
@@ -11,7 +12,7 @@ import com.beijunyi.leetcode.category.solution.Recursive;
  * Hint:
  *   Expected runtime complexity is in O(log n) and the input is sorted.
  */
-public class _275_HIndexTwo {
+public class _275_HIndexTwo implements Medium {
 
   public interface Solution {
     int hIndex(int[] citations);

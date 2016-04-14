@@ -59,6 +59,7 @@ public class _264_UglyNumberTwo implements Medium {
   }
 
   public static class Solution2 implements Solution {
+    @Override
     public int nthUglyNumber(int n) {
       int[] ugly = new int[n];
       ugly[0] = 1;

@@ -1,5 +1,6 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -18,7 +19,7 @@ import com.beijunyi.leetcode.category.solution.Recursive;
  *   " 2-1 + 2 " = 3
  *   "(1+(4+5+2)-3)+(6+8)" = 23
  */
-public class _224_Basic_Calculator implements Hard {
+public class _224_BasicCalculator implements Hard {
 
   public interface Solution {
     int calculate(String s);
@@ -203,9 +204,11 @@ public class _224_Basic_Calculator implements Hard {
   }
 
   public static void main(String[] args) {
-    String s = "(1+(4+5+2)-3)+(6+8)";
-    System.out.println(new Solution1().calculate(s));
-    System.out.println(new Solution2().calculate(s));
+    String exp = "(1+(4+5+2)-3)+(6+8)";
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      System.out.println(s.calculate(exp));
+    }
+
   }
 
 }

@@ -12,7 +12,7 @@ import com.beijunyi.leetcode.category.difficulty.Easy;
  *   b = "1"
  *   Return "100".
  */
-public class _67_AddBinary implements Easy {
+public class _067_AddBinary implements Easy {
 
   public interface Solution {
     String addBinary(String a, String b);

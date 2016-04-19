@@ -46,6 +46,8 @@ public class _306_AdditiveNumber implements Medium {
   }
 
   public static class Solution2 implements Solution, Iterative {
+
+    @Override
     public boolean isAdditiveNumber(String num) {
       int n = num.length();
       for(int i = 1; i <= n / 2; i++)

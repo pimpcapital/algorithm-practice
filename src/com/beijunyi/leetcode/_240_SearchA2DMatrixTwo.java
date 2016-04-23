@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.BinarySearch;
+import com.beijunyi.leetcode.category.solution.Iterative;
+import com.beijunyi.leetcode.category.solution.Recursive;
 
 /**
  * Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
@@ -29,11 +31,13 @@ public class _240_SearchA2DMatrixTwo implements Medium {
 
 
   /**
-   * Time: O(log(r*c)), Space: O(log(r*c)) where
-   *   r is the number of rows in the matrix
-   *   c is the number of columns in the matrix
+   * Time: O(n^0.79), Space: O(n^0.79) where
+   *   n is the total number of cells in the matrix
+   *
+   * This algorithm divides a big problem into 3 smaller problems whose sizes are 1/4 of the big problem.
+   * T(n) = 3T(0.25n) + O(1) -> T(n) = O(n^(log(4)/log(3))) ~= O(n^0.79)
    */
-  public static class Solution1 implements Solution, BinarySearch {
+  public static class Solution1 implements Solution, Recursive, BinarySearch {
 
     @Override
     public boolean searchMatrix(int[][] matrix, int target) {
@@ -64,7 +68,7 @@ public class _240_SearchA2DMatrixTwo implements Medium {
    *   r is the number of rows in the matrix
    *   c is the number of columns in the matrix
    */
-  private static class Solution2 implements Solution, BinarySearch {
+  private static class Solution2 implements Solution, Iterative, BinarySearch {
     @Override
     public boolean searchMatrix(int[][] matrix, int target) {
       if (matrix == null || matrix.length == 0 || matrix[0].length == 0)

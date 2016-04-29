@@ -2,6 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
 
 /**
@@ -18,7 +19,7 @@ import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
  *  The array is only modifiable by the update function.
  *  You may assume the number of calls to update and sumRange function is distributed evenly.
  */
-public class _307_RangeSumQueryMutable {
+public class _307_RangeSumQueryMutable implements Medium {
 
   public interface Solution {
     void setup(int[] nums);

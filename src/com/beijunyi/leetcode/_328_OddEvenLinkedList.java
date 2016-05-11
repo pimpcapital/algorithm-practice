@@ -2,6 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.ListNode;
 
 /**
@@ -18,7 +19,7 @@ import com.beijunyi.leetcode.ds.ListNode;
  * The relative order inside both the even and odd groups should remain as it was in the input.
  * The first node is considered odd, the second node even and so on ...
  */
-public class _328_OddEvenLinkedList {
+public class _328_OddEvenLinkedList implements Medium {
 
   public interface Solution {
     ListNode oddEvenList(ListNode head);

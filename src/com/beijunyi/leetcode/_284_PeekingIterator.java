@@ -100,10 +100,50 @@ public class _284_PeekingIterator implements Medium {
 
   }
 
+  public static class Solution2 implements Solution {
+
+    private Iterator<Integer> iterator;
+    private boolean hasPeeked;
+    private Integer peekedElement;
+
+    @Override
+    public void init(Iterator<Integer> iterator) {
+      if(iterator==null)
+        throw new NullPointerException();
+      else
+        this.iterator = iterator;
+    }
+
+    @Override
+    public Integer peek() {
+      peekedElement = hasPeeked?peekedElement:iterator.next();
+      hasPeeked = true;
+      return peekedElement;
+    }
+
+    @Override
+    public Integer next() {
+      int nextElem = hasPeeked?peekedElement:iterator.next();
+      hasPeeked = false;
+      return nextElem;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return hasPeeked || iterator.hasNext();
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
+
+  }
+
   public static void main(String args[]) {
     Iterator<Integer> iterator;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       iterator = Arrays.asList(1, 2, 3, 4).iterator();
       s.init(iterator);
       System.out.println(s.peek());

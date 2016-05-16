@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.solution.DynamicPrograming;
 
 /**
  * '.' Matches any single character.
@@ -130,7 +131,7 @@ public class _010_RegularExpressionMatching implements Hard {
     }
   }
 
-  public static class Solution3 implements Solution {
+  public static class Solution3 implements Solution, DynamicPrograming {
     @Override
     public boolean isMatch(String s, String p) {
     /*

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.Recursive;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -36,7 +37,7 @@ public class _129_SumRootToLeafNumbers implements Medium {
    *
    * Space: O(n*log(n))
    */
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, Recursive {
 
     @Override
     public int sumNumbers(TreeNode root) {
@@ -70,7 +71,7 @@ public class _129_SumRootToLeafNumbers implements Medium {
    * Time: O(n)
    * Space: O(log(n))
    */
-  public static class Solution2 implements Solution {
+  public static class Solution2 implements Solution, Recursive {
 
     @Override
     public int sumNumbers(TreeNode root) {

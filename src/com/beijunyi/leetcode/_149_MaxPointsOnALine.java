@@ -94,6 +94,34 @@ public class _149_MaxPointsOnALine implements Hard {
     }
   }
 
+  public static class Solution2 {
+
+    public int maxPoints(Point[] points) {
+      if(points.length < 2) return points.length;
+      int maxPoints = 2;
+      for(int i = 0; i < points.length - 1; i++) {
+        for(int j = i + 1; j < points.length; j++) {
+          Point first = points[i];
+          Point second = points[j];
+          int numPoints = 0;
+          if(first.x == second.x) { // Vertical line
+            for(Point point : points)
+              if(point.x == first.x) numPoints++;
+          } else {
+            int h = first.x - second.x;
+            int v = first.y - second.y;
+            int f = h * first.y - v * first.x;
+            for(Point third : points)
+              if(third.y * h == v * third.x + f) numPoints++;
+          }
+          maxPoints = Math.max(maxPoints, numPoints);
+        }
+      }
+
+      return maxPoints;
+    }
+  }
+
   public static void main(String args[]) {
     System.out.println(new Solution().maxPoints(new Point[] {new Point(3, 10), new Point(0, 2), new Point(0, 2), new Point(3, 10)}));
     System.out.println(new Solution().maxPoints(new Point[] {new Point(0, 0), new Point(-1, -1), new Point(2, 2)}));

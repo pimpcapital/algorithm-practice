@@ -18,7 +18,7 @@ import com.beijunyi.leetcode.category.difficulty.Easy;
 public class _278_FirstBadVersion implements Easy {
 
   public interface Solution {
-    void init(int total, int firstBadVersion);
+    void init(int firstBadVersion);
     int firstBadVersion(int n);
     boolean isBadVersion(int n);
     int getCount();
@@ -26,12 +26,10 @@ public class _278_FirstBadVersion implements Easy {
 
   public static abstract class AbstractSolution implements Solution {
 
-    private int total;
     private int firstBadVersion;
     private int count;
 
-    public void init(int total, int firstBadVersion) {
-      this.total = total;
+    public void init(int firstBadVersion) {
       this.firstBadVersion = firstBadVersion;
       this.count = 0;
     }
@@ -72,7 +70,7 @@ public class _278_FirstBadVersion implements Easy {
     for(Solution s : Arrays.asList(new Solution1())) {
       total = 2126753390;
       firstBadNumber = 1702766719;
-      s.init(total, firstBadNumber);
+      s.init(firstBadNumber);
       if(s.firstBadVersion(total) == firstBadNumber) {
         count = s.getCount();
         System.out.println(count);

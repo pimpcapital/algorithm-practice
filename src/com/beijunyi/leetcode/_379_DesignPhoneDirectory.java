@@ -57,25 +57,56 @@ public class _379_DesignPhoneDirectory implements Medium {
 
   public static class Solution1 implements Solution {
 
+    private Collection<Integer> numbers = new LinkedHashSet<>();
+
+    /** Initialize your data structure here
+     @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
     @Override
     public void init(int maxNumbers) {
+      for(int i = 0; i < maxNumbers; i++) {
+        numbers.add(i);
+      }
     }
 
+    /** Provide a number which is not assigned to anyone.
+     @return - Return an available number. Return -1 if none is available. */
     @Override
     public int get() {
-      return 0;
+      Iterator<Integer> it = numbers.iterator();
+      if(it.hasNext()) {
+        int ret = it.next();
+        it.remove();
+        return ret;
+      } else {
+        return -1;
+      }
     }
 
+    /** Check if a number is available or not. */
     @Override
     public boolean check(int number) {
-      return false;
+      return numbers.contains(number);
     }
 
+    /** Recycle or release a number. */
     @Override
     public void release(int number) {
-
+      numbers.add(number);
     }
 
+  }
+
+  public static void main(String args[]) {
+    for(Solution s : Arrays.asList(new Solution1())) {
+      s.init(3);
+      s.get();
+      s.get();
+      s.check(2);
+      s.get();
+      s.check(2);
+      s.release(2);
+      s.check(2);
+    }
   }
 
 

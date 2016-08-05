@@ -2,6 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
@@ -36,7 +37,7 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  *   // Number 2 is available again, return true.
  *   directory.check(2);
  */
-public class _379_DesignPhoneDirectory implements Medium {
+public class _379_DesignPhoneDirectory implements Medium, PremiumQuestion {
 
   public interface Solution {
 

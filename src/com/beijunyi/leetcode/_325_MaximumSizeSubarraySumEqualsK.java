@@ -30,27 +30,20 @@ public class _325_MaximumSizeSubarraySumEqualsK implements Medium, PremiumQuesti
 
     @Override
     public int maxSubArrayLen(int[] nums, int k) {
-      Map<Integer, Integer> valueLengthMap = new HashMap<>();
-      valueLengthMap.put(0, 0);
+      Map<Integer, Integer> sumIndex = new HashMap<>();
       int max = 0;
-      for(int num : nums) {
-        Set<Integer> toRemove = new HashSet<>();
-        Map<Integer, Integer> toUpdate = new HashMap<>();
-        for(Map.Entry<Integer, Integer> valueLength : valueLengthMap.entrySet()) {
-          int value = valueLength.getKey();
-          int length = valueLength.getValue();
-          int newValue = value + num;
-          int newLength = length + 1;
-          if(newValue == k) max = Math.max(max, newLength);
-          toRemove.add(value);
-          toUpdate.put(newValue, newLength);
-          if(!toUpdate.containsKey(num)) {
-            toUpdate.put(num, 1);
-            if(num == k) max = Math.max(max, 1);
+      int sum = 0;
+      for(int i = 0; i < nums.length; i++) {
+        sum += nums[i];
+        if(sum == k) {
+          max = i + 1;
+        } else {
+          int diff = sum - k;
+          if(sumIndex.containsKey(diff)) {
+            max = Math.max(max, i - sumIndex.get(diff));
           }
         }
-        valueLengthMap.keySet().removeAll(toRemove);
-        valueLengthMap.putAll(toUpdate);
+        if(!sumIndex.containsKey(sum)) sumIndex.put(sum, i);
       }
       return max;
     }

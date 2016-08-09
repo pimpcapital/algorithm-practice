@@ -1,3 +1,6 @@
 1) When aiming O(1) time complexity. Try using hashmap. Maybe use it to pair up elements? #325
 2) When dealing with graph or matrix question, think DFS and BFS.
 3) DFS is easier to implement. BFS is better when aiming to minimise the returned value. #317
+4) BST left child must be smaller than or equal to parent.
+5) BST smallest element on the right must be greater than the biggest element on the left.
+6) BST problems may need MIN, MAX values passed from descendants. #333

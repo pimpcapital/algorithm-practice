@@ -14,7 +14,7 @@ public class ListNode {
     return val + (next != null ? " -> " + next : "");
   }
 
-  public static ListNode fromArray(int... nums) {
+  public static ListNode fromArray(Integer... nums) {
     if(nums == null || nums.length == 0) return null;
     ListNode head = new ListNode(nums[0]);
     ListNode current = head;

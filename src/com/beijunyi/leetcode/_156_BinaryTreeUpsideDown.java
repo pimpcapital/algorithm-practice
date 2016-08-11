@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.Iterative;
+import com.beijunyi.leetcode.category.solution.Recursive;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -31,7 +33,7 @@ public class _156_BinaryTreeUpsideDown implements Medium, PremiumQuestion {
     TreeNode upsideDownBinaryTree(TreeNode root);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, Recursive {
     @Override
     public TreeNode upsideDownBinaryTree(TreeNode root) {
       if(root == null) return null;
@@ -51,11 +53,36 @@ public class _156_BinaryTreeUpsideDown implements Medium, PremiumQuestion {
     }
   }
 
+  public static class Solution2 implements Solution, Iterative {
+
+    @Override
+    public TreeNode upsideDownBinaryTree(TreeNode root) {
+      TreeNode current = root;
+      TreeNode newRight = null;
+      TreeNode newParent = null;
+      TreeNode newLeft = null;
+
+      while (current != null) {
+        newParent = current.left;
+
+        current.left = newLeft;
+        newLeft = current.right;
+
+        current.right = newRight;
+        newRight = current;
+
+        current = newParent;
+      }
+
+      return newRight;
+    }
+  }
+
   public static void main(String args[]) {
     TreeNode root;
     TreeNode result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       root = TreeNode.fromArray(1, 2, 3, 4, 5);
       result = s.upsideDownBinaryTree(root);
       System.out.println(Arrays.toString(TreeNode.toArray(result)));

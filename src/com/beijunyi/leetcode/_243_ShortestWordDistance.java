@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
@@ -18,7 +19,7 @@ import com.beijunyi.leetcode.category.difficulty.Easy;
  * Note:
  *   You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.
  */
-public class _243_ShortestWordDistance implements Easy {
+public class _243_ShortestWordDistance implements Easy, PremiumQuestion {
 
   public interface Solution {
     int shortestDistance(String[] words, String word1, String word2);

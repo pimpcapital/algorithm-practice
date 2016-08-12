@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.DepthFirstSearch;
+import com.beijunyi.leetcode.category.solution.UnionFind;
 
 /**
  * Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), write a function
@@ -65,12 +66,39 @@ public class _323_NumberOfConnectedComponentsInAnUndirectedGraph implements Medi
 
   }
 
+  public static class Solution2 implements Solution, UnionFind {
+
+    @Override
+    public int countComponents(int n, int[][] edges) {
+      int[] roots = new int[n];
+      for(int i = 0; i < n; i++) roots[i] = i;
+
+      for(int[] e : edges) {
+        int root1 = find(roots, e[0]);
+        int root2 = find(roots, e[1]);
+        if(root1 != root2) {
+          roots[root1] = root2;  // union
+          n--;
+        }
+      }
+      return n;
+    }
+
+    private static int find(int[] roots, int id) {
+      while(roots[id] != id) {
+        roots[id] = roots[roots[id]];  // optional: path compression
+        id = roots[id];
+      }
+      return id;
+    }
+  }
+
   public static void main(String args[]) {
     int n;
     int[][] edges;
     int result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       n = 5;
       edges = new int[][] {
         {0, 1}, {1, 2}, {3, 4}

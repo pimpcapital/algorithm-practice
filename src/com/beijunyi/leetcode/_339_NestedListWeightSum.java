@@ -1,10 +1,10 @@
 package com.beijunyi.leetcode;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Easy;
+import com.beijunyi.leetcode.category.solution.Recursive;
 import com.beijunyi.leetcode.ds.NestedInteger;
 
 /**
@@ -24,11 +24,21 @@ public class _339_NestedListWeightSum implements Easy, PremiumQuestion {
     int depthSum(List<NestedInteger> nestedList);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, Recursive {
     @Override
     public int depthSum(List<NestedInteger> nestedList) {
-      return 0;
+      return depthSum(nestedList, 1);
     }
+
+    private static int depthSum(List<NestedInteger> nestedIntegers, int depth) {
+      int sum = 0;
+      for(NestedInteger ni : nestedIntegers) {
+        if(ni.isInteger()) sum += ni.getInteger() * depth;
+        else sum += depthSum(ni.getList(), depth + 1);
+      }
+      return sum;
+    }
+
   }
 
   public static void main(String args[]) {

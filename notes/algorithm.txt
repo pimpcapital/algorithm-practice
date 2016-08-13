@@ -5,3 +5,4 @@
 5) BST smallest element on the right must be greater than the biggest element on the left.
 6) BST problems may need MIN, MAX values passed from descendants. #333
 7) Check whether all bits are clear, use "bits == 0" or "bits != 0". #320
+8) When there is an obvious recursive solution to a problem. Solve it with recursion first. Then maybe we can opt it.

@@ -7,3 +7,4 @@
 7) Check whether all bits are clear, use "bits == 0" or "bits != 0". #320
 8) When there is an obvious recursive solution to a problem. Solve it with recursion first. Then maybe we can opt it.
 9) Max resource sharing problem: count acquire act as +1 and release act as -1 and then sort their timestamps. #253
+10) When incrementing variables inside a FOR loop, watch out for the default increment logic of the FOR loop. #186

@@ -27,14 +27,14 @@ public class _276_PaintFence implements Easy, PremiumQuestion {
       if(n == 0) return 0;
       if(n == 1) return k;
 
-      int diffColorCounts = k * (k-1); // last 2 different color
-      int sameColorCounts = k; // last 2 same color
+      int diff = k * (k - 1); // scenarios where the last 2 have different colors
+      int same = k; // scenarios where the last 2 the same color
       for(int i = 2; i < n; i++) {
-        int temp = diffColorCounts;
-        diffColorCounts = (diffColorCounts + sameColorCounts) * (k - 1);
-        sameColorCounts = temp;
+        int temp = diff;
+        diff = (diff + same) * (k - 1); // next can be one of (k - 1) to make the last 2 posts with different color
+        same = temp; // (diff + same) * 1 - same = diff
       }
-      return diffColorCounts + sameColorCounts;
+      return diff + same;
     }
 
   }

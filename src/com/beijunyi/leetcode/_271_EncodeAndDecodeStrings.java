@@ -18,7 +18,7 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  *   }
  *
  * Machine 2 (receiver) has the function:
- *   List<string> decode(string s) {
+ *   List<String> decode(String s) {
  *     //... your code
  *     return strs;
  *   }
@@ -26,7 +26,7 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  * So Machine 1 does:
  *   String encodedString = encode(strs);
  * and Machine 2 does:
- *   List<string> strs2 = decode(encodedString);
+ *   List<String> strs2 = decode(encodedString);
  * strs2 in Machine 2 should be the same as strs in Machine 1.
  *
  * Implement the encode and decode methods.

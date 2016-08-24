@@ -1,0 +1,9 @@
+1) What would you do at work?
+2) Scope: ask questions, make appropriate assumptions
+3) Key components: can be somewhat naive
+4) Identify issues: bottlenecks, tradeoffs,
+5) Repair & redesign
+6) Front end, API, Analytic
+7) Driving the process vs teamwork
+8) Read designs, identify pattens
+9)

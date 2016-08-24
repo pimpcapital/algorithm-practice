@@ -43,7 +43,7 @@ public class _270_ClosestBinarySearchTreeValue implements Easy, PremiumQuestion 
     int result;
 
     for(Solution s : Arrays.asList(new Solution1())) {
-      root = TreeNode.fromArray(8, 5, 12, 1, 6, null, 8);
+      root = TreeNode.fromArray(8, 5, 12, 1, 6, null, 9);
       target = 5.7;
       result = s.closestValue(root, target);
       System.out.println(result);

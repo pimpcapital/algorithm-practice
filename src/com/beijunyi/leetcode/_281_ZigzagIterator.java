@@ -69,11 +69,58 @@ public class _281_ZigzagIterator implements Medium, PremiumQuestion {
     }
   }
 
+  public static class Solution2 implements Solution {
+
+    private Iterator<Integer> i, j, tmp;
+
+    @Override
+    public void init(List<Integer> v1, List<Integer> v2) {
+      i = v2.iterator();
+      j = v1.iterator();
+    }
+
+    @Override
+    public int next() {
+      if (j.hasNext()) { tmp = j; j = i; i = tmp; }
+      return i.next();
+    }
+
+    @Override
+    public boolean hasNext() {
+      return i.hasNext() || j.hasNext();
+    }
+  }
+
+  public static class Solution3 implements Solution {
+
+    private LinkedList<Iterator> list;;
+
+    @Override
+    public void init(List<Integer> v1, List<Integer> v2) {
+      list = new LinkedList<>();
+      if(!v1.isEmpty()) list.add(v1.iterator());
+      if(!v2.isEmpty()) list.add(v2.iterator());
+    }
+
+    @Override
+    public int next() {
+      Iterator poll = list.remove();
+      int result = (Integer)poll.next();
+      if(poll.hasNext()) list.add(poll);
+      return result;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return !list.isEmpty();
+    }
+  }
+
   public static void main(String args[]) {
     List<Integer> v1;
     List<Integer> v2;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
       v1 = Arrays.asList(1, 2);
       v2 = Arrays.asList(3, 4, 5, 6);
       s.init(v1, v2);

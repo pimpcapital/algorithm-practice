@@ -1,0 +1,39 @@
+The three most common approaches to synchronization are ownership, event passing and three-way merges.
+
+Locking is the simplest technique. In its most basic form, a shared document may only be edited by one user at a time.
+A refinement would be to dynamically lock and release subsections of the document.
+
+Event passing relies on capturing all user actions and mirroring them across the network to other users.
+Event passing is not naturally convergent
+
+Three-way merges.
+The client sends the contents of the document to the server.
+The server performs a three-way merge to extract the user's changes and merge	them with changes from other users.
+The server sends a new copy of the document to the client.
+Three-way merges are not a good solution for real-time collaboration across a network with latency.
+
+
+partitioning vs sharding vs master slave
+high availability, heart beat
+development better not knowing topology
+
+scalability, redundancy, high availability of up time
+geo load balancing, DNS
+drop encryption after in house LB
+
+Clone: every server contains exactly the same codebase and does not store any user-related data, like sessions or
+profile pictures, on local disc or memory.
+
+Database: SQL, sharding, denormalizing, SQL tuning
+          NoSQL, naturally denormalized, Joins will now need to be done in your application code.
+But even if successfully switched the latest and greatest NoSQL database and let your app do the dataset-joins, soon
+your database requests will be again slower and slower. You will need to introduce a cache.
+
+Cache: #1 Cache Database Queries - evicting data is hard
+       #2 Cache Assembled Objects - (cache what you use) even better to assemble the object in cache
+          user sessions (never use the database!)
+          fully rendered blog articles
+          activity streams
+          user<->friend relationships
+Asynchronism: Pre-compute/Pre-render + callbacks on unforeseeable
+

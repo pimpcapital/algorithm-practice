@@ -1,0 +1,12 @@
+1) justify your ideas
+2) Scalability is the key
+3) Try not to dive into a specific aspect unless asked
+4) Clarify the constraints (requirements)
+5) Ask about required features (scope)
+6) UI vs API
+
+7) basic factors: traffic, data
+
+8) basic components: application layer (web), data storage
+
+9) find bottle neck

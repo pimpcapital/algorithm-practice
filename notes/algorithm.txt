@@ -17,3 +17,4 @@ Algo: Merge Sort, Quick Sort, BFS, DFS, Binary Search
 Concepts: Big O time, Big O Space, Recursion, Dynamic Programming
 
 Big O for recursive: draw a call stack/tree
+Assume simple DS

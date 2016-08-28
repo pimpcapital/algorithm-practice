@@ -1,0 +1,20 @@
+1) Listen (utilise all info, find clue) : server example
+2) Draw an example (sufficiently large, not special cases)
+3) Brute force
+4) Optimise
+   4.1) look for BUD: Bottleneck, Unnecessary work, Duplication)
+   4.2) Space / Time trade off (hashtable, pre-compute)
+   4.3) Do it yourself
+   4.4) Recursion base build
+5) Walk through (know the variables and when they change)
+6) Write beautiful code
+   6.1) Write straight
+   6.2) Start left top
+   6.3) Use arrows if needed
+   6.4) Errors check (TO DO)
+   6.5) Good variable names
+   6.6) Abbreviation
+   6.7) Modularization (Top down)
+7) Testing
+   7.1) Analyse the code
+   7.2) Test cases (small -> edge -> large)

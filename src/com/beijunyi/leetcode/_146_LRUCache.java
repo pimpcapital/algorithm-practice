@@ -167,8 +167,8 @@ public class _146_LRUCache {
     public void init(int capacity) {
       this.capicity = capacity;
       map = new HashMap<>();
-      head = new Node(0, 0);
-      tail = new Node(0, 0);
+      head = new Node(0, 0); // dummy head node
+      tail = new Node(0, 0); // dummy tail node
       head.next = tail;
       tail.pre = head;
       head.pre = null;

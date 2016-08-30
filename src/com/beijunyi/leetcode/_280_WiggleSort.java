@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.Swapping;
 
 public class _280_WiggleSort implements Medium, PremiumQuestion {
 
@@ -11,7 +12,7 @@ public class _280_WiggleSort implements Medium, PremiumQuestion {
     void wiggleSort(int[] nums);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, Swapping {
 
     @Override
     public void wiggleSort(int[] nums) {

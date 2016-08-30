@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.Swapping;
 
 /**
  * Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
@@ -18,7 +19,7 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  */
 public class _031_NextPermutation implements Medium {
 
-  public static class Solution2 {
+  public static class Solution2 implements Swapping {
     public void nextPermutation(int[] num) {
       int swapLeft = -1;
       int swapRight = num.length;
@@ -46,7 +47,7 @@ public class _031_NextPermutation implements Medium {
     }
   }
 
-  public static class Solution1 {
+  public static class Solution1 implements Swapping {
     public void nextPermutation(int[] num) {
       if(num.length == 1)
         return;

@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Easy;
+import com.beijunyi.leetcode.category.solution.Swapping;
 
 /**
  * Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the
@@ -39,12 +40,12 @@ public class _283_MoveZeroes implements Easy {
 
   }
 
-  public static class Solution2 implements Solution {
+  public static class Solution2 implements Solution, Swapping {
     @Override
     public void moveZeroes(int[] nums) {
       int z = 0;
-      for (int i = 0; i < nums.length; i++) {
-        if (nums[i] != 0) {
+      for(int i = 0; i < nums.length; i++) {
+        if(nums[i] != 0) {
           swap(nums, i, z++);
         }
       }

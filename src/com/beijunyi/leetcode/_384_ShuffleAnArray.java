@@ -36,6 +36,9 @@ public class _384_ShuffleAnArray implements Medium {
     int[] shuffle();
   }
 
+  /**
+   * This is actually a wrong answer as there is no randomness in this solution.
+   */
   public static class Solution1 implements Solution {
 
     private int[] nums;

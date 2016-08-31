@@ -5,7 +5,11 @@ import java.util.List;
 
 public class NestedInteger {
 
-  private final Object value;
+  private Object value;
+
+  public NestedInteger() {
+    this.value = new ArrayList<NestedInteger>();
+  }
 
   public NestedInteger(int value) {
     this.value = value;
@@ -24,6 +28,12 @@ public class NestedInteger {
   // Return null if this NestedInteger holds a nested list
   public Integer getInteger() {
     return isInteger() ? (int) value : null;
+  }
+
+  // Set this NestedInteger to hold a nested list and adds a nested integer to it.
+  @SuppressWarnings("unchecked")
+  public void add(NestedInteger ni) {
+    ((List) value).add(ni);
   }
 
   // @return the nested list that this NestedInteger holds, if it holds a nested list

@@ -37,3 +37,9 @@ Cache: #1 Cache Database Queries - evicting data is hard
           user<->friend relationships
 Asynchronism: Pre-compute/Pre-render + callbacks on unforeseeable
 
+POF lession:
+Traffic: gzip
+separate DB for read and write (avoid locking, blocking). denormalize
+60m users on 2 web servers
+CDN for heavily used content
+

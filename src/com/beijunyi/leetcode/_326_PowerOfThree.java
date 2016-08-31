@@ -20,8 +20,9 @@ public class _326_PowerOfThree implements Easy {
 
     @Override
     public boolean isPowerOfThree(int n) {
-      // The expression "(int) Math.pow(3, (int) (Math.log(Integer.MAX_VALUE) / Math.log(3.0))" returns max integer that is "power of 3"
-      return n > 0 && (int) Math.pow(3, (int) (Math.log(Integer.MAX_VALUE) / Math.log(3.0))) % n == 0;
+      // 1162261467
+      int largestPowerOfThreeInt = (int) Math.pow(3, Math.floor(Math.log(Integer.MAX_VALUE) / Math.log(3.0)));
+      return n > 0 && largestPowerOfThreeInt % n == 0;
     }
 
   }

@@ -43,16 +43,18 @@ public class _385_MiniParser implements Medium {
       int start = offset[0];
       int end = start;
       while(offset[0] < s.length()) {
-        switch(s.charAt(offset[0]++)) {
+        switch(s.charAt(offset[0])) {
           case '[':
-            return s.substring(start, offset[0]);
+            return s.substring(start, ++offset[0]);
           case ']':
-            if(start + 1 == offset[0]) return s.substring(start, offset[0]);
-            end = offset[0]--;
-            break;
-          case ',':
+            if(start == offset[0]) return s.substring(start, ++offset[0]);
             end = offset[0];
             break;
+          case ',':
+            end = offset[0]++;
+            break;
+          default:
+            offset[0]++;
         }
         if(end != start) break;
       }
@@ -66,7 +68,19 @@ public class _385_MiniParser implements Medium {
     NestedInteger result;
 
     for(Solution s : Arrays.asList(new Solution1())) {
-      str = "[]";
+//      str = "[]";
+//      result = s.deserialize(str);
+//      System.out.println(result);
+
+      str = "[-1]";
+      result = s.deserialize(str);
+      System.out.println(result);
+
+      str = "[-1,-2]";
+      result = s.deserialize(str);
+      System.out.println(result);
+
+      str = "[123,456,[788,799,833],[[]],10,[]]";
       result = s.deserialize(str);
       System.out.println(result);
     }

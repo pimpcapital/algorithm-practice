@@ -43,6 +43,31 @@ public class NestedInteger {
     return isInteger() ? null : (List) value;
   }
 
+  @Override
+  public String toString() {
+    return toString(this).toString();
+  }
+
+  public static StringBuilder toString(NestedInteger value) {
+    StringBuilder ret = new StringBuilder();
+    toString(value, ret);
+    return ret;
+  }
+
+  private static void toString(NestedInteger value, StringBuilder sb) {
+    if(value.isInteger()) {
+      sb.append(value.getInteger());
+    } else {
+      sb.append('[');
+      List<NestedInteger> children = value.getList();
+      for(int i = 0; i < children.size(); i++) {
+        if(i != 0) sb.append(',');
+        sb.append(toString(children.get(i)));
+      }
+      sb.append(']');
+    }
+  }
+
   public static List<NestedInteger> fromArray(Object... values) {
     List<NestedInteger> ret = new ArrayList<>();
     for(Object v : values) {

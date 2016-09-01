@@ -122,11 +122,180 @@ public class _296_BestMeetingPoint implements Hard, PremiumQuestion {
     }
   }
 
+  public static class Solution4 implements Solution {
+    @Override
+    public int minTotalDistance(int[][] grid) {
+      return vDistance(grid) + hDistance(grid);
+    }
+
+    private static int vDistance(int[][] grid) {
+      int rows = grid.length;
+      int cols = rows != 0 ? grid[0].length : 0;
+
+      int count = 0;
+
+      int startRow = 0;
+      int endRow = rows - 1;
+      int startCol = 0;
+      int endCol = 0;
+      while(startRow < endRow) {
+        while(startCol < cols) {
+          if(grid[startRow][startCol] == 0) startCol++;
+          else break;
+        }
+        while(endCol < cols) {
+          if(grid[endRow][endCol] == 0) endCol++;
+          else break;
+        }
+        if(startCol < cols && endCol < cols && grid[startRow][startCol] == 1 && grid[endRow][endCol] == 1) {
+          count += (endRow - startRow);
+          startCol++;
+          endCol++;
+        }
+        if(startCol == cols) {
+          startRow++;
+          startCol = 0;
+        }
+        if(endCol == cols) {
+          endRow--;
+          endCol = 0;
+        }
+      }
+      return count;
+    }
+
+    private static int hDistance(int[][] grid) {
+      int rows = grid.length;
+      int cols = rows != 0 ? grid[0].length : 0;
+
+      int count = 0;
+
+      int startCol = 0;
+      int endCol = cols - 1;
+      int startRow = 0;
+      int endRow = 0;
+      while(startCol < endCol) {
+        while(startRow < rows) {
+          if(grid[startRow][startCol] == 0) startRow++;
+          else break;
+        }
+        while(endRow < rows) {
+          if(grid[endRow][endCol] == 0) endRow++;
+          else break;
+        }
+        if(startRow < rows && endRow < rows && grid[startRow][startCol] == 1 && grid[endRow][endCol] == 1) {
+          count += (endCol - startCol);
+          startRow++;
+          endRow++;
+        }
+        if(startRow == rows) {
+          startCol++;
+          startRow = 0;
+        }
+        if(endRow == rows) {
+          endCol--;
+          endRow = 0;
+        }
+      }
+      return count;
+    }
+  }
+
+  public static class Solution5 implements Solution {
+    @Override
+    public int minTotalDistance(int[][] grid) {
+      return distance(grid, true) + distance(grid, false);
+    }
+
+    private static int distance(int[][] grid, boolean vertical) {
+      int rows = grid.length;
+      int cols = rows != 0 ? grid[0].length : 0;
+
+      int majorMax = vertical ? rows : cols;
+      int minorMax = vertical ? cols : rows;
+
+      int count = 0;
+
+      int startMajor = 0;
+      int endMajor = majorMax - 1;
+      int startMinor = 0;
+      int endMinor = 0;
+      while(startMajor < endMajor) {
+        while(startMinor < minorMax) {
+          if(grid[vertical ? startMajor : startMinor][vertical ? startMinor : startMajor] == 0) startMinor++;
+          else break;
+        }
+        while(endMinor < minorMax) {
+          if(grid[vertical ? endMajor : endMinor][vertical ? endMinor : endMajor] == 0) endMinor++;
+          else break;
+        }
+        if(startMinor < minorMax && endMinor < minorMax
+             && grid[vertical ? startMajor : startMinor][vertical ? startMinor : startMajor] == 1
+             && grid[vertical ? endMajor : endMinor][vertical ? endMinor : endMajor] == 1) {
+          count += (endMajor - startMajor);
+          startMinor++;
+          endMinor++;
+        }
+        if(startMinor == minorMax) {
+          startMajor++;
+          startMinor = 0;
+        }
+        if(endMinor == minorMax) {
+          endMajor--;
+          endMinor = 0;
+        }
+      }
+      return count;
+    }
+  }
+
+  public static class Solution6 implements Solution {
+    @Override
+    public int minTotalDistance(int[][] grid) {
+      return distance(grid, true) + distance(grid, false);
+    }
+
+    private static int distance(int[][] grid, boolean vertical) {
+      int rows = grid.length;
+      int cols = rows != 0 ? grid[0].length : 0;
+
+      int majorMax = vertical ? rows : cols;
+      int minorMax = vertical ? cols : rows;
+
+      int count = 0;
+
+      int startMajor = 0;
+      int endMajor = majorMax - 1;
+      int startMinor = 0;
+      int endMinor = 0;
+      while(startMajor < endMajor) {
+        while(startMajor < endMajor && grid[vertical ? startMajor : startMinor][vertical ? startMinor : startMajor] == 0) {
+          if(++startMinor == minorMax) {
+            startMajor++; startMinor = 0;
+          }
+        }
+        while(startMajor < endMajor && grid[vertical ? endMajor : endMinor][vertical ? endMinor : endMajor] == 0) {
+          if(++endMinor == minorMax) {
+            endMajor--; endMinor = 0;
+          }
+        }
+        count += (endMajor - startMajor);
+        if(++startMinor == minorMax) {
+          startMajor++; startMinor = 0;
+        }
+        if(++endMinor == minorMax) {
+          endMajor--; endMinor = 0;
+        }
+      }
+      return count;
+    }
+  }
+
   public static void main(String args[]) {
     int[][] grid;
     int result;
 
-    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3(), new Solution4(), new Solution5(), new Solution6())) {
       grid = new int[][]{
         {1, 0, 0, 0, 1},
         {0, 0, 0, 0, 0},
@@ -143,6 +312,7 @@ public class _296_BestMeetingPoint implements Hard, PremiumQuestion {
       };
       result = s.minTotalDistance(grid);
       System.out.println(result);
+
     }
 
   }

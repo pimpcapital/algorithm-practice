@@ -114,11 +114,11 @@ public class _302_SmallestRectangleEnclosingBlackPixels implements Hard, Premium
       this.mImage = image;
       row = image.length;
       col = image[0].length;
-      int row1 = searchRow(0, x, true);
-      int row2 = searchRow(x, row - 1, false);
-      int col1 = searchCol(0, y, true);
-      int col2 = searchCol(y, col - 1, false);
-      return (row2 - row1 + 1) * (col2 - col1 + 1);
+      int top = searchRow(0, x, true);
+      int bottom = searchRow(x, row - 1, false);
+      int left = searchCol(0, y, true);
+      int right = searchCol(y, col - 1, false);
+      return (bottom - top + 1) * (right - left + 1);
     }
 
     private int searchRow(int start, int end, boolean isTop) {

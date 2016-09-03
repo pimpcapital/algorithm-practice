@@ -1,5 +1,9 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import com.beijunyi.leetcode.category.difficulty.Medium;
 
 /**
@@ -37,8 +41,66 @@ public class _210_CourseScheduleTwo implements Medium {
   public static class Solution1 implements Solution {
     @Override
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-      return new int[0];
+      boolean[][] edges = indexEdges(numCourses, prerequisites);
+      int[] inbounds = countInbounds(edges);
+      int[] order = new int[numCourses];
+      int index = 0;
+      Queue<Integer> pq = new LinkedList<>();
+      addRoots(pq, inbounds);
+      while(!pq.isEmpty()) {
+        int root = pq.poll();
+        order[index++] = root;
+        boolean[] reachables = edges[root];
+        for(int t = 0; t < numCourses; t++) {
+          if(reachables[t]) {
+            reachables[t] = false;
+            if(--inbounds[t] == 0) {
+              pq.offer(t);
+            }
+          }
+        }
+      }
+      if(index < order.length) order = new int[0];
+      return order;
     }
+
+    private static boolean[][] indexEdges(int numCourses, int[][] prerequisites) {
+      boolean[][] ret = new boolean[numCourses][numCourses];
+      for(int[] pre : prerequisites) {
+        ret[pre[1]][pre[0]] = true;
+      }
+      return ret;
+    }
+
+    private static int[] countInbounds(boolean[][] edges) {
+      int[] ret = new int[edges.length];
+      for(boolean[] targets : edges) {
+        for(int t = 0; t < targets.length; t++) {
+          if(targets[t]) ret[t]++;
+        }
+      }
+      return ret;
+    }
+
+    private static void addRoots(Queue<Integer> pq, int[] inbounds) {
+      for(int i = 0; i < inbounds.length; i++) {
+        if(inbounds[i] == 0) pq.offer(i);
+      }
+    }
+  }
+
+  public static void main(String args[]) {
+    int numCourses;
+    int[][] prerequisites;
+    int[] result;
+
+    for(Solution s : Arrays.asList(new Solution1())) {
+      numCourses = 2;
+      prerequisites = new int[][] {{1, 0}};
+      result = s.findOrder(numCourses, prerequisites);
+      System.out.println(Arrays.toString(result));
+    }
+
   }
 
 }

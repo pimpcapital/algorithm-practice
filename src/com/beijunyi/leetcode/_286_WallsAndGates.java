@@ -6,7 +6,7 @@ import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.BreadthFirstSearch;
 import com.beijunyi.leetcode.category.solution.DepthFirstSearch;
-import com.beijunyi.leetcode.category.solution.InPlaceModification;
+import com.beijunyi.leetcode.category.solution.InputModification;
 
 /**
  * You are given a m x n 2D grid initialized with these three possible values.
@@ -40,7 +40,7 @@ public class _286_WallsAndGates implements Medium, PremiumQuestion {
   /**
    * BFS solution. Guarantee O(n) runtime
    */
-  public static class Solution1 implements Solution, BreadthFirstSearch, InPlaceModification {
+  public static class Solution1 implements Solution, BreadthFirstSearch, InputModification {
     @Override
     public void wallsAndGates(int[][] rooms) {
       List<int[]> gatesPos = findGates(rooms);
@@ -79,7 +79,7 @@ public class _286_WallsAndGates implements Medium, PremiumQuestion {
   /**
    * DFS solution. O(n^2) runtime but faster for the leetcode test cases
    */
-  public static class Solution2 implements Solution, DepthFirstSearch, InPlaceModification {
+  public static class Solution2 implements Solution, DepthFirstSearch, InputModification {
 
     @Override
     public void wallsAndGates(int[][] rooms) {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
-import com.beijunyi.leetcode.category.solution.InPlaceModification;
+import com.beijunyi.leetcode.category.solution.InputModification;
 import com.beijunyi.leetcode.category.solution.Iterative;
 import com.beijunyi.leetcode.category.solution.Recursive;
 
@@ -30,7 +30,7 @@ public class _120_Triangle implements Medium {
     int minimumTotal(List<List<Integer>> triangle);
   }
 
-  public static class Solution1 implements Solution, InPlaceModification, Recursive {
+  public static class Solution1 implements Solution, InputModification, Recursive {
 
     @Override
     public int minimumTotal(List<List<Integer>> triangle) {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.DynamicPrograming;
-import com.beijunyi.leetcode.category.solution.InPlaceModification;
+import com.beijunyi.leetcode.category.solution.InputModification;
 
 /**
  * There are a row of n houses, each house can be painted with one of the three colors: red, blue or green. The cost of
@@ -48,7 +48,7 @@ public class _256_PaintHouse implements Medium, PremiumQuestion {
 
   }
 
-  public static class Solution2 implements Solution, DynamicPrograming, InPlaceModification {
+  public static class Solution2 implements Solution, DynamicPrograming, InputModification {
     @Override
     public int minCost(int[][] costs) {
       if(costs.length == 0) return 0;

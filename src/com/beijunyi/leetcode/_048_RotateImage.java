@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
-import com.beijunyi.leetcode.category.solution.InPlaceModification;
+import com.beijunyi.leetcode.category.solution.InputModification;
 
 /**
  * You are given an n x n 2D matrix representing an image.
@@ -18,7 +18,7 @@ public class _048_RotateImage implements Medium {
     void rotate(int[][] matrix);
   }
 
-  public static class Solution1 implements Solution, InPlaceModification {
+  public static class Solution1 implements Solution, InputModification {
 
     @Override
     public void rotate(int[][] matrix) {
@@ -66,7 +66,7 @@ public class _048_RotateImage implements Medium {
     }
   }
 
-  public static class Solution2 implements Solution, InPlaceModification {
+  public static class Solution2 implements Solution, InputModification {
 
     @Override
     public void rotate(int[][] M) {

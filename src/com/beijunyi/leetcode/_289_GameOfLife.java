@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
-import com.beijunyi.leetcode.category.solution.InPlaceModification;
+import com.beijunyi.leetcode.category.solution.InputModification;
 
 /**
  * According to the Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised
@@ -37,7 +37,7 @@ public class _289_GameOfLife implements Medium {
    *   r is the number of rows in the board
    *   c is the number of columns in the board
    */
-  public static class Solution1 implements Solution, InPlaceModification {
+  public static class Solution1 implements Solution, InputModification {
     @Override
     public void gameOfLife(int[][] board) {
       int rows = board.length;

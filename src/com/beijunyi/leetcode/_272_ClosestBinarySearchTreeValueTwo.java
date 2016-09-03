@@ -43,10 +43,10 @@ public class _272_ClosestBinarySearchTreeValueTwo implements Hard, PremiumQuesti
     private static void closestKValues(TreeNode root, double target, int k, PriorityQueue<Integer> minHeap, PriorityQueue<Integer> maxHeap, int min, int max) {
       if(root == null) return;
       tryInsert(root.val, target, k, minHeap, maxHeap);
-      if(minHeap.size() < k || minHeap.peek() <= target || min <= maxHeap.peek()) {
+      if(minHeap.size() < k || !(minHeap.peek() >= target && min >= maxHeap.peek())) {
         closestKValues(root.left, target, k, minHeap, maxHeap, min, Math.min(root.val, max));
       }
-      if(maxHeap.size() < k || maxHeap.peek() >= target || max >= minHeap.peek()) {
+      if(maxHeap.size() < k || !(maxHeap.peek() <= target && max <= minHeap.peek())) {
         closestKValues(root.right, target, k, minHeap, maxHeap, Math.max(root.val, min), max);
       }
     }
@@ -117,27 +117,27 @@ public class _272_ClosestBinarySearchTreeValueTwo implements Hard, PremiumQuesti
       initializePredecessorStack(root, target, pred);
       initializeSuccessorStack(root, target, succ);
       if(!succ.isEmpty() && !pred.isEmpty() && succ.peek().val == pred.peek().val) {
-        getNextPredecessor(pred);
+        getPredecessor(pred);
       }
       while(k-- > 0) {
         if(succ.isEmpty()) {
-          ret.add(getNextPredecessor(pred));
+          ret.add(getPredecessor(pred));
         } else if(pred.isEmpty()) {
-          ret.add(getNextSuccessor(succ));
+          ret.add(getSuccessor(succ));
         } else {
-          double succ_diff = Math.abs((double)succ.peek().val - target);
-          double pred_diff = Math.abs((double)pred.peek().val - target);
-          if(succ_diff < pred_diff) {
-            ret.add(getNextSuccessor(succ));
+          double succDiff = Math.abs(target - succ.peek().val);
+          double predDiff = Math.abs(target - pred.peek().val);
+          if(succDiff < predDiff) {
+            ret.add(getSuccessor(succ));
           } else {
-            ret.add(getNextPredecessor(pred));
+            ret.add(getPredecessor(pred));
           }
         }
       }
       return ret;
     }
 
-    private void initializeSuccessorStack(TreeNode root, double target, Stack<TreeNode> succ) {
+    private static void initializeSuccessorStack(TreeNode root, double target, Stack<TreeNode> succ) {
       while(root != null) {
         if(root.val == target) {
           succ.push(root);
@@ -151,12 +151,12 @@ public class _272_ClosestBinarySearchTreeValueTwo implements Hard, PremiumQuesti
       }
     }
 
-    private void initializePredecessorStack(TreeNode root, double target, Stack<TreeNode> pred) {
-      while(root != null){
-        if(root.val == target){
+    private static void initializePredecessorStack(TreeNode root, double target, Stack<TreeNode> pred) {
+      while(root != null) {
+        if(root.val == target) {
           pred.push(root);
           break;
-        } else if(root.val < target){
+        } else if(root.val < target) {
           pred.push(root);
           root = root.right;
         } else{
@@ -165,7 +165,7 @@ public class _272_ClosestBinarySearchTreeValueTwo implements Hard, PremiumQuesti
       }
     }
 
-    private int getNextSuccessor(Stack<TreeNode> succ) {
+    private static int getSuccessor(Stack<TreeNode> succ) {
       TreeNode curr = succ.pop();
       int ret = curr.val;
       curr = curr.right;
@@ -176,7 +176,7 @@ public class _272_ClosestBinarySearchTreeValueTwo implements Hard, PremiumQuesti
       return ret;
     }
 
-    private int getNextPredecessor(Stack<TreeNode> pred) {
+    private static int getPredecessor(Stack<TreeNode> pred) {
       TreeNode curr = pred.pop();
       int ret = curr.val;
       curr = curr.left;
@@ -219,17 +219,19 @@ public class _272_ClosestBinarySearchTreeValueTwo implements Hard, PremiumQuesti
       result = s.closestKValues(root, target, k);
       System.out.println(result);
 
-      root = TreeNode.fromArray(45,30,46,10,36,null,49,8,24,34,42,48,null,4,9,14,25,31,35,41,43,47,null,0,6,null,null,11,20,null,28,null,33,null,null,37,null,null,44,null,null,null,1,5,7,null,12,19,21,26,29,32,null,null,38,null,null,null,3,null,null,null,null,null,13,18,null,null,22,null,27,null,null,null,null,null,39,2,null,null,null,15,null,null,23,null,null,null,40,null,null,null,16,null,null,null,null,null,17);
+      root = TreeNode.fromArray(45, 30, 46, 10, 36, null, 49, 8, 24, 34, 42, 48, null, 4, 9, 14, 25, 31, 35, 41, 43, 47, null, 0, 6, null, null, 11, 20, null, 28, null, 33, null, null, 37, null, null, 44, null, null, null, 1, 5, 7, null, 12, 19, 21, 26, 29, 32, null, null, 38, null, null, null, 3, null, null, null, null, null, 13, 18, null, null, 22, null, 27, null, null, null, null, null, 39, 2, null, null, null, 15, null, null, 23, null, null, null, 40, null, null, null, 16, null, null, null, null, null, 17);
       target = 1.428571;
       k = 7;
       result = s.closestKValues(root, target, k);
       System.out.println(result);
 
-      root = TreeNode.fromArray(27,17,33,15,26,32,45,7,16,23,null,31,null,40,49,5,14,null,null,21,25,29,null,34,41,48,null,2,6,10,null,20,22,24,null,28,30,null,39,null,42,46,null,1,4,null,null,9,11,18,null,null,null,null,null,null,null,null,null,37,null,null,44,null,47,0,null,3,null,8,null,null,13,null,19,35,38,43,null,null,null,null,null,null,null,null,null,12,null,null,null,null,36);
+      root = TreeNode.fromArray(27, 17, 33, 15, 26, 32, 45, 7, 16, 23, null, 31, null, 40, 49, 5, 14, null, null, 21, 25, 29, null, 34, 41, 48, null, 2, 6, 10, null, 20, 22, 24, null, 28, 30, null, 39, null, 42, 46, null, 1, 4, null, null, 9, 11, 18, null, null, null, null, null, null, null, null, null, 37, null, null, 44, null, 47, 0, null, 3, null, 8, null, null, 13, null, 19, 35, 38, 43, null, null, null, null, null, null, null, null, null, 12, null, null, null, null, 36);
       target = 0.00;
       k = 32;
       result = s.closestKValues(root, target, k);
       System.out.println(result);
+
+      System.out.println();
     }
 
   }

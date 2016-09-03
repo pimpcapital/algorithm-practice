@@ -1,10 +1,10 @@
 package com.beijunyi.leetcode;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.DepthFirstSearch;
+import com.beijunyi.leetcode.category.solution.KahnsAlgorithm;
 
 /**
  * There are a total of n courses you have to take, labeled from 0 to n - 1.
@@ -38,7 +38,7 @@ public class _210_CourseScheduleTwo implements Medium {
     int[] findOrder(int numCourses, int[][] prerequisites);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, KahnsAlgorithm {
     @Override
     public int[] findOrder(int numCourses, int[][] prerequisites) {
       boolean[][] edges = indexEdges(numCourses, prerequisites);
@@ -89,14 +89,50 @@ public class _210_CourseScheduleTwo implements Medium {
     }
   }
 
+  public static class Solution2 implements Solution, DepthFirstSearch {
+
+    @Override
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+      int[] order = new int[numCourses];
+      boolean[][] adj = new boolean[numCourses][numCourses];
+      for(int[] edge : prerequisites) {
+        adj[edge[0]][edge[1]] = true;
+      }
+      int[] visited = new int[numCourses];
+      int[] index = new int[] {0};
+      for(int start = 0; start < numCourses; start++) {
+        if(visited[start] == 0 && !dfs(order, index, visited, adj, start)) return new int[0];
+      }
+      return order;
+    }
+
+    private static boolean dfs(int[] order, int[] index, int[] visited, boolean[][] adj, int to) {
+      visited[to] = 1; // visiting
+      boolean[] inbounds = adj[to];
+      for(int from = 0; from < adj.length; from++) {
+        if(!inbounds[from]) continue;
+        if(visited[from] == 2) continue;
+        if(visited[from] == 1 || !dfs(order, index, visited, adj, from)) return false; // has loop
+      }
+      order[index[0]++] = to;
+      visited[to] = 2; // visited
+      return true;
+    }
+  }
+
   public static void main(String args[]) {
     int numCourses;
     int[][] prerequisites;
     int[] result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       numCourses = 2;
       prerequisites = new int[][] {{1, 0}};
+      result = s.findOrder(numCourses, prerequisites);
+      System.out.println(Arrays.toString(result));
+
+      numCourses = 3;
+      prerequisites = new int[][] {{1, 0}, {0, 2}};
       result = s.findOrder(numCourses, prerequisites);
       System.out.println(Arrays.toString(result));
     }

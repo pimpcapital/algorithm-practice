@@ -5,12 +5,14 @@ import java.util.Arrays;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.ListNode;
 
+/**
+ * Sort a linked list in O(n log n) time using constant space complexity.
+ */
 public class _148_SortList implements Medium {
 
   public interface Solution {
     ListNode sortList(ListNode head);
   }
-
 
   // Quick sort. O(n) memory usage
   public static class Solution1 implements Solution {
@@ -108,35 +110,44 @@ public class _148_SortList implements Medium {
       ListNode dummy = new ListNode(0);
       dummy.next = head;
 
-      int pSize = 2;
-      int pCount = 0;
-      ListNode prevPTail = dummy;
+      int size = getListSize(head);
+      int pSize = 2; // partition size
+      int sorted = 0;
+      ListNode prevTail = dummy;
       while(true) {
-        prevPTail = sortPartition(prevPTail, pSize);
-        if(prevPTail == null) {
-          if(pCount == 1) break;
+        int leftLength = pSize / 2;
+        int rightLength =  Math.min(pSize, size - sorted) - leftLength;
+        prevTail = mergePartition(prevTail, leftLength, rightLength);
+        sorted += (leftLength + rightLength);
+        if(sorted == size) { // it is the end
+          if(pSize >= size) break;
           pSize *= 2;
-          pCount = 0;
-          prevPTail = dummy;
-        } else {
-          pCount++;
+          sorted = 0;
+          prevTail = dummy;
         }
       }
       return dummy.next;
     }
 
-    // sorts the next n elements starting from prevTail.next. returns the tail
-    private static ListNode sortPartition(ListNode prevTail, int n) {
-      if(prevTail.next == null) return null;
+    private static int getListSize(ListNode node) {
+      int count = 0;
+      while(node != null) {
+        node = node.next;
+        count++;
+      }
+      return count;
+    }
+
+    // sorts the next (left + right) elements starting from prevTail.next. returns the tail
+    private static ListNode mergePartition(ListNode prevTail, int leftLength, int rightLength) {
+      if(rightLength <= 0) return null; // nothing on the right hand side
       ListNode left = prevTail.next;
       ListNode right = left;
-      int mid = n / 2;
-      int leftLength = mid;
-      int rightLength = n - mid;
-      for(int i = 0; i < mid; i++) right = right.next;
+      for(int i = 0; i < leftLength; i++) right = right.next;
 
       ListNode resultHolder = new ListNode(0);
       ListNode resultTail = resultHolder;
+
       ListNode originTailNext = null;
       while(leftLength != 0 || rightLength != 0) {
         if(rightLength == 0 || leftLength != 0 && left.val < right.val) {
@@ -161,13 +172,21 @@ public class _148_SortList implements Medium {
     ListNode head;
     ListNode result;
     for(Solution s : Arrays.asList(new Solution3())) {
+      head = ListNode.fromArray(4, 19, 14, 5, -3, 1, 8, 5, 11, 15);
+      result = s.sortList(head);
+      System.out.println(ListNode.toString(result));
+
+      head = ListNode.fromArray(3, 4, 1);
+      result = s.sortList(head);
+      System.out.println(ListNode.toString(result));
+
       head = ListNode.fromArray(3, 2, 4);
       result = s.sortList(head);
       System.out.println(ListNode.toString(result));
 
-//      head = ListNode.fromArray(3, 2, 1, 2, 1, 3, 4, 5, 1, 2, 3, 3, 3, 2, 1, 1);
-//      result = s.sortList(head);
-//      System.out.println(ListNode.toString(result));
+      head = ListNode.fromArray(3, 2, 1, 2, 1, 3, 4, 5, 1, 2, 3, 3, 3, 2, 1, 1);
+      result = s.sortList(head);
+      System.out.println(ListNode.toString(result));
 
     }
   }

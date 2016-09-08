@@ -3,9 +3,10 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.difficulty.ReallyHard;
 import com.beijunyi.leetcode.category.solution.KMP;
 
-public class _214_ShortestPalindrome implements Hard {
+public class _214_ShortestPalindrome implements Hard, ReallyHard {
 
   public interface Solution {
     String shortestPalindrome(String s);
@@ -45,47 +46,82 @@ public class _214_ShortestPalindrome implements Hard {
   }
 
   public static class Solution2 implements Solution, KMP {
+
     @Override
     public String shortestPalindrome(String s) {
       String r = new StringBuilder(s).reverse().toString();
-      int[] lps = getLPS(s + '|' + r);
+      int[] lps = getPartialMatchingTable(s + '|' + r);
       return r.substring(0, r.length() - lps[lps.length - 1]) + s;
     }
 
     // KMP get longest prefix and suffix count
-    int[] getLPS(String s) {
+    private static int[] getPartialMatchingTable(String s) {
       int[] lps = new int[s.length()];
-      int i = 1, len = 0;
+      int i = 1;
+      int len = 0;
 
-      while (i < s.length()) {
-        if (s.charAt(i) == s.charAt(len))
+      while(i < s.length()) {
+        if(s.charAt(i) == s.charAt(len))
           lps[i++] = ++len;
-        else if (len == 0)
+        else if(len == 0)
           lps[i++] = 0;
+        else if(s.charAt(i) != s.charAt(0))
+          len = 0;
         else
-          len = lps[len - 1];
+          len = lps[len - 1]; // ?
       }
 
       return lps;
     }
   }
 
-  public static class Solution3 implements Solution {
+  public static class Solution3 implements Solution, KMP {
     @Override
     public String shortestPalindrome(String s) {
-      if(s.length()<=1) return s;
-      String new_s = s+"#"+new StringBuilder(s).reverse().toString();
-      int[] position = new int[new_s.length()];
-
-      for(int i=1;i<position.length;i++)
-      {
-        int pre_pos = position[i-1];
-        while(pre_pos>0 && new_s.charAt(pre_pos)!=new_s.charAt(i))
-          pre_pos = position[pre_pos-1];
-        position[i] = pre_pos+((new_s.charAt(pre_pos)==new_s.charAt(i))?1:0);
+      if(s==null||s.length()==0){
+        return s;
       }
+      char[] arr = s.toCharArray();
+      StringBuilder sb = new StringBuilder();
+      int cent = getCentralPoint(arr);
+      for(int i = arr.length-1;i>=cent;i--){
+        sb.append(arr[i]);
+      }
+      sb.append(s);
+      return sb.toString();
+    }
 
-      return new StringBuilder(s.substring(position[position.length-1])).reverse().toString()+s;
+    private int getCentralPoint(char[] arr){
+      int mid = (arr.length-1)/2;
+      int i = mid;
+      int j = mid;
+      while(i>=0){
+        i = mid;
+        j = mid;
+        while(i>=0&&arr[i]==arr[mid]){
+          i--;
+        }
+        while(j<arr.length&&arr[j]==arr[mid]){
+          j++;
+        }
+        int cp = centralPoint(arr,i,j);
+        if(cp!=-1){
+          return cp;
+        }
+        mid = i;
+      }
+      return 0;
+    }
+
+    private int centralPoint(char[] arr,int i,int j){
+      while(i>=0&&j<arr.length){
+        if(arr[i]!=arr[j]){
+          return -1;
+        }
+        i--;
+        j++;
+      }
+      return i!=-1?-1:j;
     }
   }
 

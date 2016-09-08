@@ -11,6 +11,26 @@ public class _214_ShortestPalindrome implements Hard {
     String shortestPalindrome(String s);
   }
 
+  /**
+   * It's only O(n^2).
+   *
+   * Consider the input aabababababababababababababa. That leads to recursive calls with these strings:
+   *
+   * aabababababababababababababa
+   * aababababababababababababa
+   * aabababababababababababa
+   * aababababababababababa
+   * aabababababababababa
+   * aababababababababa
+   * aabababababababa
+   * aababababababa
+   * aabababababa
+   * aababababa
+   * aabababa
+   * aababa
+   * aaba
+   * aa
+   */
   public static class Solution1 implements Solution {
     @Override
     public String shortestPalindrome(String s) {

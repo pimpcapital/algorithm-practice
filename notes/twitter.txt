@@ -1,0 +1,23 @@
+loose coupling
+use queue and async
+worst case: one component gets slow, queue briefly build up and recover
+
+soft launch (dmg control)
+launch new code in disabled state
+turn up slowly, back down if needed
+
+mysql wins
+robust and fast
+replication usually works 7000 request per sec
+
+mysql problems
+id generations
+
+mysql usage
+small data (<1.5TB)
+backing store of larger data
+
+cassandra
+high speed write, mid speed read
+easy and cheap to scale
+schema less design easy for dev

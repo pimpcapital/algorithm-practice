@@ -50,4 +50,8 @@ public class TreeNode {
     return ret.toArray(new Integer[ret.size()]);
   }
 
+  @Override
+  public String toString() {
+    return Arrays.toString(toArray(this));
+  }
 }

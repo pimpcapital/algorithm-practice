@@ -97,7 +97,7 @@ public class _318_MaximumProductOfWordLength implements Medium, NotHardButTricky
     String[] words;
     int result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       words = new String[] {"abcw", "baz", "foo", "bar", "xtfn", "abcdef"};
       result = s.maxProduct(words);
       System.out.println(result);

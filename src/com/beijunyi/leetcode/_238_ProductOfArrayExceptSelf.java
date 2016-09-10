@@ -70,6 +70,25 @@ public class _238_ProductOfArrayExceptSelf implements Medium {
     }
   }
 
+  /**
+   * Same idea as solution2 but even neater
+   */
+  public static class Solution3 implements Solution {
+    public int[] productExceptSelf(int[] nums) {
+      int n = nums.length;
+      int[] a = new int[n];
+      for (int i = 0, left = 1; i < n; i++) {
+        a[i] = left;
+        left *= nums[i];
+      }
+      for (int i = n - 1, right = 1; i >= 0; i--) {
+        a[i] *= right;
+        right *= nums[i];
+      }
+      return a;
+    }
+  }
+
   public static void main(String args[]) {
     int[] nums;
     int[] result;

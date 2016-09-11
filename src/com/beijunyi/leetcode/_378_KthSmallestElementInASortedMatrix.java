@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.NotHardButTricky;
 import com.beijunyi.leetcode.category.solution.BinarySearch;
 import com.beijunyi.leetcode.category.solution.MedianOfMedians;
 import com.beijunyi.leetcode.category.solution.WithHeap;
@@ -26,7 +27,7 @@ import com.beijunyi.leetcode.category.solution.WithHeap;
  * Note:
  *   You may assume k is always valid, 1 ≤ k ≤ n2.
  */
-public class _378_KthSmallestElementInASortedMatrix implements Medium {
+public class _378_KthSmallestElementInASortedMatrix implements Medium, NotHardButTricky {
 
   public interface Solution {
     int kthSmallest(int[][] matrix, int k);
@@ -156,20 +157,20 @@ public class _378_KthSmallestElementInASortedMatrix implements Medium {
     @Override
     public int kthSmallest(int[][] matrix, int k) {
       int n = matrix.length;
-      int lo = matrix[0][0], hi = matrix[n-1][n-1];
-      while (lo < hi) {
-        int mid = (lo + hi) / 2, count = 0, j = n;
-        for (int[] row : matrix) {
-          while (j >= 1 && row[j-1] > mid)
+      int low = matrix[0][0], high = matrix[n-1][n-1];
+      while(low < high) {
+        int mid = (low + high) / 2, count = 0, j = n;
+        for(int[] row : matrix) {
+          while(j >= 1 && row[j-1] > mid)
             j--;
           count += j;
         }
-        if (count < k)
-          lo = mid + 1;
+        if(count < k)
+          low = mid + 1;
         else
-          hi = mid;
+          high = mid;
       }
-      return lo;
+      return low;
     }
   }
 
@@ -178,13 +179,13 @@ public class _378_KthSmallestElementInASortedMatrix implements Medium {
     int k;
 
     for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3(), new Solution4())) {
-      matrix = new int[][] {
-        { 1,  5,  9},
-        {10, 11, 13},
-        {12, 13, 15}
-      };
-      k = 8;
-      System.out.println(s.kthSmallest(matrix, k));
+//      matrix = new int[][] {
+//        { 1,  5,  9},
+//        {10, 11, 13},
+//        {12, 13, 15}
+//      };
+//      k = 8;
+//      System.out.println(s.kthSmallest(matrix, k));
 
       matrix = new int[][] {
         { 1,  3,  5},

@@ -179,13 +179,13 @@ public class _378_KthSmallestElementInASortedMatrix implements Medium, NotHardBu
     int k;
 
     for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3(), new Solution4())) {
-//      matrix = new int[][] {
-//        { 1,  5,  9},
-//        {10, 11, 13},
-//        {12, 13, 15}
-//      };
-//      k = 8;
-//      System.out.println(s.kthSmallest(matrix, k));
+      matrix = new int[][] {
+        { 1,  5,  9},
+        {10, 11, 13},
+        {12, 13, 15}
+      };
+      k = 8;
+      System.out.println(s.kthSmallest(matrix, k));
 
       matrix = new int[][] {
         { 1,  3,  5},

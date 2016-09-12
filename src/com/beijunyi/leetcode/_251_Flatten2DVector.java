@@ -66,11 +66,6 @@ public class _251_Flatten2DVector implements Medium, PremiumQuestion {
       if(in != null && !in.hasNext()) in = null;
     }
 
-    @Override
-    public void remove() {
-      throw new UnsupportedOperationException();
-    }
-
   }
 
   public static void main(String args[]) {

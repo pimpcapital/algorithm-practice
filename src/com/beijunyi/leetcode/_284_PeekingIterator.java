@@ -80,13 +80,6 @@ public class _284_PeekingIterator implements Medium {
       return value != null;
     }
 
-    @Override
-    public void remove() {
-      if(!loaded)
-        throw new IllegalStateException();
-      embedded.remove();
-    }
-
     private void load() {
       if(!loaded) {
         try {
@@ -131,11 +124,6 @@ public class _284_PeekingIterator implements Medium {
     @Override
     public boolean hasNext() {
       return hasPeeked || iterator.hasNext();
-    }
-
-    @Override
-    public void remove() {
-      throw new UnsupportedOperationException();
     }
 
   }

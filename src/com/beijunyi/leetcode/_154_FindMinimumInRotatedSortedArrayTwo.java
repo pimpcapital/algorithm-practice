@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.solution.BinarySearch;
 import com.beijunyi.leetcode.category.solution.Iterative;
 import com.beijunyi.leetcode.category.solution.Recursive;
 
@@ -24,7 +25,7 @@ public class _154_FindMinimumInRotatedSortedArrayTwo implements Hard {
     int findMin(int[] nums);
   }
 
-  public static class Solution1 implements Solution, Recursive {
+  public static class Solution1 implements Solution, BinarySearch, Recursive {
 
     @Override
     public int findMin(int[] nums) {
@@ -57,7 +58,7 @@ public class _154_FindMinimumInRotatedSortedArrayTwo implements Hard {
 
   }
 
-  public static class Solution2 implements Solution, Iterative {
+  public static class Solution2 implements Solution, BinarySearch, Iterative {
     @Override
     public int findMin(int[] nums) {
       int left = 0;
@@ -78,7 +79,7 @@ public class _154_FindMinimumInRotatedSortedArrayTwo implements Hard {
     }
   }
 
-  public static class Solution3 implements Solution, Iterative {
+  public static class Solution3 implements Solution, BinarySearch, Iterative {
     @Override
     public int findMin(int[] nums) {
       int left = 0;

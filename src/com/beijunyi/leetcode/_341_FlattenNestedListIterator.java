@@ -1,7 +1,6 @@
 package com.beijunyi.leetcode;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.NestedInteger;
@@ -30,21 +29,65 @@ public class _341_FlattenNestedListIterator implements Medium {
 
   public static class Solution1 implements Solution {
 
+    private final Stack<List<NestedInteger>> stack = new Stack<>();
+    private final Stack<Integer> indices = new Stack<>();
+    private Integer current;
+
     @Override
     public void init(List<NestedInteger> nestedList) {
-
+      stack.push(nestedList);
+      indices.push(0);
     }
 
     @Override
     public boolean hasNext() {
-      return false;
+      if(current != null) return true;
+      if(stack.isEmpty()) return false;
+      List<NestedInteger> list = stack.peek();
+      int index = indices.pop();
+      if(index == list.size()) {
+        stack.pop();
+      } else {
+        indices.push(index + 1);
+        NestedInteger next = list.get(index);
+        if(next.isInteger()) {
+          current = next.getInteger();
+        } else {
+          stack.push(next.getList());
+          indices.push(0);
+        }
+      }
+      return hasNext();
     }
 
     @Override
     public Integer next() {
-      return null;
+      if(!hasNext()) throw new NoSuchElementException();
+      Integer ret =  current;
+      current = null;
+      return ret;
     }
 
+  }
+
+  public static void main(String args[]) {
+    List<NestedInteger> nestedList;
+
+    for(Solution s : Arrays.asList(new Solution1())) {
+      nestedList = NestedInteger.fromArray(new Integer[] {1, 1}, 2, new Integer[] {1, 1});
+      s.init(nestedList);
+      while(s.hasNext()) {
+        System.out.println(s.next());
+      }
+      System.out.println();
+
+      nestedList = NestedInteger.fromArray(1, new Object[]{4, new Object[]{6}});
+      s.init(nestedList);
+      while(s.hasNext()) {
+        System.out.println(s.next());
+      }
+      System.out.println();
+    }
   }
 
 }

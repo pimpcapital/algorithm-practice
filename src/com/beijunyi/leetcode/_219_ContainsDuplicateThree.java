@@ -43,6 +43,8 @@ public class _219_ContainsDuplicateThree implements Medium {
 
   /**
    * Much neater and faster solution
+   *
+   * Note: the set will never contain duplicated values as duplicated values will never have the chance to be inserted
    */
   public static class Solution2 implements Solution, WithBinarySearchTree {
     @Override

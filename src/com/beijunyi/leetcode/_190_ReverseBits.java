@@ -40,14 +40,15 @@ public class _190_ReverseBits implements Easy {
     @Override
     public int reverseBits(int n) {
       int result = 0;
-      int count = 31;
-      while(n != 0) {
-        result |= (n & 1);
-        n = n >> 1;
+      int count;
+      for(count = 0; count < 32; count++) { // in total 32 digits to process
+        if(n == 0) break;
         result = result << 1;
-        count--;
+        int mask = n & 1;
+        n = n >>> 1;
+        result = result | mask;
       }
-      return result << count;
+      return result << (32 - count); // adding trailing zeros at the back
     }
 
   }
@@ -58,6 +59,10 @@ public class _190_ReverseBits implements Easy {
 
     for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       n = 964176192;
+      result = s.reverseBits(n);
+      System.out.println(result);
+
+      n = (int) 2147483648L; // 10000000000000000000000000000000;
       result = s.reverseBits(n);
       System.out.println(result);
     }

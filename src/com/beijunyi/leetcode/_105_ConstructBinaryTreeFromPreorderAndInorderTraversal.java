@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Stack;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.difficulty.NotHardButTricky;
 import com.beijunyi.leetcode.category.solution.Iterative;
 import com.beijunyi.leetcode.category.solution.Recursive;
 import com.beijunyi.leetcode.ds.TreeNode;
@@ -14,7 +15,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  * Note:
  * You may assume that duplicates do not exist in the tree.
  */
-public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements Medium {
+public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements Medium, NotHardButTricky {
 
   public interface Solution {
     TreeNode buildTree(int[] preorder, int[] inorder);
@@ -76,6 +77,14 @@ public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements 
     }
   }
 
+  /**
+   * 1 pointer for each order.
+   * when preorder[p] != inorder[i]. keep creating left child side nodes
+   * when preorder[p] == inorder[i], it means, there is no left child.
+   *
+   * if node for preorder[p] has no right child, preorder[p + 1] == inorder[i + 1].
+   * otherwise, preorder[p + 1] will be preorder[p]'s right child
+   */
   public static class Solution3 implements Solution {
     @Override
     public TreeNode buildTree(int[] preorder, int[] inorder) {
@@ -92,13 +101,15 @@ public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements 
           expectingRightChild = null;
         } else {
           lefts.peek().left = next;
-          lefts.push(next);
-
-          while()
+        }
+        lefts.push(next);
+        while(i < inorder.length && lefts.peek().val == inorder[i]) {
+          expectingRightChild = lefts.pop();
+          i++;
         }
       }
 
-      return lefts.pop();
+      return lefts.pop().left;
     }
   }
 
@@ -107,21 +118,20 @@ public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements 
     int[] inorder;
     TreeNode result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
       preorder = new int[] {1, 2};
       inorder = new int[] {2, 1};
       result = s.buildTree(preorder, inorder);
       System.out.println(result);
 
-
       /**
-       *     1
-       *    / \
-       *   2   7
-       *  / \   \
-       * 3  4    8
-       *   / \
-       *  5  6
+       *        1
+       *      / \
+       *     2   7
+       *   / \    \
+       *  3   4    8
+       *     / \
+       *    5   6
        */
       preorder = new int[] {1, 2, 3, 4, 5, 6, 7, 8};
       inorder = new int[] {3, 2, 5, 4, 6, 1, 7, 8};

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Stack;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.Iterative;
+import com.beijunyi.leetcode.category.solution.Recursive;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -18,7 +20,7 @@ public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements 
     TreeNode buildTree(int[] preorder, int[] inorder);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, Iterative {
 
     @Override
     public TreeNode buildTree(int[] preorder, int[] inorder) {
@@ -51,7 +53,7 @@ public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements 
    * Now we know that IN[5] is root, so we know that IN[0] - IN[4] is on the left side, IN[6] to the end is on the right side.
    * Recursively doing this on subarrays, we can build a tree out of it
    */
-  public static class Solution2 implements Solution {
+  public static class Solution2 implements Solution, Recursive {
     @Override
     public TreeNode buildTree(int[] preorder, int[] inorder) {
       return helper(0, 0, inorder.length - 1, preorder, inorder);
@@ -71,6 +73,32 @@ public class _105_ConstructBinaryTreeFromPreorderAndInorderTraversal implements 
       root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
       root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
       return root;
+    }
+  }
+
+  public static class Solution3 implements Solution {
+    @Override
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+      int p = 0;
+      int i = 0;
+      Stack<TreeNode> lefts = new Stack<>();
+      lefts.push(new TreeNode(0)); // its left holds the root
+
+      TreeNode expectingRightChild = null; // the parent that is expecting a right child
+      while(p < preorder.length) {
+        TreeNode next = new TreeNode(preorder[p++]);
+        if(expectingRightChild != null) {
+          expectingRightChild.right = next;
+          expectingRightChild = null;
+        } else {
+          lefts.peek().left = next;
+          lefts.push(next);
+
+          while()
+        }
+      }
+
+      return lefts.pop();
     }
   }
 

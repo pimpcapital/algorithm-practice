@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.ReservoirSampling;
 import com.beijunyi.leetcode.ds.ListNode;
 
 /**
@@ -36,10 +37,10 @@ public class _382_LinkedListRandomNode implements Medium {
     int getRandom();
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, ReservoirSampling {
 
-    ListNode head = null;
-    Random randomGenerator = null;
+    private ListNode head = null;
+    private Random randomGenerator = null;
 
     @Override
     public void init(ListNode head) {

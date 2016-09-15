@@ -5,6 +5,7 @@ import java.util.Stack;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.Iterative;
+import com.beijunyi.leetcode.category.solution.Recursive;
 import com.beijunyi.leetcode.category.solution.WithStack;
 
 /**
@@ -59,14 +60,52 @@ public class _394_DecodeString implements Medium {
     }
   }
 
+  /**
+   * Potentially faster solution as there is only one StringBuilder
+   * However, this won't work if repeating 0 time is allowed i.e. 0[abc]
+   */
+  public static class Solution2 implements Solution, Recursive {
+    @Override
+    public String decodeString(String s) {
+      StringBuilder sb = new StringBuilder();
+      decodeString(s, 0, sb);
+      return sb.toString();
+    }
+
+    private int decodeString(String s, int offset, StringBuilder sb) {
+      int repeat = 0;
+      int i = offset;
+      while(i < s.length()) {
+        char c = s.charAt(i);
+        if(c >= '0' && c <= '9') {
+          repeat = repeat * 10 + c - '0';
+        } else if(c == '[') {
+          int start = i + 1;
+          while(repeat > 0) {
+            i = decodeString(s, start, sb);
+            repeat--;
+          }
+        } else if(c == ']') {
+          return i;
+        } else {
+          sb.append(c);
+        }
+        i++;
+      }
+      return i;
+    }
+  }
+
   public static void main(String args[]) {
     String s;
     String result;
 
-    for(Solution solution : Arrays.asList(new Solution1())) {
+    for(Solution solution : Arrays.asList(new Solution1(), new Solution2())) {
       s = "3[a2[c]]";
       result = solution.decodeString(s);
       System.out.println(result);
+
+      System.out.println();
     }
   }
 

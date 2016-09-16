@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import com.beijunyi.leetcode.category.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.SillyQuestion;
 
 /**
  * Implement the following operations of a stack using queues.
@@ -22,7 +23,7 @@ import com.beijunyi.leetcode.category.difficulty.Easy;
  * 3) You may assume that all operations are valid (for example, no pop or top operations will be called on an empty
  *    stack).
  */
-public class _225_ImplementStackUsingQueues implements Easy {
+public class _225_ImplementStackUsingQueues implements Easy, SillyQuestion {
 
   public interface Solution {
     // Push element x onto stack.

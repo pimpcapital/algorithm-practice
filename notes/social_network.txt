@@ -1,0 +1,5 @@
+feeds is core. widely discussed
+handle high traffic
+push/pull approaches, hybrid
+
+redis + db fallback vs cassandra

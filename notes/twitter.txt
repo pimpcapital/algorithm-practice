@@ -21,3 +21,21 @@ cassandra
 high speed write, mid speed read
 easy and cheap to scale
 schema less design easy for dev
+
+
+---
+tweet -> fanout -> insert into followers' timeline lists (800 max)
+different strategy for active users and inactive users
+own time line goes to disk, home time line only goes to memory
+all passed by id. infrastructure mostly don't care about the actual text
+O(n) write, O(1) read, consumption mech 300k reading 30k search 6k writing (30b deliveries, 3.5s)
+
+search is completely different system
+tokenize into everything that we interested in indexing
+blender queries against every shard of earlybird, and sort+merge
+O(1) write, O(n) read
+
+retweet -> race condition -> retweet possibly shows up quicker than original tweet
+workaround: ranking (reduce confusion)
+
+don't fanout celebrity anymore -> runtime merge in celebrity tweets

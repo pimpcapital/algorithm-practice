@@ -1,0 +1,20 @@
+http://ksat.me/a-plain-english-introduction-to-cap-theorem/
+
+Chapter 7: Conclusion :
+So Let’s look at CAP Theorem now. Its states that, when you are designing a distributed system you can get cannot
+achieve all three of Consistency, Availability and Partition tolerance. You can pick only two of:
+
+Consistency: You customers, once they have updated information with you, will always get the most updated information
+when they call subsequently. No matter how quickly they call back
+Availability: Remembrance Inc will always be available for calls until any one of you(you or your wife) report to work.
+Partition Tolerance: Remembrance Inc will work even if there is a communication loss between you and your wife!
+
+Bonus : Eventual Consistency with a run around clerk :
+Here is another food for thought. You can have a run around clerk, who will update other’s notebook when one of your’s
+or your wife’s note books is updated. The greatest benefit of this is that, he can work in background and one of your or
+your wife’s “update” doesn’t have to block, waiting for the other one to update. This is how many NoSql systems work,
+one node updates itself locally and a background process synchronizes all other nodes accordingly… The only problem is
+that you will lose consistency of some time. For eg., a customer’s call reaches your wife first and before the clerk has
+a chance to update your notebook , the customer’ calls back and it reaches you. Then he won’t get a consistent reply..
+But that said, this is not at all a bad idea if such cases are limited. For eg., assuming a customer won’t forget things
+so quickly that he calls back in 5 minutes.

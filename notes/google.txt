@@ -1,0 +1,34 @@
+50k queries per sec Google
+130k videos per sec Youtube
+
+indexing facility {
+  crawler {
+    avoid infinite loop
+  }
+  indexer {
+    map: link to file
+    reduce: files to db
+  }
+}
+
+analysis in indexing {
+  every component in page has value (title > text)
+  every page has value (sort by inbound link)
+  meta data about every page (science, cooking, math etc)
+}
+
+indexing process {
+  inverted indexing
+  normalization  {
+    lower case
+    tokenize
+    filter stop words
+  }
+}
+
+querying process {
+  same normalization
+  one word query
+  free text query: union
+
+}

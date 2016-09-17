@@ -2,6 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.category.difficulty.Important;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.DynamicPrograming;
 
@@ -17,7 +18,7 @@ import com.beijunyi.leetcode.category.solution.DynamicPrograming;
  *
  * Follow up: Could you improve it to O(n log n) time complexity?
  */
-public class _300_LongestIncreasingSubsequence implements Medium {
+public class _300_LongestIncreasingSubsequence implements Medium, Important {
 
   public interface Solution {
     int lengthOfLIS(int[] nums);
@@ -62,9 +63,6 @@ public class _300_LongestIncreasingSubsequence implements Medium {
   /**
    * Time: O(n*log(n)), Space: O(n) where
    *   n is the length of the input array
-   *
-   * The basic idea is present in the majority of solutions shared for this task, I have only tried to implement it in a
-   * manner as concise as possible without damaging the code readability.
    *
    * The idea is that as you iterate the sequence, you keep track of the minimum value a subsequence of given length
    * might end with, for all so far possible subsequence lengths. So dp[i] is the minimum value a subsequence of length

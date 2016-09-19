@@ -1,8 +1,9 @@
 package com.beijunyi.leetcode;
 
-import java.util.List;
+import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.solution.WithHeap;
 
 /**
  * A city's skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a
@@ -43,11 +44,87 @@ public class _218_TheSkylineProblem implements Hard {
     List<int[]> getSkyline(int[][] buildings);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, WithHeap {
 
     @Override
     public List<int[]> getSkyline(int[][] buildings) {
-      return null;
+      Queue<BuildingEvent> events = prepareBuildingEvents(buildings);
+      PriorityQueue<Integer> tallest = new PriorityQueue<>(Collections.reverseOrder());
+
+      List<int[]> ret = new ArrayList<>();
+      int x = 0;
+      int y = 0;
+      while(!events.isEmpty()) {
+        x = events.peek().pos;
+        while(!events.isEmpty() && x == events.peek().pos) { // burst events
+          BuildingEvent e = events.poll();
+          if(e.insert) tallest.offer(e.height);
+          else tallest.remove(e.height);
+        }
+        int newY = tallest.isEmpty() ? 0 : tallest.peek();
+        if(newY != y) {
+          ret.add(new int[] {x, newY});
+          y = newY;
+        }
+      }
+      return ret;
+    }
+
+    private static Queue<BuildingEvent> prepareBuildingEvents(int[][] buildings) {
+      LinkedList<BuildingEvent> ret = new LinkedList<>();
+      for(int[] building : buildings) {
+        ret.add(new BuildingEvent(building[0], true, building[2])); // start
+        ret.add(new BuildingEvent(building[1], false, building[2])); // end
+      }
+      Collections.sort(ret, (e1, e2) -> Integer.compare(e1.pos, e2.pos));
+      return ret;
+    }
+
+    private static class BuildingEvent {
+      private final int pos;
+      private final boolean insert;
+      private final int height;
+
+      public BuildingEvent(int pos, boolean insert, int height) {
+        this.pos = pos;
+        this.insert = insert;
+        this.height = height;
+      }
+    }
+
+  }
+
+  public static void main(String args[]) {
+    int[][] buildings;
+    List<int[]> result;
+
+    for(Solution s : Arrays.asList(new Solution1())) {
+      buildings = new int[][] {
+        {0, 2, 3}, {2, 5, 3}
+      };
+      result = s.getSkyline(buildings);
+      for(int[] endpoints : result) {
+        System.out.print(Arrays.toString(endpoints));
+      }
+      System.out.println();
+
+      buildings = new int[][] {
+        {1, 2, 1}, {1, 2, 2}, {1, 2, 3}
+      };
+      result = s.getSkyline(buildings);
+      for(int[] endpoints : result) {
+        System.out.print(Arrays.toString(endpoints));
+      }
+      System.out.println();
+
+      buildings = new int[][] {
+        {2, 9, 10}, {3, 7, 15}, {5, 12, 12}, {15, 20, 10}, {19, 24, 8}
+      };
+      result = s.getSkyline(buildings);
+      for(int[] endpoints : result) {
+        System.out.print(Arrays.toString(endpoints));
+      }
+      System.out.println();
     }
   }
 

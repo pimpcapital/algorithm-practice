@@ -2,6 +2,7 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Hard;
 import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
 
@@ -28,7 +29,7 @@ import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
  *   You may assume that row1 ≤ row2 and col1 ≤ col2.
  *
  */
-public class _308_RangeSumQuery2DMutable implements Hard {
+public class _308_RangeSumQuery2DMutable implements Hard, PremiumQuestion {
 
   public interface Solution {
 

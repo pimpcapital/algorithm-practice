@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
+import com.beijunyi.leetcode.category.solution.SegmentTree;
 
 /**
  * Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
@@ -27,7 +28,7 @@ public class _307_RangeSumQueryMutable implements Medium {
     int sumRange(int i, int j);
   }
 
-  public static class Solution1 implements Solution, BinaryIndexedTree {
+  public static class Solution1 implements Solution, SegmentTree {
 
     private SegmentTreeNode root;
 
@@ -154,7 +155,7 @@ public class _307_RangeSumQueryMutable implements Medium {
 
     public void init(int i, int val) {
       i++;
-      while (i <= n) {
+      while(i <= n) {
         BIT[i] += val;
         i += (i & -i);
       }

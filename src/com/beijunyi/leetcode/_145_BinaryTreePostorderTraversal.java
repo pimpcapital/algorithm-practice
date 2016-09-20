@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.beijunyi.leetcode.category.difficulty.Easy;
+import com.beijunyi.leetcode.category.difficulty.Hard;
 import com.beijunyi.leetcode.category.solution.Recursive;
 import com.beijunyi.leetcode.ds.TreeNode;
 
@@ -22,7 +22,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  *
  * Note: Recursive solution is trivial, could you do it iteratively?
  */
-public class _145_BinaryTreePostorderTraversal implements Easy {
+public class _145_BinaryTreePostorderTraversal implements Hard {
 
   public interface Solution {
     List<Integer> postorderTraversal(TreeNode root);

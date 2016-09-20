@@ -182,9 +182,45 @@ public class _307_RangeSumQueryMutable implements Medium {
     }
   }
 
+  public static class Solution3 implements Solution {
+
+    private int[] nums;
+    private int[] bit;
+
+    @Override
+    public void setup(int[] nums) {
+      this.nums = new int[nums.length];
+      bit = new int[nums.length];
+      for(int i = 0; i < nums.length; i++)
+        update(i, nums[i]);
+    }
+
+
+    @Override
+    public void update(int i, int val) {
+      int delta = val - nums[i];
+      for(int x = i + 1; x <= nums.length; x += (x & -x))
+        bit[x - 1] += delta;
+      nums[i] += delta;
+    }
+
+    @Override
+    public int sumRange(int i, int j) {
+      return sum(j) - sum(i - 1);
+    }
+
+    private int sum(int n) {
+      int sum = 0;
+      for(int x = n + 1; x > 0; x -= (x & -x))
+        sum += bit[x - 1];
+      return sum;
+    }
+
+  }
+
   public static void main(String args[]) {
 
-    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
       s.setup(new int[] {1, 3, 5});
       System.out.println(s.sumRange(0, 2));
       System.out.println(s.sumRange(1, 2));
@@ -193,6 +229,8 @@ public class _307_RangeSumQueryMutable implements Medium {
       System.out.println(s.sumRange(0, 1));
       s.update(1, 10);
       System.out.println(s.sumRange(1, 2));
+
+      System.out.println();
     }
 
   }

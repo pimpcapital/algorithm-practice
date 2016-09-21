@@ -49,73 +49,51 @@ public class _375_GuessNumberHigherOrLowerTwo implements Medium {
 
     @Override
     public int getMoneyAmount(int n) {
-      if(n <= 1) return 0;
-      int[][] cache = new int[n + 1][2]; // [amount, depth]
-      cache[0] = new int[2];
-      cache[1] = new int[2];
-      for(int i = 2; i <= n; i++) calculateTotal(i, cache);
-      return cache[n][0];
+      int[][] cache = new int[n + 1][n + 1];
+      for(int end = 2; end <= n; end++) {
+        for(int start = end - 1; start >= 1; start--) {
+          computeMinGuessCost(start, end, cache);
+        }
+      }
+      return cache[1][n];
     }
 
-    private void calculateTotal(int n, int[][] cache) {
-      int guess = n / 2;
-      int[] min = new int[] {Integer.MAX_VALUE, Integer.MAX_VALUE};
-      while(guess < n) {
-        int left = guess - 1;
-        int leftDepth = cache[left][1];
-        int leftTotal = cache[left][0];
+    private void computeMinGuessCost(int start, int end, int[][] cache) {
+      int guess = start + (end - start) / 2;
+      int min = Integer.MAX_VALUE;
+      while(guess < end) {
+        int leftEnd = guess - 1;
+        int rightStart = guess + 1;
 
-        int right = n - 1 - left;
-        int rightDepth = cache[right][1];
-        int rightTotal = cache[right][0] + rightDepth * guess;
-
-        int total;
-        int depth;
-        if(leftTotal > rightTotal) {
-          total = leftTotal + guess;
-          depth = leftDepth + 1;
-        } else {
-          total = rightTotal + guess;
-          depth = rightDepth + 1;
-        }
-        if(total < min[0]) {
-          min[0] = total;
-          min[1] = depth;
-          guess++;
-        } else break;
+        int cost = guess + Math.max(cache[start][leftEnd], cache[rightStart][end]);
+        if(cost < min) min = cost;
+        guess++;
       }
-      cache[n] = min;
+      cache[start][end] = min;
     }
 
   }
 
   public static class Solution2 implements Solution, Memoization {
 
-    private int[][] dp;
-
     @Override
     public int getMoneyAmount(int n) {
-      dp = new int[n + 1][n + 1];
-      return helper(1, n);
+      int[][] dp = new int[n + 1][n + 1];
+      return computeMinGuessCost(1, n, dp);
     }
 
-    private int helper(int start, int end) {
-      if(dp[start][end] != 0) {
-        return dp[start][end];
-      }
-      if(start >= end) {
-        return 0;
-      }
-      if(start >= end - 2) {
-        return dp[start][end] = end - 1;
-      }
-      int mid = (start + end) / 2 - 1, min = Integer.MAX_VALUE;
-      while(mid < end) {
-        int left = helper(start, mid - 1);
-        int right = helper(mid + 1, end);
-        min = Math.min(min, mid + Math.max(left, right));
-        if (right <= left) break;
-        mid++;
+    private static int computeMinGuessCost(int start, int end, int[][] dp) {
+      if(dp[start][end] != 0) return dp[start][end];
+      if(start == end) return 0;
+      if(start >= end - 1)  return dp[start][end] = end - 1;
+
+      int guess = (start + end) / 2;
+      int min = Integer.MAX_VALUE;
+      while(guess < end) {
+        int left = computeMinGuessCost(start, guess - 1, dp);
+        int right = computeMinGuessCost(guess + 1, end, dp);
+        min = Math.min(min, guess + Math.max(left, right));
+        guess++;
       }
       return dp[start][end] = min;
     }
@@ -143,6 +121,14 @@ public class _375_GuessNumberHigherOrLowerTwo implements Medium {
       System.out.println(result);
 
       n = 5;
+      result = s.getMoneyAmount(n);
+      System.out.println(result);
+
+      n = 6;
+      result = s.getMoneyAmount(n);
+      System.out.println(result);
+
+      n = 7;
       result = s.getMoneyAmount(n);
       System.out.println(result);
 

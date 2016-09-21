@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.DynamicPrograming;
+import com.beijunyi.leetcode.category.solution.Memoization;
 
 /**
  * We are playing the Guess Game. The game is as follows:
@@ -48,68 +49,116 @@ public class _375_GuessNumberHigherOrLowerTwo implements Medium {
 
     @Override
     public int getMoneyAmount(int n) {
-      int[] cache = new int[n + 1];
+      if(n <= 1) return 0;
+      int[][] cache = new int[n + 1][2]; // [amount, depth]
+      cache[0] = new int[2];
+      cache[1] = new int[2];
       for(int i = 2; i <= n; i++) calculateTotal(i, cache);
-      return cache[n];
+      return cache[n][0];
     }
 
-    private void calculateTotal(int n, int[] cache) {
+    private void calculateTotal(int n, int[][] cache) {
       int guess = n / 2;
-      int min = Integer.MAX_VALUE;
+      int[] min = new int[] {Integer.MAX_VALUE, Integer.MAX_VALUE};
       while(guess < n) {
         int left = guess - 1;
-        int leftTotal = cache[left];
+        int leftDepth = cache[left][1];
+        int leftTotal = cache[left][0];
+
         int right = n - 1 - left;
-        int rightTotal = right > 1 ? cache[right] + guess : 0;
-        int sum = guess + Math.max(leftTotal, rightTotal);
-        if(sum < min) {
-          min = sum;
-          guess++;
+        int rightDepth = cache[right][1];
+        int rightTotal = cache[right][0] + rightDepth * guess;
+
+        int total;
+        int depth;
+        if(leftTotal > rightTotal) {
+          total = leftTotal + guess;
+          depth = leftDepth + 1;
+        } else {
+          total = rightTotal + guess;
+          depth = rightDepth + 1;
         }
-        else
-          break;
+        if(total < min[0]) {
+          min[0] = total;
+          min[1] = depth;
+          guess++;
+        } else break;
       }
       cache[n] = min;
     }
 
   }
 
+  public static class Solution2 implements Solution, Memoization {
+
+    private int[][] dp;
+
+    @Override
+    public int getMoneyAmount(int n) {
+      dp = new int[n + 1][n + 1];
+      return helper(1, n);
+    }
+
+    private int helper(int start, int end) {
+      if(dp[start][end] != 0) {
+        return dp[start][end];
+      }
+      if(start >= end) {
+        return 0;
+      }
+      if(start >= end - 2) {
+        return dp[start][end] = end - 1;
+      }
+      int mid = (start + end) / 2 - 1, min = Integer.MAX_VALUE;
+      while(mid < end) {
+        int left = helper(start, mid - 1);
+        int right = helper(mid + 1, end);
+        min = Math.min(min, mid + Math.max(left, right));
+        if (right <= left) break;
+        mid++;
+      }
+      return dp[start][end] = min;
+    }
+  }
+
   public static void main(String args[]) {
     int n;
     int result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
-//      n = 1;
-//      result = s.getMoneyAmount(n);
-//      System.out.println(result);
-//
-//      n = 2;
-//      result = s.getMoneyAmount(n);
-//      System.out.println(result);
-//
-//      n = 3;
-//      result = s.getMoneyAmount(n);
-//      System.out.println(result);
-//
-//      n = 4;
-//      result = s.getMoneyAmount(n);
-//      System.out.println(result);
-//
-//      n = 5;
-//      result = s.getMoneyAmount(n);
-//      System.out.println(result);
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      n = 1;
+      result = s.getMoneyAmount(n);
+      System.out.println(result); // 0
+
+      n = 2;
+      result = s.getMoneyAmount(n);
+      System.out.println(result); // 1
+
+      n = 3;
+      result = s.getMoneyAmount(n);
+      System.out.println(result); // 2
+
+      n = 4;
+      result = s.getMoneyAmount(n);
+      System.out.println(result);
+
+      n = 5;
+      result = s.getMoneyAmount(n);
+      System.out.println(result);
 
       n = 12;
       result = s.getMoneyAmount(n);
       System.out.println(result); //21
 
-//      n = 13;
-//      result = s.getMoneyAmount(n);
-//      System.out.println(result); //24
-//
-//      n = 15;
-//      result = s.getMoneyAmount(n);
-//      System.out.println(result); //30
+      n = 13;
+      result = s.getMoneyAmount(n);
+      System.out.println(result); //24
+
+      n = 15;
+      result = s.getMoneyAmount(n);
+      System.out.println(result); //30
+
+      System.out.println();
     }
   }
 

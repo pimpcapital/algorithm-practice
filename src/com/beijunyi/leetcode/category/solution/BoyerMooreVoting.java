@@ -1,4 +1,4 @@
 package com.beijunyi.leetcode.category.solution;
 
-public interface HeapBased {
+public interface BoyerMooreVoting {
 }

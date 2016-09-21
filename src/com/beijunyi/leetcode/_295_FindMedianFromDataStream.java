@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
-import com.beijunyi.leetcode.category.solution.HeapBased;
+import com.beijunyi.leetcode.category.solution.WithHeap;
 
 /**
  * Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So
@@ -43,7 +43,7 @@ public class _295_FindMedianFromDataStream implements Hard {
    *  O(n)
    * where n is the number of times addNum gets called
    */
-  public static class Solution1 implements Solution, HeapBased {
+  public static class Solution1 implements Solution, WithHeap {
 
     private final PriorityQueue<Integer> minHeap = new PriorityQueue<>();
     private final PriorityQueue<Integer> maxHeap = new PriorityQueue<>(1, new Comparator<Integer>() {
@@ -84,7 +84,7 @@ public class _295_FindMedianFromDataStream implements Hard {
    *  O(n)
    * where n is the number of times addNum gets called
    */
-  public static class Solution2 implements Solution, HeapBased {
+  public static class Solution2 implements Solution, WithHeap {
 
     private Queue<Integer> minHeap = new PriorityQueue<>();
     private Queue<Integer> maxHeap = new PriorityQueue<>(1, new Comparator<Integer>() {

@@ -2,11 +2,14 @@ package com.beijunyi.leetcode;
 
 import java.util.*;
 
+import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.BoyerMooreVoting;
+
 /**
  * Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
  * The algorithm should run in linear time and in O(1) space.
  */
-public class _229_MajorityElementTwo {
+public class _229_MajorityElementTwo implements Medium {
 
   public interface Solution {
     List<Integer> majorityElement(int[] nums);
@@ -76,7 +79,7 @@ public class _229_MajorityElementTwo {
 
   }
 
-  public static class Solution2 implements Solution {
+  public static class Solution2 implements Solution, BoyerMooreVoting {
 
     @Override
     public List<Integer> majorityElement(int[] nums) {

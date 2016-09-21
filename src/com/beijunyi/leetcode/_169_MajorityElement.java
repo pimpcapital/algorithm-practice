@@ -1,6 +1,7 @@
 package com.beijunyi.leetcode;
 
 import com.beijunyi.leetcode.category.difficulty.Easy;
+import com.beijunyi.leetcode.category.solution.BoyerMooreVoting;
 
 /**
  * Given an array of size n, find the majority element. The majority element is the element that appears more than
@@ -20,7 +21,7 @@ public class _169_MajorityElement implements Easy {
    * majority element.vIf next element is same then increments the count, otherwise decrements the count. If the count
    * reaches 0 then update the potential index to the current element and sets count to 1.
    */
-  public static class Solution {
+  public static class Solution implements BoyerMooreVoting {
     public int majorityElement(int[] num) {
       int majorityIndex = 0;
       for(int count = 1, i = 1; i < num.length; i++) {

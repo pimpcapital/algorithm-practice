@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
+
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.TreeNode;
 
@@ -34,7 +36,11 @@ import com.beijunyi.leetcode.ds.TreeNode;
  */
 public class _114_FlattenBinaryTreeToLinkedList implements Medium {
 
-  public static class Solution {
+  public interface Solution {
+    void flatten(TreeNode root);
+  }
+
+  public static class Solution1 implements Solution {
     public void flatten(TreeNode root) {
       if(root == null)
         return;
@@ -54,6 +60,19 @@ public class _114_FlattenBinaryTreeToLinkedList implements Medium {
         root = root.right;
       }
     }
+  }
+
+  public static void main(String args[]) {
+
+    TreeNode root;
+
+    for(Solution s : Arrays.asList(new Solution1())) {
+      root = TreeNode.fromArray(1, 2, 5, 3, 4, null, 6);
+      s.flatten(root);
+      System.out.println(root);
+    }
+
+
   }
 
 }

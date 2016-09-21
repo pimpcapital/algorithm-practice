@@ -1,0 +1,10 @@
+pubsub {
+  advantages: [
+    loose coupling
+    scalability
+  ],
+  disadvantages: [
+    semantic coupling (upgrading publisher is hard)
+    message delivery not guaranteed (e.g. logger as subscriber, no logger? dupe logger)
+  ]
+}

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.Backtracking;
 import com.beijunyi.leetcode.category.solution.WithTrie;
 import com.beijunyi.leetcode.ds.TreeNode;
 
@@ -45,7 +46,7 @@ public class _211_AddAndSearchWordDataStructureDesign implements Medium {
 
   }
 
-  public static class Solution1 implements Solution, WithTrie {
+  public static class Solution1 implements Solution, Backtracking, WithTrie {
 
     private final TrieNode root = new TrieNode(true);
 

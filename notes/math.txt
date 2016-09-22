@@ -1,0 +1,23 @@
+public int GCD(int a, int b) {
+  if(b == 0) return a;
+  return GCD(b, a%b);
+}
+
+public int LCM(int a, int b) {
+  return a * b / GCD(a, b);
+}
+
+public int countPrimes(int n) {
+  boolean[] notPrime = new boolean[n];
+  int count = 0;
+  for(int i = 2; i < n; i++) {
+    if(!notPrime[i]) {
+      count++;
+      for(int j = 2; i*j < n; j++) {
+        notPrime[i*j] = true;
+      }
+    }
+  }
+
+  return count;
+}

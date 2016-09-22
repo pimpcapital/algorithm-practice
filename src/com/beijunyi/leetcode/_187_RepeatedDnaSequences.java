@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.RollingHash;
 
 /**
  * All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.
@@ -16,7 +17,7 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  * Return:
  * ["AAAAACCCCC", "CCCCCAAAAA"].
  */
-public class _187_RepeatedDnaSequences implements Medium {
+public class _187_RepeatedDnaSequences implements Medium, RollingHash {
 
   /**
    * The idea is to use rolling hash technique or in case of string search also known as Rabin-Karp algorithm.

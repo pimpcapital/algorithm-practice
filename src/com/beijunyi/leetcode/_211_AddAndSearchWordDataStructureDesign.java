@@ -1,13 +1,10 @@
 package com.beijunyi.leetcode;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.Backtracking;
 import com.beijunyi.leetcode.category.solution.WithTrie;
-import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
  * Design a data structure that supports the following two operations:

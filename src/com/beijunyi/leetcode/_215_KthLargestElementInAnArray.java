@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
+import com.beijunyi.leetcode.category.difficulty.Important;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.QuickSelect;
 
@@ -15,7 +16,7 @@ import com.beijunyi.leetcode.category.solution.QuickSelect;
  * Note:
  *   You may assume k is always valid, 1 ≤ k ≤ array's length.
  */
-public class _215_KthLargestElementInAnArray implements Medium {
+public class _215_KthLargestElementInAnArray implements Medium, Important {
 
   public interface Solution {
     int findKthLargest(int[] nums, int k);

@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
 import com.beijunyi.leetcode.category.difficulty.Important;
-import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
+import com.beijunyi.leetcode.category.solution.WithBinaryIndexedTree;
 import com.beijunyi.leetcode.category.solution.DivideAndConquer;
 import com.beijunyi.leetcode.category.solution.WithBinarySearchTree;
 
@@ -31,7 +31,7 @@ public class _315_CountOfSmallerNumbersAfterSelf implements Hard, Important {
   /**
    * Starting from back, uses Fenwick Tree to keep the counts of numbers that are smaller than X
    */
-  public static class Solution1 implements Solution, BinaryIndexedTree {
+  public static class Solution1 implements Solution, WithBinaryIndexedTree {
 
     @Override
     public List<Integer> countSmaller(int[] nums) {

@@ -3,7 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
-import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
+import com.beijunyi.leetcode.category.solution.WithBinaryIndexedTree;
 import com.beijunyi.leetcode.category.solution.SegmentTree;
 
 /**
@@ -138,7 +138,7 @@ public class _307_RangeSumQueryMutable implements Medium {
    * BIT[4] from BIT[8], i.e., starting from [idx-1], for current [i], the next subtrahend [j] is j=i-(i&-i), up to
    * j==idx-(idx&-idx) exclusive. (However, a quicker way but using extra space is to store the original array.)
    */
-  public static class Solution2 implements Solution, BinaryIndexedTree {
+  public static class Solution2 implements Solution, WithBinaryIndexedTree {
 
     int[] nums;
     int[] BIT;

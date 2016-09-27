@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Hard;
-import com.beijunyi.leetcode.category.solution.BinaryIndexedTree;
+import com.beijunyi.leetcode.category.solution.WithBinaryIndexedTree;
 
 /**
  * Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1,
@@ -41,7 +41,7 @@ public class _308_RangeSumQuery2DMutable implements Hard, PremiumQuestion {
 
   }
 
-  public static class Solution1 implements Solution, BinaryIndexedTree {
+  public static class Solution1 implements Solution, WithBinaryIndexedTree {
 
     private int[][] nums;
     private int rows;

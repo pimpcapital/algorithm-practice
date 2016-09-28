@@ -15,7 +15,7 @@ public class _133_CloneGraph implements Medium {
 
   public static class Solution {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-      return cloneGraph(node, new HashMap<Integer, UndirectedGraphNode>());
+      return cloneGraph(node, new HashMap<>());
     }
 
     private UndirectedGraphNode cloneGraph(UndirectedGraphNode node, Map<Integer, UndirectedGraphNode> clonedNodes) {

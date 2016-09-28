@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.solution.Backtracking;
 import com.beijunyi.leetcode.category.solution.DynamicPrograming;
+import com.beijunyi.leetcode.category.solution.Memoization;
 
 /**
  * '.' Matches any single character.
@@ -180,12 +182,45 @@ public class _010_RegularExpressionMatching implements Hard {
     }
   }
 
+  public static class Solution4 implements Solution, Backtracking, Memoization {
+
+    @Override
+    public boolean isMatch(String s, String p) {
+      boolean[][] dead = new boolean[s.length() + 1][p.length() + 1]; // stores dead ends
+      return isMatch(s, 0, p, 0, dead);
+    }
+
+    private static boolean isMatch(String s, int sOffset, String p, int pOffset, boolean[][] dead) {
+      if(pOffset == p.length()) return sOffset == s.length();
+      if(dead[sOffset][pOffset]) return false;
+
+      boolean asterisk = pOffset + 1 < p.length() && p.charAt(pOffset + 1) == '*';
+      if(asterisk) {
+        int tail = sOffset;
+        while(tail <= s.length()) {
+          if(isMatch(s, tail, p, pOffset + 2, dead)) return true;
+          if(tail < s.length() && isCharMatch(s, tail, p, pOffset)) tail++;
+          else break;
+        }
+      } else if(isCharMatch(s, sOffset, p, pOffset) && isMatch(s, sOffset + 1, p, pOffset + 1, dead)) return true;
+      dead[sOffset][pOffset] = true;
+      return false;
+    }
+
+    private static boolean isCharMatch(String s, int sOffset, String p, int pOffset) {
+      return sOffset < s.length() && (p.charAt(pOffset) == '.' || s.charAt(sOffset) == p.charAt(pOffset));
+    }
+
+  }
+
   public static void main(String args[]) {
     String str;
     String pattern;
     boolean result;
 
-    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3(), new Solution4())) {
+      System.out.println(s.getClass().getSimpleName());
+
       str = "aa";
       pattern = "a";
       result = s.isMatch(str, pattern);
@@ -225,6 +260,18 @@ public class _010_RegularExpressionMatching implements Hard {
       pattern = ".*c";
       result = s.isMatch(str, pattern);
       System.out.println(result);
+
+      str = "abcd";
+      pattern = "d*";
+      result = s.isMatch(str, pattern);
+      System.out.println(result);
+
+      str = "a";
+      pattern = "ab*";
+      result = s.isMatch(str, pattern);
+      System.out.println(result);
+
+      System.out.println("-----------------");
     }
   }
 

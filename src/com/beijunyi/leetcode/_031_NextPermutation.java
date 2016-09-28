@@ -19,35 +19,13 @@ import com.beijunyi.leetcode.category.solution.Swapping;
  */
 public class _031_NextPermutation implements Medium {
 
-  public static class Solution2 implements Swapping {
-    public void nextPermutation(int[] num) {
-      int swapLeft = -1;
-      int swapRight = num.length;
-      for(int i = num.length - 1; i >= 0; i--) {
-        for(int j = i - 1; j >= 0; j--) {
-          if(j <= swapLeft)
-            break;
-          if(num[j] < num[i]) {
-            swapLeft = j;
-            swapRight = i;
-          }
-        }
-      }
-      if(swapLeft != -1) {
-        int temp = num[swapLeft];
-        num[swapLeft] = num[swapRight];
-        num[swapRight] = temp;
-      }
-      for(int i = num.length - 1; i >= (num.length + swapLeft + 1) / 2; i--) {
-        int j = (swapLeft + 1) + (num.length - 1 - i);
-        int temp = num[i];
-        num[i] = num[j];
-        num[j] = temp;
-      }
-    }
+  public interface Solution {
+    void nextPermutation(int[] num);
   }
 
-  public static class Solution1 implements Swapping {
+  public static class Solution1 implements Solution, Swapping {
+
+    @Override
     public void nextPermutation(int[] num) {
       if(num.length == 1)
         return;
@@ -84,13 +62,91 @@ public class _031_NextPermutation implements Medium {
     }
   }
 
-  public static void main(String args[]) {
-    int[] input = new int[]{1,2,1,5,4,3,3,2,1};
-    new Solution2().nextPermutation(input);
-    System.out.println(Arrays.toString(input));
+  public static class Solution2 implements Solution, Swapping {
 
-    input = new int[]{1,2,1,5,4,3,3,2,1};
-    new Solution1().nextPermutation(input);
-    System.out.println(Arrays.toString(input));
+    @Override
+    public void nextPermutation(int[] num) {
+      int swapLeft = -1;
+      int swapRight = num.length;
+      for(int i = num.length - 1; i >= 0; i--) {
+        for(int j = i - 1; j >= 0; j--) {
+          if(j <= swapLeft)
+            break;
+          if(num[j] < num[i]) {
+            swapLeft = j;
+            swapRight = i;
+          }
+        }
+      }
+      if(swapLeft != -1) {
+        int temp = num[swapLeft];
+        num[swapLeft] = num[swapRight];
+        num[swapRight] = temp;
+      }
+      for(int i = num.length - 1; i >= (num.length + swapLeft + 1) / 2; i--) {
+        int j = (swapLeft + 1) + (num.length - 1 - i);
+        int temp = num[i];
+        num[i] = num[j];
+        num[j] = temp;
+      }
+    }
+  }
+
+  public static class Solution3 implements Solution {
+
+    @Override
+    public void nextPermutation(int[] num) {
+      if(num.length < 2) return;
+
+      int left = num.length - 2;
+      while(left >= 0) {
+        if(num[left] >= num[left + 1]) left--;
+        else break;
+      }
+      reverse(num, left + 1, num.length - 1);
+      if(left != -1) {
+        int right = left + 1;
+        while(num[right] <= num[left]) right++;
+        swap(num, left, right);
+      }
+    }
+
+    private void swap(int[] num, int e1, int e2) {
+      int temp = num[e1];
+      num[e1] = num[e2];
+      num[e2] = temp;
+    }
+
+    private void reverse(int[] num, int start, int end) {
+      for(int i = end; i > (end + start) / 2; i--) {
+        int j = start + (end - i);
+        swap(num, i, j);
+      }
+    }
+
+  }
+
+  public static void main(String args[]) {
+    int[] input;
+
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
+      input = new int[]{1, 1};
+      s.nextPermutation(input);
+      System.out.println(Arrays.toString(input));
+
+      input = new int[]{1, 2};
+      s.nextPermutation(input);
+      System.out.println(Arrays.toString(input));
+
+      input = new int[]{2, 3, 1};
+      s.nextPermutation(input);
+      System.out.println(Arrays.toString(input));
+
+      input = new int[]{1, 2, 1, 5, 4, 3, 3, 2, 1};
+      s.nextPermutation(input);
+      System.out.println(Arrays.toString(input));
+
+      System.out.println();
+    }
   }
 }

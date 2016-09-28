@@ -2,6 +2,8 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Important;
+import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.ds.TreeNode;
 
 /**
@@ -28,7 +30,7 @@ import com.beijunyi.leetcode.ds.TreeNode;
  *   1
  * Longest consecutive sequence path is 2-3,not3-2-1, so return 2.
  */
-public class _298_BinaryTreeLongestConsecutiveSequence {
+public class _298_BinaryTreeLongestConsecutiveSequence implements Medium, Important {
 
   public interface Solution {
     int longestConsecutive(TreeNode root);

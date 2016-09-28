@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
+
 import com.beijunyi.leetcode.category.difficulty.Hard;
 
 /**
@@ -8,6 +10,10 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
  * The overall run time complexity should be O(log (m+n)).
  */
 public class _004_MedianOfTwoSortedArrays implements Hard {
+
+  public interface Solution {
+    double findMedianSortedArrays(int A[], int B[]);
+  }
 
   /**
    * This is my iterative solution using binary search.
@@ -23,27 +29,23 @@ public class _004_MedianOfTwoSortedArrays implements Hard {
    *
    * the same solution can be applied to find kth element of 2 sorted arrays.
    */
-  public static class Solution {
+  public static class Solution1 implements Solution {
 
+    @Override
     public double findMedianSortedArrays(int A[], int B[]) {
-      int n = A.length;
-      int m = B.length;
       // the following call is to make sure len(A) <= len(B).
-      // yes, it calls itself, but at most once, shouldn't be
-      // consider a recursive solution
-      if (n > m)
-        return findMedianSortedArrays(B, A);
+      if (A.length > B.length) return findMedianSortedArrays(B, A);
 
       // now, do binary search
-      int k = (n + m - 1) / 2;
-      int l = 0, r = Math.min(k, n); // r is n, NOT n-1, this is important!!
-      while (l < r) {
-        int midA = (l + r) / 2;
+      int k = (A.length + B.length - 1) / 2;
+      int left = 0, right = Math.min(k, A.length); // right is n, NOT n-1, this is important!!
+      while (left < right) {
+        int midA = (left + right) / 2;
         int midB = k - midA;
         if (A[midA] < B[midB])
-          l = midA + 1;
+          left = midA + 1;
         else
-          r = midA;
+          right = midA;
       }
 
       // after binary search, we almost get the median because it must be between
@@ -51,21 +53,36 @@ public class _004_MedianOfTwoSortedArrays implements Hard {
 
       // if (n+m) is odd, the median is the larger one between A[l-1] and B[k-l].
       // and there are some corner cases we need to take care of.
-      int a = Math.max(l > 0 ? A[l - 1] : Integer.MIN_VALUE, k - l >= 0 ? B[k - l] : Integer.MIN_VALUE);
-      if (((n + m) & 1) == 1)
+      int a = Math.max(left > 0 ? A[left - 1] : Integer.MIN_VALUE, k - left >= 0 ? B[k - left] : Integer.MIN_VALUE);
+      if (((A.length + B.length) & 1) == 1)
         return (double) a;
 
       // if (n+m) is even, the median can be calculated by
       //      median = (max(A[l-1], B[k-l]) + min(A[l], B[k-l+1]) / 2.0
       // also, there are some corner cases to take care of.
-      int b = Math.min(l < n ? A[l] : Integer.MAX_VALUE, k - l + 1 < m ? B[k - l + 1] : Integer.MAX_VALUE);
+      int b = Math.min(left < A.length ? A[left] : Integer.MAX_VALUE, k - left + 1 < B.length ? B[k - left + 1] : Integer.MAX_VALUE);
       return (a + b) / 2.0;
     }
 
   }
 
+
   public static void main(String args[]) {
-    System.out.println(new Solution().findMedianSortedArrays(new int[]{2, 7, 9}, new int[]{2, 3 ,4}));
+    int[] A;
+    int[] B;
+    double result;
+
+    for(Solution s : Arrays.asList(new Solution1())) {
+      A = new int[]{2, 7, 9};
+      B = new int[]{2, 3, 4};
+      result = s.findMedianSortedArrays(A, B);
+      System.out.println(result);
+
+      A = new int[]{1, 2, 4, 6, 7, 10, 13};
+      B = new int[]{2, 3, 4, 6, 8, 9};
+      result = s.findMedianSortedArrays(A, B);
+      System.out.println(result);
+    }
   }
 
 

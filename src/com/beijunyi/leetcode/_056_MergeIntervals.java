@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.ds.Interval;
 
 /**
  * Given a collection of intervals, merge all overlapping intervals.
@@ -13,24 +14,15 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
  */
 public class _056_MergeIntervals implements Hard {
 
-  private static class Interval {
-    int start;
-    int end;
-    Interval(int s, int e) { start = s; end = e; }
-
-    @Override
-    public String toString() {
-      return "[" + start + ", " + end + ']';
-    }
+  public interface Solution {
+    List<Interval> merge(List<Interval> intervals);
   }
 
-  public static class Solution {
+  public static class Solution1 implements Solution {
+
+    @Override
     public List<Interval> merge(List<Interval> intervals) {
-      Collections.sort(intervals, new Comparator<Interval>() {
-        public int compare(Interval i1, Interval i2) {
-          return Integer.compare(i1.start, i2.start);
-        }
-      });
+      Collections.sort(intervals, (i1, i2) -> Integer.compare(i1.start, i2.start));
 
       List<Interval> result = new ArrayList<>();
       for(Interval i : intervals) {
@@ -46,15 +38,36 @@ public class _056_MergeIntervals implements Hard {
       }
       return result;
     }
+
+  }
+
+  public static class Solution2 implements Solution {
+    @Override
+    public List<Interval> merge(List<Interval> intervals) {
+      intervals.sort((i1, i2) -> i1.start - i2.start);
+      LinkedList<Interval> ret = new LinkedList<>();
+      for(Interval next : intervals) {
+        if(!ret.isEmpty() && next.start <= ret.getLast().end) ret.getLast().end = Math.max(ret.getLast().end, next.end);
+        else ret.addLast(next);
+      }
+      return ret;
+    }
   }
 
   public static void main(String args[]) {
-    List<Interval> input = new ArrayList<>();
-    input.add(new Interval(1, 3));
-    input.add(new Interval(2, 6));
-    input.add(new Interval(8, 10));
-    input.add(new Interval(15, 18));
-    System.out.println(new Solution().merge(input));
+    List<Interval> input;
+    List<Interval> result;
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      input = new ArrayList<>();
+      input.add(new Interval(1, 3));
+      input.add(new Interval(2, 6));
+      input.add(new Interval(8, 10));
+      input.add(new Interval(15, 18));
+      result = s.merge(input);
+      System.out.println(result);
+
+    }
+
   }
 
 

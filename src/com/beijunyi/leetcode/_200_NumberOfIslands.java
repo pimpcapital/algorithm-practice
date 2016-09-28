@@ -2,7 +2,9 @@ package com.beijunyi.leetcode;
 
 import java.util.Arrays;
 
+import com.beijunyi.leetcode.category.difficulty.Important;
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.DepthFirstSearch;
 
 /**
  * Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water
@@ -23,13 +25,13 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  *   00011
  *   Answer: 3
  */
-public class _200_NumberOfIslands implements Medium {
+public class _200_NumberOfIslands implements Medium, Important {
 
   public interface Solution {
     int numIslands(char[][] grid);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, DepthFirstSearch {
 
     @Override
     public int numIslands(char[][] grid) {

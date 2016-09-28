@@ -2,8 +2,8 @@ package com.beijunyi.leetcode.ds;
 
 public class Interval {
 
-  public final int start;
-  public final int end;
+  public int start;
+  public int end;
 
   public Interval(int s, int e) {
     start = s;
@@ -13,4 +13,8 @@ public class Interval {
     this(0, 0);
   }
 
+  @Override
+  public String toString() {
+    return "[" + start + ", " + end + ']';
+  }
 }

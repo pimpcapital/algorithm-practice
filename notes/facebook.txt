@@ -1,0 +1,10 @@
+lesson learned:
+1. php not easy to scale
+2. mysql fast, reliable. as key-value store. logical load balancing, no join
+   archive old data. customer feature: fire event to memcached to evict old data
+   allow generic loosely typed objects. don't offer immediate consistency
+3. memcache, key-value, don't care about data structure or semantic meaning. fast < 200 micro second.
+   multi-get to accelerate. over 95% hit rate
+4. photo page. read time aggregation. get friends->multi get friends last 10 albums->merge->multi get album data
+5. services iff required. performance reason, library specific to one language. potential failure point
+6. news feed. read time aggregation. leaf server (storing user actions) as cache

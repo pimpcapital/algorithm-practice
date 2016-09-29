@@ -1,0 +1,5 @@
+1. a graph can have even number of odd degree vertices (1 edge contributes to 2 degrees)
+2. when all vertices have even degrees, one can start from any vertex, travel the whole graph and return to the start
+3. when 2 vertices are odd, one can start from one of the odd vertices and, travel the whole graph and the to the other
+   odd vertex
+4. when a graph has N > 2 odd vertices, travelling the entire graph can be done in N/2 strokes

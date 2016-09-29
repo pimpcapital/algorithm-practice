@@ -3,7 +3,8 @@ package com.beijunyi.leetcode;
 import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
-import com.beijunyi.leetcode.category.solution.DepthFirstSearch;
+import com.beijunyi.leetcode.category.solution.Backtracking;
+import com.beijunyi.leetcode.category.solution.GraphTheory;
 
 /**
  * Given a list of airline tickets represented by pairs of departure and arrival airports [from, to], reconstruct the
@@ -31,38 +32,36 @@ public class _332_ReconstructItinerary implements Medium {
     List<String> findItinerary(String[][] tickets);
   }
 
-  public static class Solution1 implements Solution, DepthFirstSearch {
+  public static class Solution1 implements Solution, Backtracking {
     @Override
     public List<String> findItinerary(String[][] tickets) {
-      Map<String, List<String>> lookup = indexTickets(tickets);
+      Map<String, LinkedList<String>> lookup = indexTickets(tickets);
       LinkedList<String> result = new LinkedList<>();
-      result.add("JFK");
-      travel("JFK", lookup, result, tickets.length + 1);
+      travel("JFK", lookup, result, tickets.length);
+      result.addFirst("JFK");
       return result;
     }
 
-    private static Map<String, List<String>> indexTickets(String[][] tickets) {
-      Map<String, List<String>> ret = new HashMap<>();
-      for(String[] ticket : tickets) {
-        if(!ret.containsKey(ticket[0]))
-          ret.put(ticket[0], new ArrayList<String>());
-        ret.get(ticket[0]).add(ticket[1]);
-      }
+    private static Map<String, LinkedList<String>> indexTickets(String[][] tickets) {
+      Map<String, LinkedList<String>> ret = new HashMap<>();
+      for(String[] ticket : tickets) ret.computeIfAbsent(ticket[0], (from) -> new LinkedList<>()).add(ticket[1]);
+      ret.values().forEach(Collections::sort);
       return ret;
     }
 
-    private static void travel(String from, Map<String, List<String>> lookup, Deque<String> result, int total) {
-      List<String> candidates = lookup.get(from);
-      if(candidates == null || candidates.isEmpty()) return;
-      Set<String> cloned = new TreeSet<>(candidates);
-      for(String to : cloned) {
-        candidates.remove(to);
-        result.offerLast(to);
-        travel(to, lookup, result, total);
-        if(total == result.size()) return;
-        result.pollLast();
-        candidates.add(to);
+    private static boolean travel(String from, Map<String, LinkedList<String>> lookup, Deque<String> result, int remained) {
+      if(remained == 0) return true;
+      LinkedList<String> candidates = lookup.get(from);
+      if(candidates == null || candidates.isEmpty()) return false;
+      for(int i = 0; i < candidates.size(); i++) {
+        String to = candidates.removeFirst();
+        if(travel(to, lookup, result, remained - 1)) {
+          result.addFirst(to);
+          return true;
+        }
+        candidates.addLast(to);
       }
+      return false;
     }
 
   }
@@ -71,22 +70,22 @@ public class _332_ReconstructItinerary implements Medium {
    * Time: O(n)
    * Space: O(n)
    */
-  public static class Solution2 implements Solution, DepthFirstSearch {
+  public static class Solution2 implements Solution, GraphTheory {
 
-    Map<String, PriorityQueue<String>> targets = new HashMap<>();
-    List<String> route = new LinkedList<>();
+    private Map<String, PriorityQueue<String>> targets;
+    private List<String> route;
 
     @Override
     public List<String> findItinerary(String[][] tickets) {
-      for(String[] ticket : tickets) {
-        if(!targets.containsKey(ticket[0])) targets.put(ticket[0], new PriorityQueue<String>());
-        targets.get(ticket[0]).add(ticket[1]);
-      }
+      targets = new HashMap<>();
+      route = new LinkedList<>();
+      for (String[] ticket : tickets)
+        targets.computeIfAbsent(ticket[0], k -> new PriorityQueue()).add(ticket[1]);
       visit("JFK");
       return route;
     }
 
-    void visit(String airport) {
+    private void visit(String airport) {
       while(targets.containsKey(airport) && !targets.get(airport).isEmpty())
         visit(targets.get(airport).poll());
       route.add(0, airport);

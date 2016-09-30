@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.Backtracking;
+import com.beijunyi.leetcode.category.solution.DynamicPrograming;
+import com.beijunyi.leetcode.category.solution.Memoization;
 
 /**
  * Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
@@ -17,17 +20,22 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  */
 public class _139_WordBreak implements Medium {
 
-  public static class Solution1 {
+  public interface Solution {
+    boolean wordBreak(String s, Set<String> dict);
+  }
+
+  public static class Solution1 implements Solution, DynamicPrograming {
+    @Override
     public boolean wordBreak(String s, Set<String> dict) {
       boolean[] f = new boolean[s.length() + 1];
       Arrays.fill(f, false);
 
       f[0] = true;
 
-      for(int i = 1; i <= s.length(); i++) {
-        for(int j = 0; j < i; j++) {
-          if(f[j] && dict.contains(s.substring(j, i))) {
-            f[i] = true;
+      for(int end = 1; end <= s.length(); end++) {
+        for(int start = 0; start < end; start++) {
+          if(f[start] && dict.contains(s.substring(start, end))) {
+            f[end] = true;
             break;
           }
         }
@@ -37,7 +45,8 @@ public class _139_WordBreak implements Medium {
     }
   }
 
-  public static class Solution2 {
+  public static class Solution2 implements Solution, Memoization, Backtracking {
+    @Override
     public boolean wordBreak(String s, Set<String> dict) {
       Boolean[] cache = new Boolean[s.length() + 1];
       cache[s.length()] = true;
@@ -61,8 +70,16 @@ public class _139_WordBreak implements Medium {
   }
 
   public static void main(String args[]) {
-    System.out.println(new Solution1().wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new HashSet<>(Arrays.asList("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"))));
-    System.out.println(new Solution2().wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new HashSet<>(Arrays.asList("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"))));
+    String s;
+    Set<String> dict;
+    boolean result;
+
+    for(Solution solution : Arrays.asList(new Solution1(), new Solution2())) {
+      s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
+      dict = new HashSet<>(Arrays.asList("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"));
+      result = solution.wordBreak(s, dict);
+      System.out.println(result);
+    }
   }
 
 }

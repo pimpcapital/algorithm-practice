@@ -32,7 +32,7 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
 public class _239_SlidingWindowMaximum implements Hard {
 
   public interface Solution {
-    public int[] maxSlidingWindow(int[] nums, int k);
+    int[] maxSlidingWindow(int[] nums, int k);
   }
 
   /**
@@ -64,17 +64,23 @@ public class _239_SlidingWindowMaximum implements Hard {
   }
 
   public static void main(String[] args) {
-    Solution s1 = new Solution1();
+    int[] nums;
+    int k;
+    int[] result;
 
-    int[] nums1 = new int[] {1,3,-1,-3,5,3,6,7};
-    int k1 = 3;
-    int[] r1 = s1.maxSlidingWindow(nums1, k1);
-    System.out.println(Arrays.toString(r1));
+    for(Solution s : Arrays.asList(new Solution1())) {
+      nums = new int[] {1,3,-1,-3,5,3,6,7};
+      k = 3;
+      result = s.maxSlidingWindow(nums, k);
+      System.out.println(Arrays.toString(result));
 
-    int[] nums2 = new int[] {1,3,1,2,0,5};
-    int k2 = 3;
-    int[] r2 = s1.maxSlidingWindow(nums2, k2);
-    System.out.println(Arrays.toString(r2));
+      nums = new int[] {1,3,1,2,0,5};
+      k = 3;
+      result = s.maxSlidingWindow(nums, k);
+      System.out.println(Arrays.toString(result));
+    }
+
+
   }
 
 }

@@ -1,8 +1,6 @@
 package com.beijunyi.leetcode;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
@@ -125,10 +123,47 @@ public class _362_DesignHitCounter implements Medium, PremiumQuestion {
     }
   }
 
+  public static class Solution3 implements Solution {
+
+    private Deque<IntCount> q;
+    private int total = 0;
+
+    @Override
+    public void init() {
+      q = new LinkedList<>();
+    }
+
+    @Override
+    public void hit(int timestamp) {
+      total++;
+      if(!q.isEmpty() && q.peekLast().value == timestamp) q.peekLast().count++;
+      else q.offerLast(new IntCount(timestamp));
+    }
+
+    @Override
+    public int getHits(int timestamp) {
+      gc(timestamp);
+      return total;
+    }
+
+    private void gc(int timestamp) {
+      while(!q.isEmpty() && q.peekFirst().value <= timestamp - 300) total -= q.poll().count;
+    }
+
+    private static class IntCount {
+      final int value;
+      int count = 1;
+
+      IntCount(int value) {
+        this.value = value;
+      }
+    }
+  }
+
   public static void main(String args[]) {
     int hits;
 
-    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
       s.init();
       s.hit(1);
       s.hit(2);
@@ -140,6 +175,7 @@ public class _362_DesignHitCounter implements Medium, PremiumQuestion {
       System.out.println(hits);
       hits = s.getHits(301);
       System.out.println(hits);
+
       System.out.println();
     }
   }

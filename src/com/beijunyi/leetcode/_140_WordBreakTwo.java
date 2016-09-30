@@ -3,6 +3,8 @@ package com.beijunyi.leetcode;
 import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.solution.Backtracking;
+import com.beijunyi.leetcode.category.solution.DynamicPrograming;
 
 /**
  * Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
@@ -17,11 +19,16 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
  */
 public class _140_WordBreakTwo implements Hard {
 
-  public static class Solution {
+  public interface Solution {
+    List<String> wordBreak(String s, Set<String> dict);
+  }
+
+  public static class Solution1 implements Solution {
+    @Override
     public List<String> wordBreak(String s, Set<String> dict) {
       ArrayList<Set<Integer>> links = new ArrayList<>(s.length() + 1);
       for(int i = 0; i <= s.length(); i++)
-        links.add(i, new HashSet<Integer>());
+        links.add(i, new HashSet<>());
 
       links.get(0).add(-1);
 
@@ -53,10 +60,51 @@ public class _140_WordBreakTwo implements Hard {
     }
   }
 
+  private static class Solution2 implements Solution, Backtracking, DynamicPrograming {
+
+    @Override
+    public List<String> wordBreak(String s, Set<String> dict) {
+      List<String> ret = new ArrayList<>();
+      boolean[] avoid = new boolean[s.length() + 1];
+      wordBreak(s, 0, dict, new StringBuilder(), ret, avoid);
+      return ret;
+    }
+
+    private static boolean wordBreak(String s, int start, Set<String> dict, StringBuilder sb, List<String> result, boolean[] avoid) {
+      if(start == s.length()) {
+        result.add(sb.toString());
+        return true;
+      }
+      boolean success = false;
+      for(int end = start + 1; end <= s.length(); end++) {
+        if(avoid[end]) continue;
+        String word = s.substring(start, end);
+        if(dict.contains(word)) {
+          int current = sb.length();
+          if(current > 0) sb.append(" ");
+          sb.append(word);
+          success |= wordBreak(s, end, dict, sb, result, avoid);
+          sb.setLength(current);
+        }
+      }
+      avoid[start] = !success;
+      return success;
+    }
+
+  }
 
 
   public static void main(String args[]) {
-    System.out.println(new Solution().wordBreak("catsanddog", new HashSet<>(Arrays.asList("cat", "cats", "and", "sand", "dog"))));
+    String s;
+    Set<String> dict;
+    List<String> result;
+
+    for(Solution solution : Arrays.asList(new Solution1(), new Solution2())) {
+      s = "catsanddog";
+      dict = new HashSet<>(Arrays.asList("cat", "cats", "and", "sand", "dog"));
+      result = solution.wordBreak(s, dict);
+      System.out.println(result);
+    }
   }
 
 }

@@ -5,7 +5,7 @@ import java.util.*;
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 import com.beijunyi.leetcode.category.solution.DepthFirstSearch;
-import com.beijunyi.leetcode.category.solution.DynamicPrograming;
+import com.beijunyi.leetcode.category.solution.Memoization;
 
 public class _294_FlipGameTwo implements Medium, PremiumQuestion {
 
@@ -13,7 +13,7 @@ public class _294_FlipGameTwo implements Medium, PremiumQuestion {
     boolean canWin(String s);
   }
 
-  public static class Solution1 implements Solution, DynamicPrograming {
+  public static class Solution1 implements Solution, Memoization {
     @Override
     public boolean canWin(String s) {
       Map<BitSet, Boolean> cache = new HashMap<>();
@@ -59,8 +59,8 @@ public class _294_FlipGameTwo implements Medium, PremiumQuestion {
   public static class Solution2 implements Solution, DepthFirstSearch {
     @Override
     public boolean canWin(String s) {
-      for (int i = 0; i < s.length() - 1; ++i)
-        if (s.charAt(i) == '+' && s.charAt(i + 1) == '+' && !canWin(s.substring(0, i) + "--" + s.substring(i + 2)))
+      for(int i = 0; i < s.length() - 1; ++i)
+        if(s.charAt(i) == '+' && s.charAt(i + 1) == '+' && !canWin(s.substring(0, i) + "--" + s.substring(i + 2)))
           return true;
       return false;
     }

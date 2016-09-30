@@ -51,12 +51,9 @@ public class _253_MeetingRoomsTwo implements Medium, PremiumQuestion {
         times[i * 2] = new int[] {interval.start, 1}; // acquire
         times[i * 2 + 1] = new int[] {interval.end, 0}; // release
       }
-      Arrays.sort(times, new Comparator<int[]>() {
-        @Override
-        public int compare(int[] o1, int[] o2) {
-          int result = Integer.compare(o1[0], o2[0]);
-          return result == 0 ? Integer.compare(o1[1], o2[1]) : result; // if times are the same, put release first
-        }
+      Arrays.sort(times, (o1, o2) -> {
+        int result = Integer.compare(o1[0], o2[0]);
+        return result == 0 ? Integer.compare(o1[1], o2[1]) : result; // if times are the same, put release first
       });
       int ongoing = 0; // keeping track of the concurrent meetings
       int max = 0;

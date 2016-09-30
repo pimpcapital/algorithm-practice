@@ -70,10 +70,44 @@ public class _341_FlattenNestedListIterator implements Medium {
 
   }
 
+  public static class Solution2 implements Solution {
+
+    private Stack<Iterator<NestedInteger>> iterators = new Stack<>();
+    private Integer next = null;
+
+    @Override
+    public void init(List<NestedInteger> nestedList) {
+      iterators.push(nestedList.iterator());
+    }
+
+    @Override
+    public boolean hasNext() {
+      if(next != null) return true;
+      while(!iterators.isEmpty() && !iterators.peek().hasNext()) iterators.pop();
+      if(iterators.isEmpty()) return false;
+      NestedInteger nextNi = iterators.peek().next();
+      if(nextNi.isInteger()) {
+        next = nextNi.getInteger();
+        return true;
+      } else {
+        iterators.push(nextNi.getList().iterator());
+        return hasNext();
+      }
+    }
+
+    @Override
+    public Integer next() {
+      hasNext();
+      Integer ret = next;
+      next = null;
+      return ret;
+    }
+  }
+
   public static void main(String args[]) {
     List<NestedInteger> nestedList;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       nestedList = NestedInteger.fromArray(new Integer[] {1, 1}, 2, new Integer[] {1, 1});
       s.init(nestedList);
       while(s.hasNext()) {

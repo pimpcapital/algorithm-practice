@@ -1,0 +1,2 @@
+1) Query result cache is only good for static data (e.g. all activities in the last year). Advantage: small in size
+   Not suitable for data that gets invalidated constantly

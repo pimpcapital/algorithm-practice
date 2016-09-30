@@ -8,3 +8,14 @@ lesson learned:
 4. photo page. read time aggregation. get friends->multi get friends last 10 albums->merge->multi get album data
 5. services iff required. performance reason, library specific to one language. potential failure point
 6. news feed. read time aggregation. leaf server (storing user actions) as cache
+
+
+Timeline:
+Q: What is Facebook Timeline?
+A: Timeline is a section of a Facebook user's account that replaces the Profile and Wall pages, and merges them
+   together. It shows the story of your life, as you choose to tell it or as Facebook has recorded it, in a visual,
+   scrolling, reverse-chronologically ordered timeline. It's a cross between visual blog and online scrapbook.
+
+1) Leverage infrastructure rather than build something new. Use well understood technology.
+2) Denormalize. Format data in the way you need to use it.
+3) Keep different types of caches: Short->

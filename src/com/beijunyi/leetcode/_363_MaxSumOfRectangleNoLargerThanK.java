@@ -67,12 +67,62 @@ public class _363_MaxSumOfRectangleNoLargerThanK implements Hard, Important {
     }
   }
 
+  /**
+   * Same idea as solution1. More modular
+   */
+  public static class Solution2 implements Solution {
+    private int[][] matrix;
+    private int rows;
+    private int cols;
+
+    @Override
+    public int maxSumSubmatrix(int[][] matrix, int k) {
+      this.matrix = matrix;
+      rows = matrix.length;
+      cols = rows == 0 ? 0 : matrix[0].length;
+
+      convertToPrefixSum();
+
+      int max = Integer.MIN_VALUE;
+      for(int r1 = 0; r1 < rows; r1++) {
+        for(int r2 = r1; r2 < rows; r2++) {
+          max = Math.max(max, maxSumNoLargerThanK(r1, r2, k));
+        }
+      }
+      return max;
+    }
+
+    private void convertToPrefixSum() {
+      for(int r = 0; r < rows; r++) {
+        for(int c = 0; c < cols; c++) {
+          if(r != 0) matrix[r][c] += matrix[r - 1][c];
+          if(c != 0) matrix[r][c] += matrix[r][c - 1];
+          if(r != 0 && c != 0) matrix[r][c] -= matrix[r - 1][c - 1];
+        }
+      }
+    }
+
+    private int maxSumNoLargerThanK(int startRow, int endRow, int k) {
+      int max = Integer.MIN_VALUE;
+      TreeSet<Integer> sums = new TreeSet<>();
+      sums.add(0);
+      for(int c = 0; c < cols; c++) {
+        int sum = matrix[endRow][c];
+        if(startRow != 0) sum -= matrix[startRow - 1][c];
+        Integer smallerSum = sums.ceiling(sum - k);
+        if(smallerSum != null) max = Math.max(max, sum - smallerSum);
+        sums.add(sum);
+      }
+      return max;
+    }
+  }
+
   public static void main(String args[]) {
     int[][] matrix;
     int k;
     int result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       matrix = new int[][]{
         {1, 0, 1},
         {0, -2, 3}

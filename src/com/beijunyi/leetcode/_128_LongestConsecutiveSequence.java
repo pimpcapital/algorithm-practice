@@ -1,7 +1,7 @@
 package com.beijunyi.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
 
@@ -16,7 +16,12 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
  */
 public class _128_LongestConsecutiveSequence implements Hard {
 
-  public static class Solution {
+  public interface Solution {
+    int longestConsecutive(int[] num);
+  }
+
+
+  public static class Solution1 implements Solution {
     public int longestConsecutive(int[] num) {
       Set<Integer> set = new HashSet<>(num.length);
       for(int n : num) {
@@ -47,8 +52,32 @@ public class _128_LongestConsecutiveSequence implements Hard {
     }
   }
 
+  public static class Solution2 implements Solution {
+    @Override
+    public int longestConsecutive(int[] num) {
+      Set<Integer> nums = Arrays.stream(num).boxed().collect(Collectors.toSet());
+      int max = 0;
+      for(int n : num) {
+        if(!nums.contains(n - 1)) {
+          int count = 1;
+          while(nums.contains(++n)) count++;
+          max = Math.max(count, max);
+        }
+      }
+      return max;
+    }
+  }
+
   public static void main(String args[]) {
-    System.out.println(new Solution().longestConsecutive(new int[]{100, 4, 200, 1, 3, 2}));
+    int[] num;
+    int result;
+
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      num = new int[]{100, 4, 200, 1, 3, 2};
+      result = s.longestConsecutive(num);
+      System.out.println(result);
+    }
+
   }
 
 }

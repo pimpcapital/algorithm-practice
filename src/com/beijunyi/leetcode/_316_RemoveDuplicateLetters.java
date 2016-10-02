@@ -73,8 +73,7 @@ public class _316_RemoveDuplicateLetters implements Hard {
       while((checkpoint = findNextCheckpoint(lastIdxs)) != -1) {
         int idx = findSmallestCharUpToCheckPoint(s, offset, checkpoint, lastIdxs);
         char c = s.charAt(idx);
-        int charVal = c - 'a';
-        lastIdxs[charVal] = -1; // mark it with -1, so we can skip it later
+        lastIdxs[c - 'a'] = -1; // mark it with -1, so we can skip it later
         offset = idx + 1;
         result.append(c);
       }

@@ -93,12 +93,41 @@ public class _323_NumberOfConnectedComponentsInAnUndirectedGraph implements Medi
     }
   }
 
+  public static class Solution3 implements Solution, UnionFind {
+    private int[] roots;
+
+    @Override
+    public int countComponents(int n, int[][] edges) {
+      roots = new int[n];
+      Arrays.fill(roots, -1);
+      for(int[] edge : edges) {
+        if(union(edge[0], edge[1])) n--;
+      }
+      return n;
+    }
+
+    private boolean union(int v1, int v2) {
+      int major = find(v1);
+      int minor = find(v2);
+      if(major == minor) return false;
+      roots[minor] = roots[major];
+      return true;
+    }
+
+    private int find(int v) {
+      if(roots[v] == -1) roots[v] = v;
+      if(roots[v] == roots[roots[v]]) return roots[v];
+      return roots[v] = find(roots[v]);
+    }
+
+  }
+
   public static void main(String args[]) {
     int n;
     int[][] edges;
     int result;
 
-    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2(), new Solution3())) {
       n = 5;
       edges = new int[][] {
         {0, 1}, {1, 2}, {3, 4}

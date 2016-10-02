@@ -38,7 +38,7 @@ public class _166_FractionToRecurringDecimal implements Medium {
       else
         result.append(".");
       // deal with the float part
-      // key is the remainder, value is the start positon of possible repeat numbers
+      // key is the remainder, value is the start position of possible repeat numbers
       HashMap<Long, Integer> map = new HashMap<>();
       Long r = n % d;
       while (r > 0) {

@@ -1,6 +1,10 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
+
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.category.solution.Backtracking;
+import com.beijunyi.leetcode.category.solution.DynamicPrograming;
 
 /**
  * Implement wildcard pattern matching with support for '?' and '*'.
@@ -24,7 +28,13 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
  */
 public class _044_WildcardMatching implements Hard {
 
-  public static class Solution {
+  public interface Solution {
+    boolean isMatch(String str, String pattern);
+  }
+
+  public static class Solution1 implements Solution {
+
+    @Override
     public boolean isMatch(String str, String pattern) {
       int s = 0, p = 0, match = 0, starIdx = -1;
       while (s < str.length()){
@@ -58,8 +68,67 @@ public class _044_WildcardMatching implements Hard {
     }
   }
 
+  public static class Solution2 implements Solution, Backtracking, DynamicPrograming {
+
+    @Override
+    public boolean isMatch(String str, String pattern) {
+      boolean[][] avoid = new boolean[str.length() + 1][pattern.length() + 1];
+      return isMatch(str, 0, pattern, 0, avoid);
+    }
+
+    private static boolean isMatch(String str, int sOffset, String pattern, int pOffset, boolean[][] avoid) {
+      if(pattern.length() == pOffset) return str.length() == sOffset;
+      if(avoid[sOffset][pOffset]) return false;
+      boolean result = false;
+      char p = pattern.charAt(pOffset);
+      if(p == '*') {
+        for(int nextS = sOffset; nextS <= str.length(); nextS++) {
+          if(isMatch(str, nextS, pattern, pOffset + 1, avoid)) {
+            result = true;
+            break;
+          }
+        }
+      } else if(sOffset < str.length()) {
+        char s = str.charAt(sOffset);
+        if(p == '?' || p == s) {
+          result = isMatch(str, sOffset + 1, pattern, pOffset + 1, avoid);
+        }
+      }
+      if(!result) avoid[sOffset][pOffset] = true;
+      return result;
+    }
+
+  }
+
   public static void main(String args[]) {
-    System.out.println(new Solution().isMatch("ab", "*?"));
+    String str;
+    String pattern;
+    boolean result;
+
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      str = "";
+      pattern = "*";
+      result = s.isMatch(str, pattern);
+      System.out.println(result);
+
+      str = "aa";
+      pattern = "*";
+      result = s.isMatch(str, pattern);
+      System.out.println(result);
+
+      str = "ab";
+      pattern = "*?";
+      result = s.isMatch(str, pattern);
+      System.out.println(result);
+
+      str = "cbcdcd";
+      pattern = "*b*cd";
+      result = s.isMatch(str, pattern);
+      System.out.println(result);
+
+      System.out.println();
+
+    }
   }
 
 }

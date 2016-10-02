@@ -106,10 +106,88 @@ public class _269_AlienDictionary implements Hard, PremiumQuestion {
 
   }
 
+  private static class Solution2 implements Solution, TopologicalSorting {
+    @Override
+    public String alienOrder(String[] words) {
+      Map<Character, Set<Character>> inbounds = processWords(words);
+      return inbounds == null ? "" : establishOrder(inbounds);
+    }
+
+    private static Map<Character, Set<Character>> processWords(String[] words) {
+      Map<Character, Set<Character>> ret = new HashMap<>();
+      for(int i = 0; i < words.length; i++) {
+        if(!processWord(i == 0 ? "" : words[i - 1], words[i], ret)) return null;
+      }
+      return ret;
+    }
+
+    private static boolean processWord(String word1, String word2, Map<Character, Set<Character>> ret) {
+      int length = Math.min(word1.length(), word2.length());
+      int i = 0;
+      boolean isPrefix = true;
+      for(; i < length; i++) {
+        char c1 = word1.charAt(i);
+        char c2 = word2.charAt(i);
+        if(!ret.containsKey(c1)) ret.put(c1, new HashSet<>());
+        if(c1 != c2) {
+          ret.compute(c2, (key, inbounds) -> {
+            if(inbounds == null) inbounds = new HashSet<>();
+            inbounds.add(c1);
+            return inbounds;
+          });
+          isPrefix = false;
+          break;
+        }
+      }
+      if(isPrefix && word2.length() < word1.length()) return false;
+      for(int j = i; j < word1.length(); j++) {
+        char c = word1.charAt(j);
+        if(!ret.containsKey(c)) ret.put(c, new HashSet<>());
+      }
+      for(int j = i; j < word2.length(); j++) {
+        char c = word2.charAt(j);
+        if(!ret.containsKey(c)) ret.put(c, new HashSet<>());
+      }
+      return true;
+    }
+
+    private static String establishOrder(Map<Character, Set<Character>> inbounds) {
+      StringBuilder sb = new StringBuilder();
+      Queue<Character> q = new LinkedList<>(pickCharactersWithNoInbound(inbounds));
+      while(!q.isEmpty()) {
+        char next = q.poll();
+        for(Set<Character> inboundSet : inbounds.values()) inboundSet.remove(next);
+        q.addAll(pickCharactersWithNoInbound(inbounds));
+        sb.append(next);
+      }
+      return inbounds.isEmpty() ? sb.toString() : "";
+    }
+
+    private static Set<Character> pickCharactersWithNoInbound(Map<Character, Set<Character>> inbound) {
+      Set<Character> ret = new HashSet<>();
+      Iterator<Map.Entry<Character, Set<Character>>> iterator = inbound.entrySet().iterator();
+      while(iterator.hasNext()) {
+        Map.Entry<Character, Set<Character>> entry = iterator.next();
+        if(entry.getValue().isEmpty()) {
+          ret.add(entry.getKey());
+          iterator.remove();
+        }
+      }
+      return ret;
+    }
+
+  }
+
   public static void main(String args[]) {
     String[] words;
     String order;
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      words = new String[] {
+        "wrt"
+      };
+      order = s.alienOrder(words);
+      System.out.println(order);
+
       words = new String[] {
         "wrt",
         "wrf",
@@ -119,6 +197,22 @@ public class _269_AlienDictionary implements Hard, PremiumQuestion {
       };
       order = s.alienOrder(words);
       System.out.println(order);
+
+      words = new String[] {
+        "ab",
+        "adc"
+      };
+      order = s.alienOrder(words);
+      System.out.println(order);
+
+      words = new String[] {
+        "wrtkj",
+        "wrt"
+      };
+      order = s.alienOrder(words);
+      System.out.println(order);
+
+      System.out.println();
     }
   }
 

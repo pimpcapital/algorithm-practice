@@ -186,24 +186,24 @@ public class _010_RegularExpressionMatching implements Hard {
 
     @Override
     public boolean isMatch(String s, String p) {
-      boolean[][] dead = new boolean[s.length() + 1][p.length() + 1]; // stores dead ends
-      return isMatch(s, 0, p, 0, dead);
+      boolean[][] avoid = new boolean[s.length() + 1][p.length() + 1]; // stores dead ends
+      return isMatch(s, 0, p, 0, avoid);
     }
 
-    private static boolean isMatch(String s, int sOffset, String p, int pOffset, boolean[][] dead) {
+    private static boolean isMatch(String s, int sOffset, String p, int pOffset, boolean[][] avoid) {
       if(pOffset == p.length()) return sOffset == s.length();
-      if(dead[sOffset][pOffset]) return false;
+      if(avoid[sOffset][pOffset]) return false;
 
       boolean asterisk = pOffset + 1 < p.length() && p.charAt(pOffset + 1) == '*';
       if(asterisk) {
         int tail = sOffset;
         while(tail <= s.length()) {
-          if(isMatch(s, tail, p, pOffset + 2, dead)) return true;
+          if(isMatch(s, tail, p, pOffset + 2, avoid)) return true;
           if(tail < s.length() && isCharMatch(s, tail, p, pOffset)) tail++;
           else break;
         }
-      } else if(isCharMatch(s, sOffset, p, pOffset) && isMatch(s, sOffset + 1, p, pOffset + 1, dead)) return true;
-      dead[sOffset][pOffset] = true;
+      } else if(isCharMatch(s, sOffset, p, pOffset) && isMatch(s, sOffset + 1, p, pOffset + 1, avoid)) return true;
+      avoid[sOffset][pOffset] = true;
       return false;
     }
 

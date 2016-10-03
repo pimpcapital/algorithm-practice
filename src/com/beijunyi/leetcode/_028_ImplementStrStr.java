@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
+
 import com.beijunyi.leetcode.category.difficulty.Easy;
 
 /**
@@ -9,7 +11,11 @@ import com.beijunyi.leetcode.category.difficulty.Easy;
  */
 public class _028_ImplementStrStr implements Easy {
 
-  public static class Solution {
+  public interface Solution {
+    int strStr(String haystack, String needle);
+  }
+
+  public static class Solution1 implements Solution {
     public int strStr(String haystack, String needle) {
       if(needle.isEmpty()) return 0;
       int i = 0;
@@ -31,8 +37,42 @@ public class _028_ImplementStrStr implements Easy {
     }
   }
 
+  public static class Solution2 implements Solution {
+    @Override
+    public int strStr(String haystack, String needle) {
+      for(int i = 0; i <= haystack.length() - needle.length(); i++) {
+        for(int j = 0; j <= needle.length(); j++) {
+          if(j == needle.length()) return i;
+          if(haystack.charAt(i + j) != needle.charAt(j)) break;
+        }
+      }
+      return -1;
+    }
+  }
+
   public static void main(String args[]) {
-    System.out.println(new Solution().strStr("aababbc", "abb"));
+    String haystack;
+    String needle;
+    int result;
+
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      haystack = "aababbc";
+      needle = "abb";
+      result = s.strStr(haystack, needle);
+      System.out.println(result);
+
+      haystack = "";
+      needle = "";
+      result = s.strStr(haystack, needle);
+      System.out.println(result);
+
+      haystack = "a";
+      needle = "a";
+      result = s.strStr(haystack, needle);
+      System.out.println(result);
+    }
+
+
   }
 
 }

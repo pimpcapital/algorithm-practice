@@ -3,14 +3,25 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.DynamicPrograming;
 
+/**
+ * Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+ *
+ * For example, given the following matrix:
+ *   1 0 1 0 0
+ *   1 0 1 1 1
+ *   1 1 1 1 1
+ *   1 0 0 1 0
+ *   Return 4.
+ */
 public class _221_MaximalSquare implements Medium {
 
   public interface Solution {
     int maximalSquare(char[][] matrix);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, DynamicPrograming {
     @Override
     public int maximalSquare(char[][] matrix) {
       int rows = matrix.length;

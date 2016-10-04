@@ -8,6 +8,9 @@ package com.beijunyi.leetcode.category.solution;
  *       for(int i = 0; i < count; i++) {...}
  *     }
  *     _102_BinaryTreeLevelOrderTraversal
+ *
+ *   2) If path is required, use a hash map to record the parent of each node
+ *     _126_WordLadderTwo
  */
 public interface BreadthFirstSearch extends Iterative {
 }

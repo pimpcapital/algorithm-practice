@@ -1,6 +1,8 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
 
@@ -19,8 +21,13 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
  */
 public class _076_MinimumWindowSubstring implements Hard {
 
-  public static class Solution {
+  public interface Solution {
+    String minWindow(String S, String T);
+  }
 
+  public static class Solution1 implements Solution {
+
+    @Override
     public String minWindow(String S, String T) {
       int minlen = S.length();
       int minstart = 0;
@@ -67,8 +74,62 @@ public class _076_MinimumWindowSubstring implements Hard {
     }
   }
 
+  public static class Solution2 implements Solution {
+    @Override
+    public String minWindow(String S, String T) {
+      Map<Character, Integer> requirements = processWindowRequirements(T);
+      int right = 0;
+      int left = 0;
+      int violated = requirements.size();
+
+      int minIndex = -1;
+      int minLength = Integer.MAX_VALUE;
+      while(right < S.length()) {
+        while(violated > 0 && right < S.length()) {
+          char c = S.charAt(right++);
+          if(!requirements.containsKey(c)) continue;
+          int count = requirements.get(c);
+          if(++count == 0) violated--;
+          requirements.put(c, count);
+        }
+        while(violated == 0 && left < right) {
+          char c = S.charAt(left++);
+          if(!requirements.containsKey(c)) continue;
+          int count = requirements.get(c);
+          if(--count == -1) violated++;
+          requirements.put(c, count);
+          if(violated == 1) {
+            int validLeft = left - 1;
+            int length = right - validLeft;
+            if(length < minLength) {
+              minIndex = validLeft;
+              minLength = length;
+            }
+          }
+        }
+      }
+      return minIndex == -1 ? "" : S.substring(minIndex, minIndex + minLength);
+    }
+
+    private static Map<Character, Integer> processWindowRequirements(String T) {
+      Map<Character, Integer> ret = new HashMap<>();
+      for(char c : T.toCharArray())
+        ret.compute(c, (key, count) -> count == null ? -1 : --count);
+      return ret;
+    }
+  }
+
   public static void main(String args[]) {
-    System.out.println(new Solution().minWindow("ADOBECODEBANC", "ABC"));
+    String S;
+    String T;
+    String result;
+
+    for(Solution solution : Arrays.asList(new Solution1(), new Solution2())) {
+      S = "ADOBECODEBANC";
+      T = "ABC";
+      result = solution.minWindow(S, T);
+      System.out.println(result);
+    }
   }
 
 }

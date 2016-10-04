@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.BucketSort;
 
 /**
  * Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent,
@@ -25,7 +26,19 @@ public class _075_SortColors implements Medium {
     void sortColors(int[] nums);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, BucketSort {
+    @Override
+    public void sortColors(int[] nums) {
+      int[] buckets = new int[3];
+      for(int num : nums) buckets[num]++;
+      int i = 0;
+      while(buckets[0]-- > 0) nums[i++] = 0;
+      while(buckets[1]-- > 0) nums[i++] = 1;
+      while(buckets[2]-- > 0) nums[i++] = 2;
+    }
+  }
+
+  public static class Solution2 implements Solution {
 
     @Override
     public void sortColors(int[] nums) {
@@ -56,16 +69,15 @@ public class _075_SortColors implements Medium {
   public static void main(String args[]) {
     int[] nums;
 
-    Solution s = new Solution1();
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      nums = new int[] {1, 0};
+      s.sortColors(nums);
+      System.out.println(Arrays.toString(nums));
 
-    nums = new int[] {1, 0};
-    s.sortColors(nums);
-    System.out.println(Arrays.toString(nums));
-
-    nums = new int[] {0, 1, 2, 2, 1, 0, 2, 1, 2, 1, 1, 0};
-    s.sortColors(nums);
-    System.out.println(Arrays.toString(nums));
-
+      nums = new int[] {0, 1, 2, 2, 1, 0, 2, 1, 2, 1, 1, 0};
+      s.sortColors(nums);
+      System.out.println(Arrays.toString(nums));
+    }
 
   }
 

@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.BitManipulation;
 
 /**
  * Given a set of distinct integers, S, return all possible subsets.
@@ -26,10 +27,15 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  */
 public class _078_Subsets implements Medium {
 
-  public static class Solution1 {
+  public interface Solution {
+    List<List<Integer>> subsets(int[] S);
+  }
+
+  public static class Solution1 implements Solution {
+    @Override
     public List<List<Integer>> subsets(int[] S) {
       List<List<Integer>> results = new ArrayList<>();
-      results.add(new ArrayList<Integer>());
+      results.add(new ArrayList<>());
       Arrays.sort(S);
       for(int curr : S) {
         List<List<Integer>> cache = new ArrayList<>();
@@ -80,7 +86,9 @@ public class _078_Subsets implements Medium {
    *
    * Time complexity : O(n*2^n) , for every input element loop traverses the whole solution set length i.e. 2^n
    */
-  public static class Solution2 {
+  public static class Solution2 implements Solution, BitManipulation {
+
+    @Override
     public List<List<Integer>> subsets(int[] S) {
       Arrays.sort(S);
       int totalNumber = 1 << S.length;

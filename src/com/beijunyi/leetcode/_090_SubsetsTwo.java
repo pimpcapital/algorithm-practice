@@ -24,40 +24,45 @@ import com.beijunyi.leetcode.category.difficulty.Medium;
  */
 public class _090_SubsetsTwo implements Medium {
 
-  public static class Solution1 {
+  public interface Solution {
+    List<List<Integer>> subsetsWithDup(int[] num);
+  }
+
+  public static class Solution1 implements Solution {
     public List<List<Integer>> subsetsWithDup(int[] num) {
       Arrays.sort(num);
       List<List<Integer>> ret = new ArrayList<>();
-      if(num.length == 0)
-        return ret;
-
-      Set<Integer> sigs = new HashSet<>();
-      int count = 0;
       int max = 1 << num.length;
-
-      do {
-        List<Integer> subset = new ArrayList<>();
+      for(int mask = 0; mask < max; mask++) {
+        List<Integer> current = new ArrayList<>();
         for(int i = 0; i < num.length; i++) {
-          int mask = 1 << i;
-          if((count & mask) != 0)
-            subset.add(num[i]);
+          int check = 1 << i;
+          if((mask & check) == 0) continue;
+          int prev = check >>> 1;
+          if(i != 0 && num[i] == num[i - 1] && (mask & prev) == 0) {
+            current = null;
+            break;
+          } else {
+            current.add(num[i]);
+          }
         }
-        int sig = subset.hashCode();
-        if(sigs.contains(sig))
-          continue;
-        sigs.add(sig);
-        ret.add(subset);
-      } while(++count < max);
-
+        if(current != null) ret.add(current);
+      }
       return ret;
     }
   }
 
-  public static class Solution2 {
+  /**
+   * For every num,
+   *   1) if it is not the same as previous, clone every list and add num to the end
+   *   2) if it is the same as previous, do the same but with start index being the previous size
+   */
+  public static class Solution2 implements Solution {
+    @Override
     public List<List<Integer>> subsetsWithDup(int[] num) {
       Arrays.sort(num);
       List<List<Integer>> ret = new ArrayList<>();
-      ret.add(new ArrayList<Integer>());
+      ret.add(new ArrayList<>());
 
       int size = 0, startIndex;
       for(int i = 0; i < num.length; i++) {
@@ -75,8 +80,14 @@ public class _090_SubsetsTwo implements Medium {
 
 
   public static void main(String args[]) {
-    System.out.println(new Solution1().subsetsWithDup(new int[] {1, 2, 2}));
-    System.out.println(new Solution2().subsetsWithDup(new int[] {1, 2, 2}));
+    int[] num;
+    List<List<Integer>> result;
+
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      num = new int[] {1, 2, 2};
+      result = s.subsetsWithDup(num);
+      System.out.println(result);
+    }
   }
 
 }

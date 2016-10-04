@@ -3,6 +3,8 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.BinarySearch;
+import com.beijunyi.leetcode.category.solution.BitManipulation;
 
 /**
  * Implement int sqrt(int x).
@@ -14,7 +16,7 @@ public class _069_SqrtX implements Medium {
     int sqrt(int x);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, BinarySearch {
     @Override
     public int sqrt(int x) {
       if(x == 0) return 0;
@@ -37,7 +39,7 @@ public class _069_SqrtX implements Medium {
    * Since an integer n can have O(log n) bits with each bit decided within constant time, this algorithm has time limit O(log n).
    * Actually, because an Integer can have at most 32 bits, I can also say this algorithm takes O(32)=O(1) time.
    */
-  public static class Solution2 implements Solution {
+  public static class Solution2 implements Solution, BitManipulation {
     public int sqrt(int x) {
       int ans = 0;
       int bit = 1 << 16;

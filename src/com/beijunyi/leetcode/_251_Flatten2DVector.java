@@ -1,8 +1,6 @@
 package com.beijunyi.leetcode;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
@@ -68,15 +66,42 @@ public class _251_Flatten2DVector implements Medium, PremiumQuestion {
 
   }
 
+  public static class Solution2 implements Solution {
+    private Queue<Iterator<Integer>> q;
+
+    @Override
+    public void init(List<List<Integer>> vec2d) {
+      q = new LinkedList<>();
+      for(List<Integer> vec : vec2d) q.offer(vec.iterator());
+    }
+
+    @Override
+    public boolean hasNext() {
+      if(q.isEmpty()) return false;
+      if(!q.peek().hasNext()) {
+        q.poll();
+        return hasNext();
+      }
+      return true;
+    }
+
+    @Override
+    public Integer next() {
+      hasNext();
+      return q.peek().next();
+    }
+  }
+
   public static void main(String args[]) {
     List<List<Integer>> vec2d;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       vec2d = Arrays.asList(Arrays.asList(1, 2), Arrays.asList(3), Arrays.asList(4, 5, 6));
       s.init(vec2d);
       while(s.hasNext()) {
         System.out.println(s.next());
       }
+      System.out.println();
     }
   }
 

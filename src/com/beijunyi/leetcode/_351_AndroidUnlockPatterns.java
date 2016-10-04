@@ -46,9 +46,9 @@ public class _351_AndroidUnlockPatterns implements Medium, PremiumQuestion {
     @Override
     public int numberOfPatterns(int m, int n) {
       if(m < 1 || n > 9) return 0;
-      return numberOfPatterns(m, n, 1, new LinkedHashSet<Integer>()) * 4
-               + numberOfPatterns(m, n, 2, new LinkedHashSet<Integer>()) * 4
-               + numberOfPatterns(m, n, 5, new LinkedHashSet<Integer>());
+      return numberOfPatterns(m, n, 1, new LinkedHashSet<>()) * 4
+               + numberOfPatterns(m, n, 2, new LinkedHashSet<>()) * 4
+               + numberOfPatterns(m, n, 5, new LinkedHashSet<>());
     }
 
     private static int numberOfPatterns(int m, int n, int current, Set<Integer> used) {

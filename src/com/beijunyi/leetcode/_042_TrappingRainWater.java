@@ -65,6 +65,10 @@ public class _042_TrappingRainWater implements Hard {
     int result;
 
     for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      A = new int[] {0,1,5,0,2,1};
+      result = s.trap(A);
+      System.out.println(result);
+
       A = new int[] {0,1,0,2,1,0,1,3,2,1,2,1};
       result = s.trap(A);
       System.out.println(result);

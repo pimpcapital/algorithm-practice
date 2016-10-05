@@ -5,6 +5,9 @@ import java.util.Arrays;
 import com.beijunyi.leetcode.category.PremiumQuestion;
 import com.beijunyi.leetcode.category.difficulty.Medium;
 
+/**
+ * Given two strings S and T, determine if they are both one edit distance apart.
+ */
 public class _161_OneEditDistance implements Medium, PremiumQuestion {
 
   public interface Solution {
@@ -35,7 +38,7 @@ public class _161_OneEditDistance implements Medium, PremiumQuestion {
   public static class Solution2 implements Solution {
     @Override
     public boolean isOneEditDistance(String s, String t) {
-      for (int i = 0; i < Math.min(s.length(), t.length()); i++) {
+      for(int i = 0; i < Math.min(s.length(), t.length()); i++) {
         if (s.charAt(i) != t.charAt(i)) {
           if (s.length() == t.length()) // s has the same length as t, so the only possibility is replacing one char in s and t
             return s.substring(i + 1).equals(t.substring(i + 1));

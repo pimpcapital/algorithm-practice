@@ -1,9 +1,9 @@
 package com.beijunyi.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.beijunyi.leetcode.category.difficulty.Hard;
+import com.beijunyi.leetcode.ds.Interval;
 
 /**
  * Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
@@ -20,23 +20,19 @@ import com.beijunyi.leetcode.category.difficulty.Hard;
  */
 public class _057_InsertInterval implements Hard {
 
-  private static class Interval {
-     int start;
-     int end;
-     Interval(int s, int e) { start = s; end = e; }
-
-    @Override
-    public String toString() {
-      return "[" + start + ", " + end + ']';
-    }
+  public interface Solution {
+    List<Interval> insert(List<Interval> intervals, Interval newInterval);
   }
 
   /**
    * Idea is to find the lower and upper bound of the newly inserted interval.
    * If lower boundary equals to higher boundary, just insert to that position.
-   * Otherwise, compare the values of old intervals and new interval to determine the values of start and end for the interval after insertion.
+   *
+   * Otherwise, compare the values of old intervals and new interval to determine the values of start and end for the
+   * interval after insertion.
    */
-  public static class Solution {
+  public static class Solution1 implements Solution {
+
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
       List<Interval> results = new ArrayList<>();
       if(intervals == null || intervals.size() == 0) {
@@ -68,13 +64,60 @@ public class _057_InsertInterval implements Hard {
     }
   }
 
+  public static class Solution2 implements Solution {
+    @Override
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+      Iterator<Interval> iterator = intervals.iterator();
+      boolean merged = false;
+      while(iterator.hasNext()) {
+        Interval next = iterator.next();
+        if(!merged && Math.max(newInterval.start, next.start) <= Math.min(newInterval.end, next.end)
+             || merged && newInterval.end >= next.start) {
+          newInterval.start = Math.min(next.start, newInterval.start);
+          newInterval.end = Math.max(next.end, newInterval.end);
+          merged = true;
+          iterator.remove();
+        } else if(merged || next.start > newInterval.end) break; // no chance.
+      }
+
+      int insert = 0;
+      for(int i = 0; i < intervals.size(); i++) {
+        Interval current = intervals.get(i);
+        if(current.end < newInterval.start) insert = i + 1;
+        else if(current.start > newInterval.end) break;
+      }
+      intervals.add(insert, newInterval);
+      return intervals;
+    }
+
+  }
+
   public static void main(String args[]) {
-    List<Interval> input = new ArrayList<>();
-    input.add(new Interval(1, 2));
-    input.add(new Interval(3, 5));
-    input.add(new Interval(6, 7));
-    input.add(new Interval(8, 10));
-    input.add(new Interval(12, 16));
-    System.out.println(new Solution().insert(input, new Interval(4, 9)));
+    List<Interval> intervals;
+    Interval newInterval;
+    List<Interval> result;
+
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      intervals = new ArrayList<>();
+      newInterval = new Interval(6, 8);
+      result = s.insert(intervals, newInterval);
+      System.out.println(result);
+
+      intervals = new ArrayList<>(Arrays.asList(new Interval(1, 5)));
+      newInterval = new Interval(6, 8);
+      result = s.insert(intervals, newInterval);
+      System.out.println(result);
+
+      intervals = new ArrayList<>(Arrays.asList(new Interval(1, 5)));
+      newInterval = new Interval(0, 0);
+      result = s.insert(intervals, newInterval);
+      System.out.println(result);
+
+      intervals = new ArrayList<>(Arrays.asList(
+        new Interval(1, 2), new Interval(3, 5), new Interval(6, 7), new Interval(8, 10), new Interval(12, 16)));
+      newInterval = new Interval(4, 9);
+      result = s.insert(intervals, newInterval);
+      System.out.println(result);
+    }
   }
 }

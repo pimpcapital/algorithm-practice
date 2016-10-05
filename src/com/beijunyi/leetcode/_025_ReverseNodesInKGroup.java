@@ -1,5 +1,7 @@
 package com.beijunyi.leetcode;
 
+import java.util.Arrays;
+
 import com.beijunyi.leetcode.category.difficulty.Hard;
 import com.beijunyi.leetcode.ds.ListNode;
 
@@ -21,110 +23,80 @@ import com.beijunyi.leetcode.ds.ListNode;
  */
 public class _025_ReverseNodesInKGroup implements Hard {
 
-  public static class Solution1 {
+  public interface Solution {
+    ListNode reverseKGroup(ListNode head, int k);
+  }
+
+  public static class Solution1 implements Solution {
+    @Override
     public ListNode reverseKGroup(ListNode head, int k) {
-      if(head == null || head.next == null || k == 1)
-        return head;
+      int total = 0;
+      for(ListNode i = head; i != null; total++, i = i.next);
 
-      ListNode result = null;
-      ListNode prevGroupTail = null;
-
-      while(head != null) {
-        ListNode oldHead = head;
-        ListNode newHead = head;
-        for(int i = 1; i < k; i++) {
-          if(newHead.next == null)
-            return result == null ? head : result;
-          newHead = newHead.next;
+      ListNode dmy = new ListNode(0);
+      dmy.next = head;
+      for(ListNode prev = dmy, tail = head; total >= k; total -= k) {
+        for (int i = 1; i < k; i++) {
+          ListNode next = tail.next.next;
+          tail.next.next = prev.next;
+          prev.next = tail.next;
+          tail.next = next;
         }
-        head = newHead.next;
 
-        ListNode toLink = newHead;
-        while(toLink != oldHead) {
-          ListNode current = oldHead;
-          while(current.next != toLink)
-            current = current.next;
-          toLink.next = current;
-          toLink = current;
-        }
-        toLink.next = head;
-
-        if(result == null)
-          result = newHead;
-        if(prevGroupTail != null)
-          prevGroupTail.next = newHead;
-
-
-        prevGroupTail = toLink;
+        prev = tail;
+        tail = tail.next;
       }
-
-      return result;
+      return dmy.next;
     }
   }
 
-  public static class Solution2 {
+  public static class Solution2 implements Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-      if (head==null||head.next==null||k<2) return head;
-
       ListNode dummy = new ListNode(0);
       dummy.next = head;
 
-      ListNode tail = dummy, prev = dummy,temp;
-      int count;
-      while(true){
-        count =k;
-        while(count>0&&tail!=null){
-          count--;
-          tail=tail.next;
-        }
-        if (tail==null) break;//Has reached the end
-
-
-        head=prev.next;//for next cycle
-        // prev-->temp-->...--->....--->tail-->....
-        // Delete @temp and insert to the next position of @tail
-        // prev-->...-->...-->tail-->head-->...
-        // Assign @temp to the next node of @prev
-        // prev-->temp-->...-->tail-->...-->...
-        // Keep doing until @tail is the next node of @prev
-        while(prev.next!=tail){
-          temp=prev.next;//Assign
-          prev.next=temp.next;//Delete
-
-          temp.next=tail.next;
-          tail.next=temp;//Insert
-
-        }
-
-        tail=head;
-        prev=head;
-
+      ListNode tail = dummy;
+      while(true) {
+        ListNode[] headTail = reverseNextK(tail.next, k);
+        if(headTail == null) break;
+        tail.next = headTail[0];
+        tail = headTail[1];
       }
       return dummy.next;
+    }
 
+    private static ListNode[] reverseNextK(ListNode head, int k) {
+      if(!checkMinLength(head, k)) return null;
+
+      ListNode headOfTail = null;
+      ListNode current = head;
+      for(int i = 0; i < k; i++) {
+        ListNode next = current.next;
+        current.next = headOfTail;
+        headOfTail = current;
+        current = next;
+      }
+
+      head.next = current;
+      return new ListNode[]{headOfTail, head};
+    }
+
+    private static boolean checkMinLength(ListNode head, int k) {
+      while(head != null && --k > 0) head = head.next;
+      return k == 0;
     }
   }
 
   public static void main(String args[]) {
-    ListNode n1 = new ListNode(1);
-    ListNode n2 = new ListNode(2);
-    ListNode n3 = new ListNode(3);
-    ListNode n4 = new ListNode(4);
-    ListNode n5 = new ListNode(5);
-    n1.next = n2;
-    n2.next = n3;
-    n3.next = n4;
-    n4.next = n5;
-    System.out.println(new Solution1().reverseKGroup(n1, 2));
-    n1 = new ListNode(1);
-    n2 = new ListNode(2);
-    n3 = new ListNode(3);
-    n4 = new ListNode(4);
-    n5 = new ListNode(5);
-    n1.next = n2;
-    n2.next = n3;
-    n3.next = n4;
-    n4.next = n5;
-    System.out.println(new Solution2().reverseKGroup(n1, 2));
+    ListNode head;
+    int k;
+    ListNode result;
+
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
+      head = ListNode.fromArray(1, 2, 3, 4, 5);
+      k = 2;
+      result = s.reverseKGroup(head, k);
+      System.out.println(result);
+    }
   }
 }

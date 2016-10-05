@@ -21,3 +21,7 @@ public int countPrimes(int n) {
 
   return count;
 }
+
+public boolean overlap(Interval a, Interval b) {
+  return max(a.start, b.start) <= min(a.end, b.end);
+}

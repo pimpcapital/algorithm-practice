@@ -3,6 +3,7 @@ package com.beijunyi.leetcode;
 import java.util.Arrays;
 
 import com.beijunyi.leetcode.category.difficulty.Medium;
+import com.beijunyi.leetcode.category.solution.BitManipulation;
 
 /**
  * A character in UTF8 can be from 1 to 4 bytes long, subjected to the following rules:
@@ -46,7 +47,7 @@ public class _393_UTF8Validation implements Medium {
     boolean validUtf8(int[] data);
   }
 
-  public static class Solution1 implements Solution {
+  public static class Solution1 implements Solution, BitManipulation {
 
     private static final int FIRST_ONE_MASK = 1 << 7;
     private static final int FIRST_TWO_MASK = FIRST_ONE_MASK | (1 << 6);
@@ -83,11 +84,30 @@ public class _393_UTF8Validation implements Medium {
 
   }
 
+  public static class Solution2 implements Solution {
+    @Override
+    public boolean validUtf8(int[] data) {
+      int count = 0;
+      for(int c : data) {
+        if (count == 0) {
+          if ((c >>> 5) == 0b110) count = 1;
+          else if ((c >>> 4) == 0b1110) count = 2;
+          else if ((c >>> 3) == 0b11110) count = 3;
+          else if ((c >>> 7) != 0) return false;
+        } else {
+          if ((c >>> 6) != 0b10) return false;
+          count--;
+        }
+      }
+      return count == 0;
+    }
+  }
+
   public static void main(String args[]) {
     int[] data;
     boolean result;
 
-    for(Solution s : Arrays.asList(new Solution1())) {
+    for(Solution s : Arrays.asList(new Solution1(), new Solution2())) {
       data = new int[] {0b01111111};
       result = s.validUtf8(data);
       System.out.println(result);
@@ -103,6 +123,8 @@ public class _393_UTF8Validation implements Medium {
       data = new int[] {0b11101111, 0b10111111, 0b10111111};
       result = s.validUtf8(data);
       System.out.println(result);
+
+      System.out.println();
     }
   }
 

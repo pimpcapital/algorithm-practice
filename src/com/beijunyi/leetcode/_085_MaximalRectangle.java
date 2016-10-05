@@ -38,9 +38,11 @@ public class _085_MaximalRectangle implements Hard {
   }
 
   /**
-   * The DP solution proceeds row by row, starting from the first row. Let the maximal rectangle area at row r and column c be computed by [right(r,c) - left(r,c)]*height(r,c).
+   * The DP solution proceeds row by row, starting from the first row. Let the maximal rectangle area at row r and
+   * column c be computed by [right(r,c) - left(r,c)]*height(r,c).
    *
-   * All the 3 variables left, right, and height can be determined by the information from previous row, and also information from the current row. So it can be regarded as a DP solution. The transition equations are:
+   * All the 3 variables left, right, and height can be determined by the information from previous row, and also
+   * information from the current row. So it can be regarded as a DP solution. The transition equations are:
    *
    * left(r,c)    =  max(left(r-1,c), curLeft), curLeft can be determined from the current row
    * right(r,c)   =  min(right(r-1,c), curRight), curRight can be determined from the current row
